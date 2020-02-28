@@ -1,4 +1,4 @@
-# Chapter 1: 오브젝트와 의존관계
+# Chapter 1. 오브젝트와 의존관계
 
 ## 1.1 초난감 DAO
 ### [1) step1](step1/UserDao.java)
@@ -131,7 +131,7 @@
 - 이를 Ioc Container, Spring Container등 다양하게 부른다.
 
 #### 동작방식
-![img](./step7/applicationcontext.png)
+![img](./step7/applicationContext.png)
 - 클라이언트는 userDao를 요청하면 ApplicationContext는 빈으로 등록엔 UserDao를 확인하고 해당 UserDao를 생성하여 전달해준다.
 
 #### ApplicationContext를 사용했을 때 얻는 장점
