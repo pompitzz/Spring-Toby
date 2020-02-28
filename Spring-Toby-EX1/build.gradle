@@ -10,10 +10,14 @@ repositories {
 }
 
 dependencies {
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.19'
+    implementation 'mysql:mysql-connector-java:8.0.19'
+    implementation 'org.springframework:spring-context:5.2.4.RELEASE'
+    implementation 'org.springframework:spring-jdbc:5.2.4.RELEASE'
 
-    testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
-    testImplementation('org.assertj:assertj-core:3.11.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
+    testImplementation 'org.assertj:assertj-core:3.11.1'
+    testImplementation 'org.springframework:spring-test:5.2.4.RELEASE'
+
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
 

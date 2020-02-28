@@ -1,8 +1,6 @@
 package ch1;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * @author Dongmyeong Lee
@@ -10,6 +8,8 @@ import lombok.ToString;
  */
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class User {
     private String id;

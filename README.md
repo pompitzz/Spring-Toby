@@ -2,7 +2,7 @@
 
 ## V1
 - #### [CHAPTER1. 오브젝트와 의존관계](./Spring-Toby-EX1/src/main/java/ch1/README.md)
-
+- #### [CHAPTER2. 테스트](./Spring-Toby-EX1/src/main/java/ch2/README.md)
 
 
 ### 추천 서적
