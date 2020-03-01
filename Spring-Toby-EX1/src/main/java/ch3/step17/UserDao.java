@@ -4,6 +4,7 @@ import ch1.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,10 +21,8 @@ public class UserDao {
     }
 
     public void add(final User user) throws SQLException {
-
         jdbcTemplate.update("insert into users values(?, ?, ?)"
                 , user.getId(), user.getName(), user.getPassword());
-
     }
 
     public void deleteAll() throws SQLException {
@@ -33,14 +32,7 @@ public class UserDao {
 
     public User get(String id) throws ClassNotFoundException, SQLException {
         return jdbcTemplate.queryForObject("select * from users where id = ?"
-                , new Object[]{id}
-                , ((rs, rowNum) -> {
-                    final User user1 = new User();
-                    user1.setId(rs.getString("id"));
-                    user1.setName(rs.getString("name"));
-                    user1.setPassword(rs.getString("password"));
-                    return user1;
-                }));
+                , new Object[]{id}, this::makeUser);
     }
 
     public long getCount() throws SQLException {
@@ -48,14 +40,13 @@ public class UserDao {
     }
 
     public List<User> getAll() {
-        return jdbcTemplate.query("select * from users order by id",
-                (rs, rowNum) ->
-                        new User(rs.getString("id"),
-                                rs.getString("name"),
-                                rs.getString("password"))
-        );
+        return jdbcTemplate.query("select * from users order by id", this::makeUser);
     }
 
-    private User makeUser()
-
+    private User makeUser(ResultSet rs, int rowNum) throws SQLException {
+        return new User(
+                rs.getString("id"),
+                rs.getString("name"),
+                rs.getString("password"));
+    }
 }
