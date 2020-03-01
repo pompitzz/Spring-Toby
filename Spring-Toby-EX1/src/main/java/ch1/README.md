@@ -131,7 +131,7 @@
 - 이를 Ioc Container, Spring Container등 다양하게 부른다.
 
 #### 동작방식
-![img](./step7/applicationContext.png)
+![img](./step7/applicationcontext.png)
 - 클라이언트는 userDao를 요청하면 ApplicationContext는 빈으로 등록엔 UserDao를 확인하고 해당 UserDao를 생성하여 전달해준다.
 
 #### ApplicationContext를 사용했을 때 얻는 장점
@@ -296,9 +296,6 @@
 </beans>
 -> 가능하면 스키마를 사용하는게 더 좋다.
 ```
-
-#### [11) step11](step11/applicationContext.xml)
-- xml로 빈으로 등록하여도 정상적으로 동작하느 것을 알 수 있다.
 
 ### 1.8.3 DataSource 인터페이스로 변환
 - ConnectionMaker는 단순히 DB커넥션만 생성해주는 인터페이스이다.

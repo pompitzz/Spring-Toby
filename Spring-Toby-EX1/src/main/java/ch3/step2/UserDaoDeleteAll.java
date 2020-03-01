@@ -9,6 +9,7 @@ import java.sql.SQLException;
  * @since 2020/02/29
  */
 public class UserDaoDeleteAll extends UserDao {
+
     @Override
     protected PreparedStatement makeStatement(final Connection c) throws SQLException {
         return c.prepareStatement("delete from users");

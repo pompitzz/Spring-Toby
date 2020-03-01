@@ -33,6 +33,14 @@ public class UserDao {
         jdbcContextWithStateStrategy(strategy);
     }
 
+    private void jdbcContextWithStateStrategy(final StatementStrategy strategy) throws SQLException{
+        try(final Connection c = dataSource.getConnection()){
+            try(final PreparedStatement ps = strategy.makePreparedStatement(c)){
+                ps.executeUpdate();
+            }
+        }
+    }
+
     public User get(String id) throws ClassNotFoundException, SQLException {
         User user = null;
         try(final Connection c = dataSource.getConnection()){
@@ -66,13 +74,5 @@ public class UserDao {
             }
         }
         return count;
-    }
-
-    private void jdbcContextWithStateStrategy(final StatementStrategy strategy) throws SQLException{
-        try(final Connection c = dataSource.getConnection()){
-            try(final PreparedStatement ps = strategy.makePreparedStatement(c)){
-                ps.executeUpdate();
-            }
-        }
     }
 }

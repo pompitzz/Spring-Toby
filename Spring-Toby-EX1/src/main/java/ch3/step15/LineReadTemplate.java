@@ -10,7 +10,6 @@ import java.io.IOException;
  */
 public class LineReadTemplate {
     public <T> T lineReadTemplate(final String path, final T initValue, final LineCallback<T> callback) throws IOException {
-
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             T retValue = initValue;
             String line = null;

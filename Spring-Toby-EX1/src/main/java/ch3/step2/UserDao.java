@@ -17,7 +17,7 @@ public abstract class UserDao {
         this.dataSource = dataSource;
     }
 
-    public void deleteAll() throws SQLException {
+    public void execQuery() throws SQLException {
         try (final Connection c = dataSource.getConnection()) {
             try (final PreparedStatement ps = makeStatement(c)) {
                 ps.executeUpdate();
