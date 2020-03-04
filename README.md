@@ -18,3 +18,4 @@
 ## 강의 별 정리 내용
 - #### [1회. 재사용성과 다이나믹 디스패치, 더블 디스패치](./Spring-of-TobyTV/src/main/java/first/README.md)
 - #### [2회. 수퍼 타입 토큰](./Spring-of-TobyTV/src/main/java/second/README.md)
+- #### [4회. Generics](./Spring-of-TobyTV/src/main/java/third/README.md)
