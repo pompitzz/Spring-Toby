@@ -7,3 +7,4 @@
 - #### [4회. Generics](./src/main/java/sun/lee/t3_fourth/README.md)
 - #### [5회. Reactive Streams (1) 리액티브 스트림의 특징](./src/main/java/sun/lee/t4_fifth/README.md)
 - #### [6회. Reactive Streams (2) Operators](./src/main/java/sun/lee/t5_sixth/README.md)
+- #### [7회. Reactive Streams (3) Scheduler](./src/main/java/sun/lee/t6_seventh/README.md)

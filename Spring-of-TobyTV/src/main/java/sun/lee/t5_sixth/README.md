@@ -1,4 +1,5 @@
 # \# 6. Reactive Streams (2) Operators
+- Publisher, Subsriber사이에 데이터를 조작하거나, 스케줄링 하거나, 퍼블리싱을 컨트롤할 새로운 Publisher를 만드는 것이다.
 - Publisher -> Data -> Subscriber
 - 이렇게 동작이 이루어질 때 Operator를 통해 데이터를 가공하여 
 - Publisher -> [Data1] -> Operator -> [Data2] -> Subscriber
