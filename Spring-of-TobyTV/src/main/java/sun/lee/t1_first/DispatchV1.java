@@ -1,8 +1,8 @@
-package first;
+package sun.lee.t1_first;
 
 import java.util.List;
 
-public class DispatchV4 {
+public class DispatchV1 {
     interface Post{
         void postOn(SNS sns);
     }
@@ -11,7 +11,7 @@ public class DispatchV4 {
 
         @Override
         public void postOn(SNS sns) {
-            sns.post(this);
+            System.out.println("Text -> " + sns.getClass().getSimpleName());
         }
     }
 
@@ -19,40 +19,17 @@ public class DispatchV4 {
 
         @Override
         public void postOn(SNS sns) {
-            sns.post(this);
+            System.out.println("picture -> " + sns.getClass().getSimpleName());
         }
     }
 
     interface SNS{
-        void post(Text post);
-
-        void post(Picture post);
     }
 
     static class Facebook implements SNS{
-
-        @Override
-        public void post(Text post) {
-            System.out.println("Facebook Text Post");
-        }
-
-        @Override
-        public void post(Picture post) {
-            System.out.println("Facebook Picture Post");
-        }
     }
 
     static class Instagram implements SNS{
-
-        @Override
-        public void post(Text post) {
-            System.out.println("Instagram Text Post");
-        }
-
-        @Override
-        public void post(Picture post) {
-            System.out.println("Instagram Picture Post");
-        }
     }
 
     public static void main(String[] args) {

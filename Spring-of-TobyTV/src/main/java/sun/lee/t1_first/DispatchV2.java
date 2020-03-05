@@ -1,4 +1,4 @@
-package first;
+package sun.lee.t1_first;
 
 import java.util.List;
 

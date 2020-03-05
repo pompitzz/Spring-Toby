@@ -1,7 +1,6 @@
-package second;
+package sun.lee.t2_second;
 
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;

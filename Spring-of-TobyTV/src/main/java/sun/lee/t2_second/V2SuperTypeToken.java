@@ -1,4 +1,4 @@
-package second;
+package sun.lee.t2_second;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

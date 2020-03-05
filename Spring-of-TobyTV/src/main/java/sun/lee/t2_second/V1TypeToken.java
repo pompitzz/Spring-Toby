@@ -1,4 +1,4 @@
-package second;
+package sun.lee.t2_second;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package third;
+package sun.lee.t3_fourth;
 
 import java.io.Serializable;
 import java.util.Arrays;

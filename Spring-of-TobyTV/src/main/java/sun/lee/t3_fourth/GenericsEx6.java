@@ -1,7 +1,6 @@
-package third;
+package sun.lee.t3_fourth;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
