@@ -21,7 +21,7 @@ public class MyService {
     @Bean
     public ThreadPoolTaskExecutor myThreadPool() {
         ThreadPoolTaskExecutor te = new ThreadPoolTaskExecutor();
-        te.setCorePoolSize(1);
+        te.setCorePoolSize(10);
         te.setMaxPoolSize(10);
         te.initialize();
         return te;
