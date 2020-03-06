@@ -1,8 +1,10 @@
 package sun.lee.t4_fifth;
 
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+
 import java.util.Arrays;
 
-import static java.util.concurrent.Flow.*;
 
 /**
  * @author Dongmyeong Lee
@@ -16,7 +18,6 @@ public class Ex2Main {
 
         // publisher는 subscribe 메서드 하나만 존재한다.
         Publisher<Integer> p = new Ex2MyPub(itr);
-
         Subscriber<Integer> s = new Ex2MySub1();
         Subscriber<Integer> s2 = new Ex2MySub2();
 

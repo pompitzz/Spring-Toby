@@ -1,16 +1,18 @@
 package sun.lee.t4_fifth;
 
-import java.util.concurrent.Flow;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 /**
  * @author Dongmyeong Lee
  * @since 2020/03/05
  */
-public class Ex2MySub2 implements Flow.Subscriber<Integer> {
-    Flow.Subscription subscription;
+public class Ex2MySub2 implements Subscriber<Integer> {
+    Subscription subscription;
 
     @Override
-    public void onSubscribe(Flow.Subscription subscription) {
+    public void onSubscribe(Subscription subscription) {
         System.out.println("\n=============== Start One Req ================");
         System.out.println("onSubscribe");
         this.subscription = subscription;

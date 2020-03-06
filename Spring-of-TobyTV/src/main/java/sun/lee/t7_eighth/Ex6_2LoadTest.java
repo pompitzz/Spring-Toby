@@ -21,7 +21,7 @@ public class Ex6_2LoadTest {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService es = Executors.newFixedThreadPool(100);
         RestTemplate rt = new RestTemplate();
-        String url = "http://localhost:8080/async2";
+        String url = "http://localhost:8080/callable";
 
         StopWatch main = new StopWatch();
         main.start();

@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
  * @since 2020/03/06
  */
 @Slf4j
-@Configuration
 public class Ex5SpringAsync {
 
     @Service

@@ -1,5 +1,6 @@
 package sun.lee.t1_first;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class DispatchV3 {
@@ -44,8 +45,8 @@ public class DispatchV3 {
     }
 
     public static void main(String[] args) {
-        List<SNS> snsList = List.of(new Facebook(), new Instagram());
-        List<Post> postList = List.of(new Text(), new Picture());
+        List<SNS> snsList = Arrays.asList(new Facebook(), new Instagram());
+        List<Post> postList = Arrays.asList(new Text(), new Picture());
 
         // postList.forEach(p -> snsList.forEach(s -> p.postOn(s)));
         // Error 발생

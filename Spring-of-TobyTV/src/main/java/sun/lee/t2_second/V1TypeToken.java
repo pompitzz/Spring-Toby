@@ -1,5 +1,6 @@
 package sun.lee.t2_second;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,11 +54,11 @@ public class V1TypeToken {
         typesafeMap.put(Integer.class, 1);
         System.out.println("typesafeMap.get(Integer.class) = " + typesafeMap.get(Integer.class));
 
-        List<Integer> integerList = List.of(1, 2, 3, 4);
+        List<Integer> integerList = Arrays.asList(1, 2, 3, 4);
         typesafeMap.put(List.class, integerList);
         System.out.println("typesafeMap.get(List.class) = " + typesafeMap.get(List.class));
 
-        List<String> stringList = List.of("H", "E", "L", "L", "O");
+        List<String> stringList = Arrays.asList("H", "E", "L", "L", "O");
         typesafeMap.put(List.class, stringList); // 위를 덮어 쓴다.
         System.out.println("typesafeMap.get(List.class) = " + typesafeMap.get(List.class));
 

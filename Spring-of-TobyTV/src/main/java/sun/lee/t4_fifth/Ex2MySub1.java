@@ -1,15 +1,16 @@
 package sun.lee.t4_fifth;
 
-import java.util.concurrent.Flow;
+
+import org.reactivestreams.*;
 
 /**
  * @author Dongmyeong Lee
  * @since 2020/03/05
  */
-public class Ex2MySub1 implements Flow.Subscriber<Integer> {
+public class Ex2MySub1 implements Subscriber<Integer> {
     // 반드시 호출해야 한다.
     @Override
-    public void onSubscribe(Flow.Subscription subscription) {
+    public void onSubscribe(Subscription subscription) {
         System.out.println("\n=============== Start Long.MAX_VALUE ================");
         System.out.println("onSubscribe");
         // Pub는 매우 빨라 백만개의 이벤트를 발생시키는데 Sub는 그를 해결할 능력이 없을 상황

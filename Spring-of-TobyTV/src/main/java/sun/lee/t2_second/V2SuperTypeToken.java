@@ -2,10 +2,7 @@ package sun.lee.t2_second;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 /**
@@ -79,11 +76,11 @@ public class V2SuperTypeToken {
         System.out.println("<String> : " + m.get(stringType));
 
         final TypeReference<List<String>> listStringType = new TypeReference<List<String>>() {};
-        m.put(listStringType, List.of("HELLO", "WORLD"));
+        m.put(listStringType, Arrays.asList("HELLO", "WORLD"));
         System.out.println("List<String> : " + m.get(listStringType));
 
         final TypeReference<List<Integer>> listIntegerType = new TypeReference<List<Integer>>() {};
-        m.put(listIntegerType, List.of(1, 2, 3));
+        m.put(listIntegerType, Arrays.asList(1, 2, 3));
         System.out.println("List<Integer> : " + m.get(listIntegerType));
     }
 

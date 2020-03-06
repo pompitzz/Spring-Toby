@@ -1,13 +1,17 @@
 package sun.lee.t4_fifth;
 
+
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.Iterator;
-import java.util.concurrent.Flow;
 
 /**
  * @author Dongmyeong Lee
  * @since 2020/03/05
  */
-public class Ex2MyPub implements Flow.Publisher<Integer> {
+public class Ex2MyPub implements Publisher<Integer> {
 
     Iterable<Integer> iterable;
 
@@ -16,7 +20,7 @@ public class Ex2MyPub implements Flow.Publisher<Integer> {
     }
 
     @Override
-    public void subscribe(Flow.Subscriber subscriber) {
+    public void subscribe(Subscriber subscriber) {
 
         // 옵저버에는 전달 인자가 존재하지 않지만 여기에는 존재한다.
 
@@ -29,7 +33,7 @@ public class Ex2MyPub implements Flow.Publisher<Integer> {
         // 디비에서 가져온 데이터라고 생각해보자.
         Iterator<Integer> it = iterable.iterator();
 
-        subscriber.onSubscribe(new Flow.Subscription() {
+        subscriber.onSubscribe(new Subscription() {
             @Override
             public void request(long n) {
                 try {
