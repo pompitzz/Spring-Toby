@@ -24,11 +24,25 @@ public class RemoteService {
             log.info("Service");
             return req + "/service";
         }
+
         @GetMapping("/service2")
         public String service2(String req) throws InterruptedException {
             TimeUnit.SECONDS.sleep(2);
             log.info("Service2");
             return req + "/service2";
+        }
+
+        @GetMapping("/service3")
+        public String service3(String req) throws InterruptedException {
+            TimeUnit.SECONDS.sleep(2);
+            log.info("Service3");
+            return req + "/service3";
+        }
+
+        @GetMapping("/error")
+        public String error(String req) {
+            if(true) throw new RuntimeException();
+            return req;
         }
     }
 
