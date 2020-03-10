@@ -63,21 +63,26 @@ public class Ex1Operators {
     }
 
     private static Publisher<Integer> sumPub(Publisher<Integer> pub) {
-        return sub -> pub.subscribe(
-                new Ex1DelegateSub<Integer, Integer>(sub) {
-                    int sum = 0;
+        return new Publisher<Integer>() {
+            @Override
+            public void subscribe(Subscriber<? super Integer> sub) {
+                pub.subscribe(
+                        new Ex1DelegateSub<Integer, Integer>(sub) {
+                            int sum = 0;
 
-                    @Override
-                    public void onNext(Integer integer) {
-                        sum += integer;
-                    }
+                            @Override
+                            public void onNext(Integer integer) {
+                                sum += integer;
+                            }
 
-                    @Override
-                    public void onComplete() {
-                        sub.onNext(sum);
-                        super.onComplete();
-                    }
-                });
+                            @Override
+                            public void onComplete() {
+                                sub.onNext(sum);
+                                super.onComplete();
+                            }
+                        });
+            }
+        };
     }
 
     private static Publisher<Integer> reducePub(Publisher<Integer> pub, Integer init, BiFunction<Integer, Integer, Integer> bf) {

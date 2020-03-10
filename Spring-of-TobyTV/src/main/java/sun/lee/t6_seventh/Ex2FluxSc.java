@@ -22,27 +22,23 @@ public class Ex2FluxSc {
          */
 
         // subscribeOn을 간단하게 설정할 수 있다.
-        /*
         Flux.range(1, 10)
                 .log()
                 .subscribeOn(Schedulers.newSingle("sub"))
                 .subscribe(System.out::println);
-         */
 
-        /*
-        Flux.range(1, 10)
-                .publishOn(Schedulers.newSingle("pub"))
-                .log()
-                .subscribe(System.out::println);
-         */
+//        Flux.range(1, 10)
+//                .publishOn(Schedulers.newSingle("pub"))
+//                .log()
+//                .subscribe(System.out::println);
 
-        /*
-        Flux.range(1, 10)
-                .publishOn(Schedulers.newSingle("pub"))
-                .log()
-                .subscribeOn(Schedulers.newSingle("sub"))
-                .subscribe(System.out::println);
-         */
+//        Flux.range(1, 10)
+//                .publishOn(Schedulers.newSingle("pub"))
+//                .log()
+//                .map(i -> i + 10)
+//                .log()
+//                .subscribeOn(Schedulers.newSingle("sub"))
+//                .subscribe(System.out::println);
 
     }
 
