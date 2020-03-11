@@ -23,7 +23,6 @@ public class Ex4IntervalImpl {
                 sub.onSubscribe(
                         new Subscription() {
                             int no = 0;
-
                             // volatile은 변수 값을 CPU캐시가 아닌 메인 메모리에 저장한다.
                             // 이는 동기화문제에 안전하진 않지만 다른 쓰레드에서 이를 읽기만 하는 경우 최신 값을 보장해준다.
                             volatile boolean cancelled = false;

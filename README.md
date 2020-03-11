@@ -4,6 +4,8 @@
 - #### [CHAPTER1. 오브젝트와 의존관계](./Spring-Toby-EX1/src/main/java/ch1/README.md)
 - #### [CHAPTER2. 테스트](./Spring-Toby-EX1/src/main/java/ch2/README.md)
 - #### [CHAPTER3. 템플릿](./Spring-Toby-EX1/src/main/java/ch3/README.md)
+- #### [CHAPTER4. 예외](./Spring-Toby-EX1/src/main/java/ch4/README.md)
+- #### [CHAPTER5. 서비스 추상화](./Spring-Toby-EX1/src/main/java/ch5/README.md)
 
 
 ### 추천 서적

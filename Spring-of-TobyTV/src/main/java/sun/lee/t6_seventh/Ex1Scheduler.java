@@ -80,7 +80,7 @@ public class Ex1Scheduler {
             System.out.println("\n\n=================== publishOn ======================");
             subOnPub.subscribe(anotherThreadSub(sub));
         };
-//        subAndPubOnPub.subscribe(logSub());
+        subAndPubOnPub.subscribe(logSub());
 
         System.out.println("=========== Main Method Exit ============");
     }
@@ -127,23 +127,23 @@ public class Ex1Scheduler {
         return new Subscriber<Integer>() {
             @Override
             public void onSubscribe(Subscription s) {
-                log.debug("onSubscribe");
+                log.info("onSubscribe");
                 s.request(Long.MAX_VALUE);
             }
 
             @Override
             public void onNext(Integer integer) {
-                log.debug("onNext:{}", integer);
+                log.info("onNext:{}", integer);
             }
 
             @Override
             public void onError(Throwable t) {
-                log.debug("onError:{}", t);
+                log.info("onError:{}", t);
             }
 
             @Override
             public void onComplete() {
-                log.debug("onComplete");
+                log.info("onComplete");
             }
         };
     }

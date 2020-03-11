@@ -29,7 +29,6 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @Slf4j
 public class Ex1WebFluxController {
-
     public static final String URL1 = "http://localhost:8081/service?req={req}";
     public static final String URL2 = "http://localhost:8081/service2?req={req}";
     public static final String URL3 = "http://localhost:8081/service3?req={req}";
