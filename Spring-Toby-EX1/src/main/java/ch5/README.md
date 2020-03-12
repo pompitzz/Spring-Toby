@@ -283,3 +283,337 @@ class UserServiceTest {
 }
 ```
 - 해당 상황들에 맞게 총 5번의 테스트를 진행하였고 이는 잘 동작하는 것을 알 수 있다.
+
+### 5.1.4 UserService.add()
+- 기본 로직은 구현하였지만 처음 가입하는 사용자가 BASIC 레벨이 되어야 하는 설정은 아직 구현되지 않았다.
+- 이러한 로직은 어디에 담는것이 적합할까?
+- UserDaoJdbc의 add() 메서드에는 이러한 메서드를 담는것이 옳지 않아보인다.
+- UserDao는 주어진 오브젝트를 DB에 정보를 넣고 읽는 방법에만 관심을 가져야 한다.
+- 그러므로 UserService에도 add()를 만들어 두고 사용자가 등륵될 때 적용할 만한 비즈니스 로직을 담당하게 하면될 것이다.
+- 레벨이 이미 정해진 경우와 레벨이 비어있을 경우에 대해 각각 테스트를 진행하면 될 것이다.
+
+```java
+@Test
+void add() throws Exception{
+    User userWithLevel = users.get(4);
+    User userWithoutLevel = users.get(0);
+    userWithoutLevel.setLevel(null);
+
+    userService.add(userWithLevel);
+    userService.add(userWithoutLevel);
+
+    User findUserWithLevel = userDao.get(userWithLevel.getId());
+    User findUserWithoutLevel = userDao.get(userWithoutLevel.getId());
+
+    assertThat(findUserWithLevel.getLevel()).isEqualTo(userWithLevel.getLevel());
+    assertThat(findUserWithoutLevel.getLevel()).isEqualTo(Level.BASIC);
+}
+
+public void add(User user) {
+    if(user.getLevel() == null) user.setLevel(Level.BASIC);
+    userDao.add(user);
+}
+```
+- 해당 기능을 테스트해보면 정상적으로 동작한다.
+- 하지만 간단한 비즈니스 로직을 담은 코드를 테스트하기 위해 DAO와 DB까지 모두 동원되어야 하는 점이 조금 불편하다.
+- 이런 테스트는 깔끔하고 간단히 만드는 방법이 존재하는데, 뒤에서 다루게 될 것이다.
+
+### 5.1.5 코드 개선
+- 비즈니스 로직은 성공적으로 끝마쳣지만 해당 코드들에 대해서 생각해볼 시간이 필요하다.
+- 코드에 중복된 부분은 없는가?
+- 코드가 무엇을 하는지 이해하기 불편하지 않는가?
+- 코드가 자신이 있어야 할 자리게 있는가?
+- 앞으로 변경이 일어난다면 어떤 것이 있을 수 있고, 그 변화에 쉽게 대응할 수 있게 작성되어 있는가?
+
+#### upgradeLevels() 메서드 코드의 문제점
+- upgradeLevels() 메서드를 살펴보면 몇가지 문제점들이 존재한다.
+- 우선 for 루프속에 있는 if, elseif 블록들은 레벨의 변화 단계와 업그레이드 조건, 조건이 충족됐을 때 해야 할 직업이 한데 섞여 있어서 로직을 이해하기 쉽지 않다.
+
+```java
+Level level = user.getLevel();
+boolean changed = false;
+if (level == Level.BASIC && user.getLogin() >= 50){
+    user.setLevel(Level.SILVER);
+    changed = true;
+}
+else if(level == Level.SILVER &&user.getRecommend() >= 30){
+    user.setLevel(Level.GOLD);
+    changed = true;
+}
+
+// 변경되었다면 업데이트를 호출해준다.
+if (changed) userDao.update(user);
+```
+- 레벨을 파악하는 로직, 업그레이드 조건을 담는 로직, 레벨를 업그레이드 하는 로직, flag를 통해 user를 업데이트 하는 로직이 존재한다.
+- 이는 서로 관련있어 보이지만 사실은 성격이 조금씩 다른 것들이 섞여 있거나 분리돼서 나타나는 구조이다.
+- 그리고 이런 if 조건 블록이 레벨 개수만큼 반복되기 때문에 새로운 레벨이 추가된다면 Level 이늄과 if블록들을 수정해줘야할 것이다.
+- 레벨들이 점점 추가되고 업그레이드 조건이 복잡해질 수록 이 메서드는 점점 더 복잡해질 것이다.
+
+#### upgradeLevels() 리팩토링
+- 이를 리팩토링 하기 위해 먼저 추상적인 레벨에서 로직을 작성해보자.
+- 기존은 upgradeLevels() 메서드는 자주 변경될 가능성이 있는 구체적인 내용이 추상적인 로직의 흐름과 함께 섞여 있다.
+- 구체적인 구현에서 외부에 노출할 인터페이스만 보여주듯이 기본적인 흐름만을 upgradeLevels에 정의해보자.
+
+```java
+public void upgradeLevels() {
+    List<User> users = userDao.getAll();
+    users.forEach(user -> {
+        if(canUpgradeLevel(user)){
+            upgradeLevel(user);
+        }
+    });
+}
+```
+- 이제 이 메서드는 매우 단순 명료하게 어떤 작업을 하는지 쉽게 이해할 수 있게 되었다.
+- 이제 이 메서드에서 호출하는 메서드들을 만들면 된다.
+
+```java
+private void upgradeLevel(User user) {
+    Level currentLevel = user.getLevel();
+    if (currentLevel == Level.BASIC) user.setLevel(Level.SILVER);
+    else if(currentLevel == Level.SILVER) user.setLevel(Level.GOLD);
+    userDao.update(user);
+    
+}
+
+private boolean canUpgradeLevel(User user) {
+    Level currentLevel = user.getLevel();
+    switch (currentLevel){
+        case BASIC: return (user.getLogin() >= 50);
+        case SILVER: return (user.getRecommend() >= 30);
+        case GOLD: return false;
+        default: throw new IllegalArgumentException("Unknown Level" + currentLevel);
+    }
+}
+```
+- 테스트를 돌려보면 정상적으로 동작하는 것을 알 수 있다.
+- 하지만 upgradeLevel을 보면 다음 단계가 무엇인가 하는 로직과, 그때 사용자 오브젝트의 level 필드를 변경해준다는 로직이 같이 있으며, 너무 노골적으로 드러나 있다.
+- 게다가 예외 상황에 대한 처리가 없어 만약 GOLD유저가 upgradeLevel메서드를 호출하게 되면 의미없이 update 쿼리를 날리게 될 것이다.
+- 그리고 레벨이 많아질 수록 if문은 계속해서 커질 것이고 변경되는 이유도 많아질 것이다.
+- 이를 더 분리하여 레벨의 순서와 다음 단게 레벨이 무엇인지를 결정하는 일을 Level에게 맡겨보자
+
+```java
+public enum Level {
+    GOLD(3, null),  SILVER(2, GOLD), BASIC(1, SILVER); 
+
+    private final int value;
+    private final Level next;
+
+    Level(int value, Level next) {
+        this.value = value;
+        this.next = next;
+    }
+    public Level nextLevel(){
+        return this.next;
+    }
+}
+```
+- 이제 nextLevel을 통해 간단하게 다음 레벨의 정보를 가져올 수 있다.
+- 그러므로 다름 단계의 레벨이 무었인지 if 조건식을 만들어가며 비즈니스 로직에 담아둘 필요가 ㅇ벗다.
+- 이번엔 사용자 정보가 바뀌는 부분을 UserService 메서드에서 User로 옮겨본다.
+- User의 내부 정보가 변경되는 것은 UserService보다는 user가 스스로 다루는게 적절하다.
+- User에 업그레이드 하는 기능을 추가해보자
+
+```java
+public void upgradeLevel(){
+   Level nextLevel = this.level.nextLevel();
+   if (nextLevel == null){
+       throw new IllegalArgumentException(this.level + "은 업그레이드가 불가능합니다.");
+   }
+   else{
+       this.level = nextLevel;
+   }
+}
+```
+
+- 레벨을 업그레이드 하는것을 User자체가 담당하고 있으므로 이제 Service단의 upgradeLevel 메서드는 아래와 같이 매우 간단하게 이루어지게 된다.
+
+```java
+private void upgradeLevel(User user) {
+    user.upgradeLevel();
+    userDao.update(user);
+}
+```
+- 테스트를 돌려보면 정상적을 동작되는것을 알 수 있다.
+- 개선된 코드들을 보면 각 객체와 메서드가 각각 자기 몫의 책임을 맡아 일을 하는 구조로 만들어 졌음을 알 수 있다.
+- **UserService, User, Level이 내 부정보를 다루는 자신의 책임에 충실한 기능을 가지고 있으면서 필요가 생기면 이런 작업을 수행해달라고 서로 요청하는 구조이다.**
+- 각자 자기 책임에 충실한 작업만 하고 있으니 코드를 이해하기도 간단해졌다.
+
+> - 객체지향적인 코드는 다른 객체의 데이터를 가져와서 작업하는 대신 데이터를 갖고 있는 다른 객체에게 작업을 요청한다.
+> - 객체에게 데이터를 요구하지 말고 작업을 요청하라는 것이 객체지향 프래그래밍의 가장 기본이 되는 원리이기도 하다.
+> - 이렇게 코드를 개선하여 객체지향적인 설계로 구현된다면 BASIC, SILVER 사이에 새로운 레벨을 추가하고 각 조건들을 변경하더라도 필요한 수정사항들을 어디에서 찾아야하는지가 명확해 졌고, 변경 후에도 코드는 여전히 깔끔하고 코드를 이해하는데 어려움이 없을 것이다.
+
+#### User 테스트
+- 기능이 추가된 User도 간단한 기능이지만 계속해서 새로운 로직과 기능이 추가될 수 있으므로 테스트를 만들어 두는 것이 도움이 될 것이다.
+
+```java
+class UserTest {
+
+    User user;
+
+    @BeforeEach
+    void setUp(){
+        user = new User();
+    }
+
+    @Test
+    void upgradeLevel() throws Exception{
+        Level[] levels =  Level.values();
+        for (Level level : levels) {
+            if (level.nextLevel() == null) continue;
+            user.setLevel(level);
+            user.upgradeLevel();
+            assertThat(user.getLevel()).isEqualTo(level.nextLevel());
+        }
+    }
+
+    @Test
+    void cannotUpgradeLevel() throws Exception{
+        assertThatThrownBy(() -> {
+            Level[] levels = Level.values();
+            for (Level level : levels) {
+                if(level.nextLevel() != null) continue;
+                user.setLevel(level);
+                user.upgradeLevel();
+            }
+        })
+        .isInstanceOf(IllegalArgumentException.class);
+
+    }
+}
+```
+- 이렇게 다음 레벨이 존재하지 않아 예외가 발생하는 테스트와 다음 레벨이 존재해 제대로 업그레이드 되는 테스트들을 만들어 확인해볼 수 있다.
+
+
+#### UserServiceTest 개선
+
+```java
+@Test
+void upgradeLevels() throws Exception{
+    users.forEach(userDao::add);
+
+    userService.upgradeLevels();
+
+    checkLevel(users.get(0), Level.BASIC);
+    checkLevel(users.get(1), Level.SILVER);
+    checkLevel(users.get(2), Level.SILVER);
+    checkLevel(users.get(3), Level.GOLD);
+    checkLevel(users.get(4), Level.GOLD);
+}
+
+private void checkLevel(User user, Level level){
+    User findUser = userDao.get(user.getId());
+    assertThat(findUser.getLevel()).isEqualTo(level);
+}
+```
+- 기존의 UserServiceTest에서 upgradeLevels을 테스트하는 테스트 케이스이다.
+- 해당 테스트는 checkLevel에게 전달인자로 테스트할 레벨들을 하나하나 넘겨주었다.
+- 이는 해발 파라미터만으로 업그레이드되었는지 되지 않았는지 명시적으로 알 수 없다.
+- 아래와 같이 boolean와 nextLevel을 이용하여 테스트를 작성한다면 더욱 더 명시적은 테스트가 가능할 것이다.
+- 뿐만아니라 숫자로 추가해줬던 유저들을 상수를 이용하여 깔끔하고 명시적으로 코드를 작성할 수 있다.
+
+```java
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(locations = "file:src/main/java/ch5/step2/applicationContext.xml")
+class UserServiceTest {
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UserDao userDao;
+
+    List<User> users;
+
+    @BeforeEach
+    public void setUp() {
+        users = Arrays.asList(
+                new User("user1", "name1", "p1", Level.BASIC, MIN_LONGCOUNT_FOR_SILVER - 1, 0),
+                new User("user2", "name2", "p1", Level.BASIC, MIN_LONGCOUNT_FOR_SILVER, 0),
+                new User("user3", "name3", "p1", Level.SILVER, 69, MIN_RECCOMEND_FOR_GOLD - 1),
+                new User("user4", "name4", "p1", Level.SILVER, 69, MIN_RECCOMEND_FOR_GOLD),
+                new User("user5", "name5", "p1", Level.GOLD, 49, 5000)
+        );
+        userDao.deleteAll();
+    }
+
+    @Test
+    void upgradeLevels() throws Exception {
+        users.forEach(userDao::add);
+
+        userService.upgradeLevels();
+
+        checkLevel(users.get(0), false);
+        checkLevel(users.get(1), true);
+        checkLevel(users.get(2), false);
+        checkLevel(users.get(3), true);
+        checkLevel(users.get(4), false);
+    }
+
+    private void checkLevel(User user, boolean isUpgraded) {
+        User updatedUser = userDao.get(user.getId());
+        if (isUpgraded) {
+            assertThat(updatedUser.getLevel()).isEqualTo(user.getLevel().nextLevel());
+        } else {
+            assertThat(updatedUser.getLevel()).isEqualTo(user.getLevel());
+        }
+    }
+}
+```
+- UserService의 Test는 더욱 깔끔해진것을 확인할 수 있다.
+- 여기서 추가적인 개선사항을 알아보자.
+- 현재 user들을 업그레이드 하는 정책들이 UserService의 내부에 구현되어 있다.
+- 만약 특정 이벤트로 인해 업그레이드 기준들이 변경된다고할 때 현재의 경우에는 UserService를 직접 수정해야하고 이벤트가 끝나면 다시 원상복구해야하는 불편함이 존재한다.
+- 이는 DI를 통해 더 유연하게 만들 수 있을 것이다.
+
+
+#### DI를 이용해서 한번 만들어 보자.
+```java
+public interface UserLevelUpgradePolicy{
+    boolean canUpgradeLevel(User user);
+    void upgradeLevel(User user); 
+}
+
+public class UserLevelUpgradeDefault implements UserLevelUpgradePolicy {
+    public static final int MIN_LONGCOUNT_FOR_SILVER = 50;
+    public static final int MIN_RECCOMEND_FOR_GOLD = 30;
+
+    @Override
+    public boolean canUpgradeLevel(User user) {
+        Level currentLevel = user.getLevel();
+        switch (currentLevel){
+            case BASIC: return (user.getLogin() >= MIN_LONGCOUNT_FOR_SILVER);
+            case SILVER: return (user.getRecommend() >= MIN_RECCOMEND_FOR_GOLD);
+            case GOLD: return false;
+            default: throw new IllegalArgumentException("허용되지 않은 레벨입니다. CurrentLevel : " + currentLevel);
+        }
+    }
+
+    @Override
+    public void upgradeLevel(User user) {
+        user.upgradeLevel();
+    }
+}
+
+public class UserService {
+    private UserDao userDao;
+    private UserLevelUpgradePolicy userLevelUpgradePolicy;
+
+
+    public UserService(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy) {
+        this.userDao = userDao;
+        this.userLevelUpgradePolicy = userLevelUpgradePolicy;
+    }
+
+    public void upgradeLevels() {
+        userDao.getAll().forEach(user -> {
+            if (userLevelUpgradePolicy.canUpgradeLevel(user)) {
+                userLevelUpgradePolicy.upgradeLevel(user);
+                userDao.update(user);
+            }
+        });
+    }
+}
+```
+- 우선 업그레이드 정책을 가지는 인터페이스를 정의하고 이를 구현한다.
+- 그리고 이 인터페이스를 생성자를 통해 주입받아 UserService에서는 이 정책으로 해당 유저들의 레벨을 업그레이드 할지 결정할 수 있다.
+- 이렇게 구성된다면, 정책이 변경되어도 빈으로 등록된 구현체를 바꿔 끼워주면 UserService는 변경이 필요없어진다.

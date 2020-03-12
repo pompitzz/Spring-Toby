@@ -25,4 +25,14 @@ public class User {
         this.name = name;
         this.password = password;
     }
+
+   public void upgradeLevel(){
+       Level nextLevel = this.level.nextLevel();
+       if (nextLevel == null){
+           throw new IllegalArgumentException(this.level + "은 업그레이드가 불가능합니다.");
+       }
+       else{
+           this.level = nextLevel;
+       }
+   }
 }

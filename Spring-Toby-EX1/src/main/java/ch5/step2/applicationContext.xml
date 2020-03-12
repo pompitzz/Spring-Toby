@@ -7,17 +7,19 @@
     
     <bean id="userService" class="ch5.step2.UserService">
         <constructor-arg ref="userDao"/>
+        <constructor-arg ref="userLevelUpgradePolicy"/>
     </bean>
 
+    <bean id="userLevelUpgradePolicy" class="ch5.step2.UserLevelUpgradeDefault"/>
     <bean id="userDao" class="ch5.step2.UserDaoJdbc">
         <constructor-arg ref="dataSource"/>
     </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/springtoby"/>
+        <property name="url" value="jdbc:mysql://localhost:13306/springtoby"/>
         <property name="username" value="sunlee"/>
-        <property name="password" value="pass"/>
+        <property name="password" value="1234"/>
     </bean>
 
 </beans>

@@ -1,33 +1,24 @@
 package ch5.step2;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * @author Dongmyeong Lee
  * @since 2020/03/11
  */
-public enum Level {
-    GOLD(3, null),  SILVER(2, GOLD), BASIC(1, SILVER);
+public enum Level_Ex1 {
+    BASIC(1), SILVER(2), GOLD(3);
 
     private final int value;
-    private final Level next;
 
-    Level(int value, Level next) {
+    Level_Ex1(int value){
         this.value = value;
-        this.next = next;
     }
 
     public int intValue(){
-        return value;
-    }
-
-    public Level nextLevel(){
-        return this.next;
+        return this.value;
     }
 
     // 값으로 부터 레벨 타입 오브젝트를 가져온다.
-    public static Level valueOf(int value){
+    public static Level_Ex1 valueOf(int value){
         switch (value) {
             case 1: return BASIC;
             case 2: return SILVER;

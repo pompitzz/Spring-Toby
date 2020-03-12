@@ -8,28 +8,26 @@ import java.util.List;
  */
 
 public class UserService {
-    UserDao userDao;
+    private UserDao userDao;
+    private UserLevelUpgradePolicy userLevelUpgradePolicy;
 
-    public UserService(UserDao userDao) {
+
+    public UserService(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy) {
         this.userDao = userDao;
+        this.userLevelUpgradePolicy = userLevelUpgradePolicy;
     }
 
     public void upgradeLevels() {
-        List<User> users = userDao.getAll();
-        users.forEach(user -> {
-            Level level = user.getLevel();
-            boolean changed = false;
-            if (level == Level.BASIC && user.getLogin() >= 50){
-                user.setLevel(Level.SILVER);
-                changed = true;
+        userDao.getAll().forEach(user -> {
+            if (userLevelUpgradePolicy.canUpgradeLevel(user)) {
+                userLevelUpgradePolicy.upgradeLevel(user);
+                userDao.update(user);
             }
-            else if(level == Level.SILVER &&user.getRecommend() >= 30){
-                user.setLevel(Level.GOLD);
-                changed = true;
-            }
-
-            // 변경되었다면 업데이트를 호출해준다.
-            if (changed) userDao.update(user);
         });
+    }
+
+    public void add(User user) {
+        if (user.getLevel() == null) user.setLevel(Level.BASIC);
+        userDao.add(user);
     }
 }

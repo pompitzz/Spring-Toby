@@ -1,17 +1,11 @@
 package ch4.step1;
 
-<<<<<<< HEAD
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.sql.DataSource;
-=======
-import ch1.User;
+import ch5.step2.User;
 import com.mysql.cj.exceptions.MysqlErrorNumbers;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
->>>>>>> 363609ada5e21b8286070b6745b03a254153e003
 
 /**
  * @author Dongmyeong Lee
@@ -25,8 +19,6 @@ public class UserDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-<<<<<<< HEAD
-=======
     public void add(final User user) throws DuplicateUserIdException {
         try {
             jdbcTemplate.update("insert into users values(?, ?, ?)"
@@ -40,7 +32,6 @@ public class UserDao {
         }
     }
 
->>>>>>> 363609ada5e21b8286070b6745b03a254153e003
     public void deleteAll() {
         jdbcTemplate.update(con -> con.prepareStatement("delete from users"));
         jdbcTemplate.update("delete from users");
