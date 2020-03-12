@@ -6,13 +6,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.List;
 
 import static ch5.step2.UserLevelUpgradeDefault.MIN_LONGCOUNT_FOR_SILVER;
 import static ch5.step2.UserLevelUpgradeDefault.MIN_RECCOMEND_FOR_GOLD;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author Dongmyeong Lee
@@ -26,6 +29,9 @@ class UserServiceTest {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    PlatformTransactionManager transactionManager;
 
     List<User> users;
 
@@ -79,4 +85,35 @@ class UserServiceTest {
         assertThat(findUserWithoutLevel.getLevel()).isEqualTo(Level.BASIC);
     }
 
+    static class TestUserLevelUpgradePolicy extends UserLevelUpgradeDefault {
+        private String id;
+
+        public TestUserLevelUpgradePolicy(String id) {
+            this.id = id;
+        }
+
+
+        @Override
+        public void upgradeLevel(User user) {
+            if (user.getId().equals(id)) throw new TestUserServiceException();
+            super.upgradeLevel(user);
+        }
+    }
+
+    static class TestUserServiceException extends RuntimeException {
+
+    }
+
+    @Test
+    void upgradeAllOrNothing() throws Exception {
+        users.forEach(userDao::add);
+        String id = users.get(3).getId();
+        UserService testUserService = new UserService(this.userDao, new TestUserLevelUpgradePolicy(id), transactionManager);
+
+        assertThatThrownBy(() -> testUserService.upgradeLevels())
+                .isInstanceOf(TestUserServiceException.class);
+
+        checkLevel(users.get(1), false);
+        checkLevel(users.get(3), false);
+    }
 }

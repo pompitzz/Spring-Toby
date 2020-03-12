@@ -1,13 +1,8 @@
 package ch5.step2;
 
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DataSourceUtils;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,19 +13,22 @@ import java.util.List;
  * @since 2020/03/11
  */
 
-public class UserService {
+public class UserService_Ex5 {
     private UserDao userDao;
     private UserLevelUpgradePolicy userLevelUpgradePolicy;
-    private PlatformTransactionManager transactionManager;
+    private DataSource dataSource;
 
-    public UserService(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy, PlatformTransactionManager transactionManager) {
+    public UserService_Ex5(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy, DataSource dataSource) {
         this.userDao = userDao;
         this.userLevelUpgradePolicy = userLevelUpgradePolicy;
-        this.transactionManager = transactionManager;
+        this.dataSource = dataSource;
     }
 
     public void upgradeLevels() throws SQLException {
-        TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        TransactionSynchronizationManager.initSynchronization();
+        Connection c = DataSourceUtils.getConnection(dataSource);
+        c.setAutoCommit(false);
+
         try {
             List<User> users = userDao.getAll();
             users.forEach(user -> {
@@ -39,11 +37,14 @@ public class UserService {
                     userDao.update(user);
                 }
             });
-            transactionManager.commit(status);
         } catch (Exception e) {
-            transactionManager.rollback(status);
-            throw e;
+            c.rollback();
+        } finally {
+            DataSourceUtils.releaseConnection(c, dataSource);
+            TransactionSynchronizationManager.unbindResource(this.dataSource);
+            TransactionSynchronizationManager.clearSynchronization();
         }
+
     }
 
     public void add(User user) {
