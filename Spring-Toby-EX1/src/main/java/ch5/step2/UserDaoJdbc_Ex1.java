@@ -11,19 +11,19 @@ import java.util.List;
  * @author Dongmyeong Lee
  * @since 2020/02/27
  */
-public class UserDaoJdbc implements UserDao {
+public class UserDaoJdbc_Ex1 implements UserDao {
 
     private JdbcTemplate jdbcTemplate;
 
-    public UserDaoJdbc(DataSource dataSource) {
+    public UserDaoJdbc_Ex1(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public void add(final User user) {
-        jdbcTemplate.update("insert into users(id, name, password, Level, Login, Recommend, Email) values(?, ?, ?, ?, ?, ?, ?)",
+        jdbcTemplate.update("insert into users(id, name, password, Level, Login, Recommend) values(?, ?, ?, ?, ?, ?)",
                 user.getId(), user.getName(),
                 user.getPassword(), user.getLevel().intValue(),
-                user.getLogin(), user.getRecommend(), user.getEmail());
+                user.getLogin(), user.getRecommend());
     }
 
     public void deleteAll() {
@@ -42,10 +42,10 @@ public class UserDaoJdbc implements UserDao {
 @Override
 public void update(User user) {
     this.jdbcTemplate.update(
-            "update users set name = ?, password = ?, level = ?, Login = ?, Recommend = ?, Email = ? where id = ?",
+            "update users set name = ?, password = ?, level = ?, Login = ?, Recommend = ? where id = ?",
             user.getName(), user.getPassword(),
             user.getLevel().intValue(), user.getLogin(),
-            user.getRecommend(), user.getEmail(), user.getId()
+            user.getRecommend(), user.getId()
     );
 }
 

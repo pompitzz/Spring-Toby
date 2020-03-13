@@ -1,9 +1,5 @@
 package ch5.step2;
 
-import lombok.Setter;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -16,18 +12,15 @@ import java.util.List;
  * @since 2020/03/11
  */
 
-@Setter
-public class UserService {
+public class UserService_Ex6 {
     private UserDao userDao;
     private UserLevelUpgradePolicy userLevelUpgradePolicy;
     private PlatformTransactionManager transactionManager;
-    private MailSender mailSender;
 
-    public UserService(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy, PlatformTransactionManager transactionManager, MailSender mailSender) {
+    public UserService_Ex6(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy, PlatformTransactionManager transactionManager) {
         this.userDao = userDao;
         this.userLevelUpgradePolicy = userLevelUpgradePolicy;
         this.transactionManager = transactionManager;
-        this.mailSender = mailSender;
     }
 
     public void upgradeLevels() throws SQLException {
@@ -38,7 +31,6 @@ public class UserService {
                 if (userLevelUpgradePolicy.canUpgradeLevel(user)) {
                     userLevelUpgradePolicy.upgradeLevel(user);
                     userDao.update(user);
-                    sendUpgradeEmail(user);
                 }
             });
             transactionManager.commit(status);
@@ -47,16 +39,6 @@ public class UserService {
             throw e;
         }
     }
-
-private void sendUpgradeEmail(User user) {
-    SimpleMailMessage mailMessage = new SimpleMailMessage();
-    mailMessage.setTo(user.getEmail());
-    mailMessage.setFrom("useradmin@gmail.com");
-    mailMessage.setSubject("Upgrade 안내");
-    mailMessage.setText("사용자 님의 등급이" + user.getLevel().name() + "로 업그레이드 되었습니다.");
-
-    this.mailSender.send(mailMessage);
-}
 
     public void add(User user) {
         if (user.getLevel() == null) user.setLevel(Level.BASIC);

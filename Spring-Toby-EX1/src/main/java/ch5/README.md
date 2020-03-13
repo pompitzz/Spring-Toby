@@ -917,3 +917,249 @@ public class UserService {
 ```
 
 ---
+
+## 5.3 서비스 추상화와 단일 책임 원칙
+- 스프링의 트랜잭션 서비스 추상화 기법을 이용해 다양한 트랜잭션 기술을 일관된 방식으로 제어할 수 있게 됐다.
+
+#### 수직, 수평 계충구조와 의존관계
+- 기술과 서비스에 대한 추상화 기법을 이용하면 특정 기술환경에 종속되지 않는 포터블한 코드를 만들 수 있다.
+- UserDao와 UserService는 각각 담당하는 코드의 기능적인 관심에 따라 분리되고, 서로 불필요한 영향을 주지 않으면서 독자적으로 확장이 가능하도록 만든 것이다.
+- 같은 애플리케이션 로직을 담은 코드지만 내용에따라 분리하고 같은 계층에서 **수평적인 분리를 하였다.**
+- 반면 트랜잭션 추상화는 애플리케이션의 비즈니스 로직과 그 하위에서 동작하는 로우레벨의 트랜잭션 기술이라는 아예 다른 계층의 특성을 갖는 코드를 분리한 것이다.
+
+![img](./devideLayerAndRes.png)
+- 현재까지 만들어진 사용자 관리 모듈의 의존관계이다.
+- UserDao와 UserService는 각각 자신에게 알맞는 책임을 가지고 있고 인터페이스와 DI를 통해 연결됨으로써 결합도가 낮아져 서로 독립적인 확장이 가능해졌다.
+- UesrDao는 데이터베이스 연결을 생성하는 방법에 대해 DataSource를 인터페이스와 DI를 통해 연결함으로써 독립적으로 구성된다.
+- UserService도 PlatformTransactionManager 인터페이스를 통한 추상화 계층을 사이에 두고 사용하게 했기 떄문에 구체적인 트랜잭션 기술에 독립적인 코드가 되었다.
+- **DI는 이렇게 관심, 책임, 성격이 다른 코드를 깔끔하게 분리해주는 좋은 방법이다.**
+
+#### 단일 책임 원칙
+- 1장에서 나온거처럼 이런 적절한 분리가 가져오는 특징은 객체지향 설계원칙 중 하나인 **단일 책임 원칙으로** 설명할 수 있다.
+- 단일 책임 원칙이란 하나의 모듈은 한 가지의 책임을 가져야 한다는 의미이다. 즉 모듈이 변경되어야 하는 이유는 한 가지여야 한다고 말할 수 있다.
+- 트랜잭션을 추상화하기 전에는 UserService는 애플리케이션의 비즈니스 로직과 트랜잭션 관리라는 두 가지 책임을 가지고 있어 변경되는 이유도 두 가지가 되어버렸다.
+- 트랜잭션 추상화와 DI를 통해 의존 관계를 주입하도록 만든 후에는 트랜잭션 관리의 책임은 UserService가 신경쓸 필요가 없고 오직 비즈니스로직에만 신경을 쓰면 된다.
+
+#### 단일 책임 원칙 장점
+- 단일 책임 원칙을잘 지키고 있다면, 어떤 변경이 필요할 때 수정 대상이 명확해진다. 기술이 바뀌면 기술 계층과의 연동을 담당하는 기술 추상화 게층의 설정만 바꿔주면 된다.
+- 이를 통해 아무리 많은 Service가 하나의 DAO에 의존하더라도 서로 독립적으로 수정이 가능해지기 때문에 확장성이 높아지고 유연한 설계가 가능해진다.
+
+> - 객체지향 설계와 프로그래밍의 원칙은 서로 긴밀하게 관련이 있다. 단일 책임 원칙을 잘 지키는 코드를 만들려면 인터페이스를 도입하고 이를 DI로 연결하면 간단하게 지킬 수 있다.
+> - 이를 잘 지키면 단일 책임 원칙뿐만 아니라, 개방 폐쇄 원칙도 잘 지켜지는 코드를 만들 수 있게 되었다.
+> - 이때까지 개선했던 모든 코드들은 DI를 이용하였다.
+> - **스프링의 의존관계 주입 기술인 DI는 모든 스프링 기술의 기반이 되는 핵심 엔진이자 원리이며 스프링이 지지하고 지원하는, 좋은 설계와 코드를 만드는 모든 과정에서사용되는 가장 중요한 도구이다.**
+
+---
+
+## 5.4 메일 서비스 추상화
+- 고객으로부터 사용자 레벨 관리에 관한 새로운 요청사항이 들어왔다.
+- 레벨이 업그레이드되는 사용자에게는 안내 메일을 발송해달라는 것이다.
+- 안내메일을 발송하기위해서는 먼저 사용자의 이메일 정보를 관리해야 한다.
+- 그리고 업그레이드 작업을 담은 UserService의 upgradeLevels()에 메일 발송기능을 추가하는 것이다.
+- 계속 했던 작업이니 User 필드, DB 테이블에 email을 추가하고 DAO를 수정해주도록 한다.
+
+### 5.4.1 JavaMail을 이용한 메일 발송기능
+```Java
+// build.gradle 의존성 추가
+implementation 'javax.mail:javax.mail-api:1.6.2'
+
+private void sendUpgradeEmail(User user) {
+    Properties props = new Properties();
+    props.put("mail.smtp.host", "mail.server.com");
+    Session s = Session.getInstance(props, null);
+    MimeMessage message = new MimeMessage(s);
+    try {
+        message.setFrom(new InternetAddress("useradmin@gmail.com"));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+        message.setSubject("Upgrade 안내");
+        message.setText("사용자님의 등급이 " + user.getLevel().name() + "로 업그레이드되었습니다.");
+    } catch (MessagingException e) {
+        e.printStackTrace();
+    }
+}
+```
+- JavaMail의존성을 추가해주고 UserService에는 이렇게 메일 서비스를 추가할 수 있을 것이다.
+
+#### 5.4.2 JavaMail이 포함된 코드의 테스트
+- UserService에 JavaMail기능을 추가하였다. 해당 기능을 테스트하기 위해서는 실제 서버가 필요해질 것이다.
+- 메일서버는 충분히 테스트된 시스템이고 SMTP메일 전송 요청을 받으면 문제없이 메일을 전송할 수 있다고 믿을 수 있어 JavaMail을 통해 메일 서버까지만 메일이 잘 전달됐으면, 결국 사용자에게도 제대로 갈 것이라고 생각할 수 있다.
+- 이럴 경우 실제 사용이 아닌 테스트시에는 JavaMail을 사용하여 실제 메일 서버와의 커넥션을 맺어 테스트하기 보다는 **서비스 추상화를 통해** 동일한 인터페이스를 갖는 코드가 동작하도록만들어 간단하게 테스트를할 수 있도록할 수 있을 것이다.
+
+### 5.4.3 테스트를 위한 서비스 추상화
+#### JavaMail을 이용한 테스트의 문제점
+- JavaMail의 API는 서비스 추상화를 적용할 수 없다. JavaMail의 핵심 API에는 DataSource처럼 인터페이스로 만들어서 구현을 바꿀 수 없는게 존재한다.
+- JavaMail에서는 Session 객체를 만들어야한 메일을 전송할 수 있다.
+- Session은 인퍼테이스가 아닌 클래이스고 생성자도 모두 private으로 구성되어있다.
+- 결국 JavaMail의 구현을 테스트용으로 바꿔치기 하는건 불가능하다.
+- JavaMail은 확장이나 지원이 불가능하도록 만들어진 가장 악명 높은 표준 API중의 하나로 알려져 있다.
+- 스프링에서는 이런 JavaMail도 추상화하여 기능들을 제공하고 있다.
+
+#### 메일 발송 기능 추상화
+```java
+// build.gradle 의존성 추가
+implementation 'org.springframework:spring-context-support:5.2.4.RELEASE'
+
+private void sendUpgradeEmail(User user) {
+    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    mailSender.setHost("mail.server.com");
+
+    SimpleMailMessage mailMessage = new SimpleMailMessage();
+    mailMessage.setTo(user.getEmail());
+    mailMessage.setFrom("useradmin@gmail.com");
+    mailMessage.setSubject("Upgrade 안내");
+    mailMessage.setTo("사용자 님의 등급이" + user.getLevel().name() + "로 업그레이드 되었습니다.");
+
+    mailSender.send(mailMessage);
+}
+
+// applicationContext.xml
+<bean id="userService" class="ch5.step2.UserService">
+        <constructor-arg ref="userDao"/>
+        <constructor-arg ref="userLevelUpgradePolicy"/>
+        <constructor-arg ref="transactionManager"/>
+        <constructor-arg ref="mailSender"/>
+</bean>
+
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="mail.server.com"/>
+</bean>
+```
+- spring context support 의존성을 추가하고 스프링이 지원해주는 추상화된 메일 기능을 사용한코드이다.
+- 이전에 생겼던 예외들은 런타임 예외로 스프링이 포장해주기 때문에 try/catch문이 필요 없어진다.
+- JavaMailSenderImpl은 내부적으로 JavaMail API를 이용해 메일을 전송해준다.
+- 코드는 간결해졌지만 현재는 JavaMail API를 사용하지 않는 테스트 객체로 대체할 방안이 없으므로 DI를 적용해야한다.
+- 매번하던거와 같이 UserService의 필드에 MailSender를 추가하고 생성자로 의존관계를 주입해준다.
+- 그리고 applicationContext.xml에 MailSender를 빈으로 등록해주고 해당 빈으로 의존관계를 주입해준다.
+- 이제 테스트용 객체를 만들 MailSender를 하나 구현해보자.
+
+```java
+public class DummyMailSender implements MailSender {
+    @Override
+    public void send(SimpleMailMessage simpleMessage) throws MailException {
+
+    }
+
+    @Override
+    public void send(SimpleMailMessage... simpleMessages) throws MailException {
+
+    }
+}
+
+@Test
+void upgradeAllOrNothing() throws Exception {
+    users.forEach(userDao::add);
+    String id = users.get(3).getId();
+    UserService testUserService = new UserService(this.userDao, new TestUserLevelUpgradePolicy(id), transactionManager, mailSender);
+
+    assertThatThrownBy(() -> testUserService.upgradeLevels())
+            .isInstanceOf(TestUserServiceException.class);
+
+    checkLevel(users.get(1), false);
+    checkLevel(users.get(3), false);
+}
+```
+- MailSender를 구현하여 DummyMailSender를 만든 후 해당 객체를 빈을 등록해준다.
+- 그 후 테스틀 돌려보면 성공적으로 동작하는 것을 알 수 있다.
+- 실제 서버는 아니지만 해당 기능을 요청하는 것은 정상적을 동작된것을 확인할 수 있게 되었다.
+
+#### 테스트와 서비스 추상화
+- MailSender라는 스프링에서 제공해주는 서비스 추상화를 통해 JavaMail과 같이 테스트를 어렵게 만드는 API들을 사용할 때도 DI를 통해 테스트 객체를 따로 생성하여 만들 수 있게 되었다.
+- MailSender를 구현한 추상화 클래스는 JavaMailSenderImpl하나로 트랜잭션 추상화의 구현체가 많은 것에 비해 차이가 존재하는 것을 알 수 있다.
+- 그럼에도 불구하고 이 추상화된 메일 전송 기능을 사용해 애플리케이션을 작성함으로써 얻을 수 있는 장점은 크다.
+- JavaMail이 아닌 다른 메시징 서버의 API를 이용해 메일을 전송해야 하는 경우가 생겨도, 해당 기술의 API를 이용하는 MailSender 구현 클래스를 만들어주면될 것이다.
+- 또는 메일을 전송하지 않고 작업 큐에 담아두고 정해진 시간에 메일을 발생하는 기능을 만들어야 한다고 할 때 MailSender로 추상화된 메일 전송추상화 계층을 통해 간단하게 구현할 수 있다.
+- MailSender 인터페이스를 구현한 메일 발송 큐의 구현을 하나만들어 두고 DI를 통해 JavaMailSenderImpl같은 메일 전송 객체를 연결하여 사용할 수도 있을 것이다.
+- 이렇듯 서비스 추상화 계층은 수많은 응용방법을 제공해주며 애플리케이션 계층은 어떤 일이 일었났는지 상관없이 자신의 책임에만 충실하면 된다.
+
+> 외부의 리소스와 연동하는 대부분 작업은 추상화의 대상이 될 수 있다.
+
+### 5.4.4 테스트 대역
+#### 의존 오브젝트의 변경을 통한 테스트 방법
+- DummyMailSender클래스는 아무 하는일은 없지만 해당 클래스의 가치는 매우 크다. 이 DummyMailSender를 통해 외부의 메일 서버를 사용하지 않고도 테스트가 가능해졌다.
+- 현재 UserService에는 총 4개의 의존객체가 존재한다. 테스트 시 직접 UserService를 만들어 사용할 때에 어떤 객체들은 빈으로 등록된 객체를 불러와 직접 주입해주었지만 업그레이드 정책의 경우 해당 클래스내에서 정적 클래스를 만들어 테스트용 정책으로 주입해 주었다.
+- 매우 작은 기능이라도 다른 오브젝트의 기능을 사용하면, 사용하는 오브젝트의 기능이 바뀌었을 때 자신이 영향을 받을 수 있기 때문에 의존하고 있다고 말을한다.
+- **의존 오브젝트를 함께 협력해서 일을처리하는 협력(collaborator) 오브젝트라고도 한다.**
+
+#### 테스트 대역의 종류와 특징
+- DummyMailSender, TestUserLevelUpgradePolicy와 같이 테스트용으로 사용되는 특별한 오브젝트들이 있다.
+- 테스트 대상이 되는 오브젝트의 기능에만 충실하게 수행하면서 빠르게, 자주 테스트를 실행할 수 있도록 하는 이런 오브젝트들을 **테스트 대역(test doubl)이라고 부른다**
+- 대표적인 테스트 대역은 **테스트 스텁(test stub)이다.** 테스트 스텁은 테스트 대상 오브젝트의 의존객체로서 존재하면서 테스트 동안에 코드가 정상적으로 수행할 수 있도록 돕는 것을 말한다.
+- DummyMailSender는 가장 단순하고 심플한 테스트 스텁이라고 할 수 있다.
+- 많은 경우는 DummyMailSender과는 다른게 결과를 반환해줘야할 때가 있다. 이럴경우 **목 객체를** 사용하면 구현이 가능해진다.
+
+![img](./mockobject.png)
+- 목 객체를 이용한 테스트의 구조이다. 테스트는 테스트의 대상이 되는 오브젝트에 직접 입력값을 제공하고, 테스트 오브젝트가 돌려주는 출력 값, 즉 리턴값을 가지고 결과를 확인한다.
+- 문제는 테스트 대상 오브젝트는 테스트로부터만 입력을 받는 것이 아니라는 점이다. 테스트가 수행되는 동안 실행되는 코드는 테스트 대상이 의존하고 있는 다른 의존 오브젝트와도 커뮤니케이션하기도 한다.
+
+#### 목 객체를 이용한 테스트
+- DummyMailSender와 비슷하게 테스트 클래스 내에서 MockMailSender를 만들어준다.
+
+```java
+static class MockMailSender implements MailSender{
+   private List<String> requests = new ArrayList<>();
+
+   public List<String> getRequests() {
+       return requests;
+   }
+
+   @Override
+   public void send(SimpleMailMessage simpleMessage) throws MailException {
+       requests.add(Objects.requireNonNull(simpleMessage.getTo())[0]);
+   }
+
+   @Override
+   public void send(SimpleMailMessage... simpleMessages) throws MailException {
+
+   }
+}
+```
+- MockMailSender에는 요청들을 담고있는 List를 가지고 있을 뿐 DummyMailSender와 다를게 없다.
+- SimpleMailMessage의 첫번째 수신자의 메일 주소를 requests에 담고 있다.
+- 수신자는 항상 한명일 것이므로 업그레이드된 순서대로 주소가 담기게 될 것이다.
+- 메일에 관한 테스트는 upgradeAllOrNothing()보다는 업그레이드 자체테스트에 관한 upgradeLevels()가 더 적합할 것이다.
+- 이전에 작성했던 upgradeLevels() 테스트를 수정하여 테스트를 작성해보자.
+
+```java
+@Test
+void upgradeLevels() throws Exception {
+    users.forEach(userDao::add);
+
+    MockMailSender mockMailSender = new MockMailSender();
+    userService.setMailSender(mockMailSender);
+
+    userService.upgradeLevels();
+    checkLevel(users.get(0), false);
+    checkLevel(users.get(1), true);
+    checkLevel(users.get(2), false);
+    checkLevel(users.get(3), true);
+    checkLevel(users.get(4), false);
+
+    List<String> requests = mockMailSender.getRequests();
+    assertThat(requests.size()).isEqualTo(2);
+    assertThat(requests.get(0)).isEqualTo(users.get(1).getEmail());
+    assertThat(requests.get(1)).isEqualTo(users.get(3).getEmail());
+}
+```
+- MockMailSender를 만들어서 직접 의존관계를 주입해주었다.
+- 그러므로 userService는 MockMailSender를 MailSender로 가지고 있을 것이며 업그레이드 시 해당 MailSender를 통해 메일을 보내게 될 것이다.
+- 그러므로 MailSender의 requests안에는 업그레이드된 users.get(1), get(3)의 메일주소가 저장되어 있을 것이다.
+- 이럿듯 단순히 UserService의 기능에 초점을 두고 테스트하는 것이라면 목 객체를 사용해 검증하는 것으로 충분하다.
+
+---
+
+## 5.5. 정리
+- 비즈니스 로직을 담은 코드는 데이터 액세스 로직을 담은 코드와 깔끔하게 분리되는 것이 바람직하다.
+- 비즈니스 로직 코드 또한 내부적으로 책임과 역할에 따라서 깔금하게 메서드로 정리돼야 한다.
+- 이를 위해서는 DAO의 기술 변화에 서비스 계층의 코드가 영향을 받지 않도록 인터페이스와 DI를 잘 활용해서 결합도를 낮춰야 한다.
+- DAO를 사용하는 비즈니스 로직에는 단위 작업을 보장해주는 트랜잭션이 필요하다.
+- 트랜잭션의 시작과 종료를 지정하는 일을 트랜잭션 경계설정이라고 한다.
+- 트랜잭션 경계 설정은 주로 비즈니스 로직 안에서 일어나는 경우가 많다.
+- 시작된 트랜잭션 정보를 담은 오브젝트를 파라미터로 DAO에 전달하는 방법은 매우 비효율적이기 대문에 스프링이 제공하는 트랜잭션 동기화 기법을 활용하는 것이 편리하다.
+- 자바에서 사용되는 트랜잭션 API의 종류와 방법은 다양하다. 환경과 서버에 따라서 트랜잭션 방법이 변경되면 경계설정 코드도 함께 변겨오대야 한다.
+- 트랜잭션 방법에 따라 비즈니스 로직을 담은 코드가 함께 변경되면 단일 책임원칙에 위배되며, DAO가 사용하는 특정 기술에 대해 강한 결합을 만들어 낸다.
+- 트랜잭션 경계설정 코드가 비즈니스 로직 코드에 영향을 주지 않게 하려면 스프링이 제공하는 트랜잭션 서비스 추상화를 이용하면 된다.
+- 서비스 추상화는 로우레벨의 트랜잭션 기술과 API의 변화에 상관없이 일관된 API를 가진 추상화계층을 도입한다.
+- 서비스 추상화는 테스트하기 어려운 기술에도 적용할 수 있다. 테스트를 편리하게 작성하도록 도와주는 것만으로도 서비스 추상화는 가치가 있다.
+- 테스트 대상이 사용하는 의존 오브젝트를 대체할 수 있도록 만든 오브젝트를 테스트 대역이라고 한다.
+- 테스트 대역은 테스트 대상 오브젝트가 원할하게 동자갛ㄹ 수 있도록 도우면서 테스트를 위해 간접적인 정보를 제공해주기도 한다.
+- 테스트 대역 중에서 테스트 대상으로부터 전달받은 정보를 검증할 수 있도록 설계된 것을 목 오브젝트라고 한다.

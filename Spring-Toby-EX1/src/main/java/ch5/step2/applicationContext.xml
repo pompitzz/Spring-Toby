@@ -9,8 +9,13 @@
         <constructor-arg ref="userDao"/>
         <constructor-arg ref="userLevelUpgradePolicy"/>
         <constructor-arg ref="transactionManager"/>
+        <constructor-arg ref="mailSender"/>
     </bean>
 
+<!--    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">-->
+<!--        <property name="host" value="mail.server.com"/>-->
+<!--    </bean>-->
+    <bean id="mailSender" class="ch5.step2.DummyMailSender"/>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>

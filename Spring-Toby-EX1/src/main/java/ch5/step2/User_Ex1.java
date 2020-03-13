@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
+public class User_Ex1 {
     private String id;
     private String name;
     private String password;
@@ -20,10 +20,7 @@ public class User {
     int login;
     int recommend;
 
-    private String email;
-
-
-    public User(String id, String name, String password) {
+    public User_Ex1(String id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;

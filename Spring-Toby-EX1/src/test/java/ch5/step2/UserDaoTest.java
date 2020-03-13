@@ -5,12 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author Dongmyeong Lee
@@ -30,9 +28,9 @@ class UserDaoTest {
     @BeforeEach
     public void setup() {
         userDao.deleteAll();
-        this.user1 = new User("korea", "이동명", "password", Level.SILVER, 55, 10);
-        this.user2 = new User("Hehe", "김뚜깡", "password", Level.BASIC, 1, 0);
-        this.user3 = new User("HelloWorld", "홍길동", "password", Level.GOLD, 100, 40);
+        this.user1 = new User("korea", "이동명", "password", Level.SILVER, 55, 10, "email@naver.com");
+        this.user2 = new User("Hehe", "김뚜깡", "password", Level.BASIC, 1, 0, "emai123l@naver.com");
+        this.user3 = new User("HelloWorld", "홍길동", "password", Level.GOLD, 100, 40,"emai2332l@naver.com");
     }
 
     @Test
@@ -54,6 +52,7 @@ class UserDaoTest {
         assertThat(user1.getLogin()).isEqualTo(user2.getLogin());
         assertThat(user1.getLevel()).isEqualTo(user2.getLevel());
         assertThat(user1.getRecommend()).isEqualTo(user2.getRecommend());
+        assertThat(user1.getEmail()).isEqualTo(user2.getEmail());
     }
 
     @Test
