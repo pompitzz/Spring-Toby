@@ -1,15 +1,17 @@
-package ch5.step2;
+package ch6.step1;
 
+import ch5.step2.Level;
+import ch5.step2.User;
+import ch5.step2.UserDao;
+import ch5.step2.UserLevelUpgradePolicy;
 import lombok.Setter;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * @author Dongmyeong Lee
@@ -17,13 +19,13 @@ import java.util.List;
  */
 
 @Setter
-public class UserService {
+public class UserService_Ex1 {
     private UserDao userDao;
     private UserLevelUpgradePolicy userLevelUpgradePolicy;
     private PlatformTransactionManager transactionManager;
     private MailSender mailSender;
 
-    public UserService(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy, PlatformTransactionManager transactionManager, MailSender mailSender) {
+    public UserService_Ex1(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy, PlatformTransactionManager transactionManager, MailSender mailSender) {
         this.userDao = userDao;
         this.userLevelUpgradePolicy = userLevelUpgradePolicy;
         this.transactionManager = transactionManager;
