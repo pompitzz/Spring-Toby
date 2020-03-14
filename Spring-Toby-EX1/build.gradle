@@ -15,6 +15,7 @@ dependencies {
     implementation 'org.springframework:spring-context-support:5.2.4.RELEASE'
     implementation 'org.springframework:spring-jdbc:5.2.4.RELEASE'
     implementation 'javax.mail:javax.mail-api:1.6.2'
+    implementation 'org.aspectj:aspectjweaver:1.9.5'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
     testImplementation 'org.assertj:assertj-core:3.11.1'

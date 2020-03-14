@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<aop:config>
+    <aop:advisor advice-ref="transactionAdvice" pointcut="@annotation(ch6.step3.Transactional)"/>
+</aop:config>
+
+    <bean id="transactionAdvice" class="ch6.step5.TransactionAdvice">
+        <constructor-arg name="transactionManager" ref="transactionManager"/>
+    </bean>
+
+    <bean id="userService" class="ch6.step1.UserServiceImpl">
+        <constructor-arg ref="userDao"/>
+        <constructor-arg ref="testUserLevelUpgradePolicy"/>
+        <constructor-arg ref="mailSender"/>
+    </bean>
+
+    <bean id="mailSender" class="ch5.step2.DummyMailSender"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userLevelUpgradePolicy" class="ch5.step2.UserLevelUpgradeDefault"/>
+    <bean id="testUserLevelUpgradePolicy" class="ch6.step6.UserServiceTest$TestUserLevelUpgradePolicy"
+          parent="userLevelUpgradePolicy">
+    </bean>
+
+    <bean id="userDao" class="ch5.step2.UserDaoJdbc">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/springtoby"/>
+        <property name="username" value="sunlee"/>
+        <property name="password" value="pass"/>
+    </bean>
+
+
+</beans>

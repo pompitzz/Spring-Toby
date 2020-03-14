@@ -1,6 +1,9 @@
-package ch6.step1;
+package ch6.step6;
 
 import ch5.step2.*;
+import ch6.step1.UserService;
+import ch6.step1.UserServiceImpl;
+import ch6.step1.UserServiceTx;
 import ch6.step3.TransactionHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -33,16 +38,13 @@ import static org.mockito.Mockito.*;
  * @since 2020/03/13
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = "file:src/main/java/ch6/step1/applicationContext.xml")
+@ContextConfiguration(locations = "file:src/main/java/ch6/step7/applicationContext.xml")
 class UserServiceTest {
     @Autowired
     UserService userService;
 
     @Autowired
     UserDao userDao;
-
-    @Autowired
-    UserServiceImpl userServiceImpl;
 
     @Autowired
     PlatformTransactionManager transactionManager;
@@ -52,6 +54,9 @@ class UserServiceTest {
 
     @Autowired
     UserLevelUpgradePolicy userLevelUpgradePolicy;
+
+    @Autowired
+    ApplicationContext context;
 
     List<User> users;
 
@@ -141,12 +146,14 @@ class UserServiceTest {
     }
 
     static class TestUserLevelUpgradePolicy extends UserLevelUpgradeDefault {
-        private String id;
+        private String id = "user4";
+
+        public TestUserLevelUpgradePolicy() {
+        }
 
         public TestUserLevelUpgradePolicy(String id) {
             this.id = id;
         }
-
 
         @Override
         public void upgradeLevel(User user) {
@@ -189,6 +196,22 @@ class UserServiceTest {
 
         checkLevel(users.get(1), false);
         checkLevel(users.get(3), false);
+    }
+
+    @Test
+    void upgradeAllOrNothingUsingFactoryBean() throws Exception {
+        users.forEach(userDao::add);
+
+        assertThatThrownBy(userService::upgradeLevels)
+                .isInstanceOf(UserServiceTest.TestUserServiceException.class);
+
+        checkLevel(users.get(1), false);
+        checkLevel(users.get(3), false);
+    }
+
+    @Test
+    void realProxy() throws Exception {
+        assertThat(this.userService).isInstanceOf(java.lang.reflect.Proxy.class);
     }
 
     static class MockMailSender implements MailSender {

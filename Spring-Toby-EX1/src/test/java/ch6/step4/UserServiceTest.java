@@ -1,14 +1,20 @@
-package ch6.step1;
+package ch6.step4;
 
 import ch5.step2.*;
+import ch6.step1.UserService;
+import ch6.step1.UserServiceImpl;
+import ch6.step1.UserServiceTx;
 import ch6.step3.TransactionHandler;
+import ch6.step3.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -33,7 +39,7 @@ import static org.mockito.Mockito.*;
  * @since 2020/03/13
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = "file:src/main/java/ch6/step1/applicationContext.xml")
+@ContextConfiguration(locations = "file:src/main/java/ch6/step4/applicationContext.xml")
 class UserServiceTest {
     @Autowired
     UserService userService;
@@ -52,6 +58,9 @@ class UserServiceTest {
 
     @Autowired
     UserLevelUpgradePolicy userLevelUpgradePolicy;
+
+    @Autowired
+    ApplicationContext context;
 
     List<User> users;
 
@@ -190,6 +199,24 @@ class UserServiceTest {
         checkLevel(users.get(1), false);
         checkLevel(users.get(3), false);
     }
+
+@Test
+void upgradeAllOrNothingUsingFactoryBean() throws Exception {
+    users.forEach(userDao::add);
+
+    String id = users.get(3).getId();
+    UserService testUserService = new UserServiceImpl(this.userDao, new TestUserLevelUpgradePolicy(id), mailSender);
+
+    TxProxyFactoryBean txProxyFactoryBean = context.getBean("&userService", TxProxyFactoryBean.class);
+    txProxyFactoryBean.setTarget(testUserService);
+    UserService txUserService = (UserService) txProxyFactoryBean.getObject();
+
+    assertThatThrownBy(txUserService::upgradeLevels)
+            .isInstanceOf(UserServiceTest.TestUserServiceException.class);
+
+    checkLevel(users.get(1), false);
+    checkLevel(users.get(3), false);
+}
 
     static class MockMailSender implements MailSender {
         private List<String> requests = new ArrayList<>();

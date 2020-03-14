@@ -1,14 +1,20 @@
-package ch6.step1;
+package ch6.step5;
 
 import ch5.step2.*;
+import ch6.step1.UserService;
+import ch6.step1.UserServiceImpl;
+import ch6.step1.UserServiceTx;
 import ch6.step3.TransactionHandler;
+import ch6.step4.TxProxyFactoryBean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -33,7 +39,7 @@ import static org.mockito.Mockito.*;
  * @since 2020/03/13
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = "file:src/main/java/ch6/step1/applicationContext.xml")
+@ContextConfiguration(locations = "file:src/main/java/ch6/step5/applicationContext.xml")
 class UserServiceTest {
     @Autowired
     UserService userService;
@@ -52,6 +58,9 @@ class UserServiceTest {
 
     @Autowired
     UserLevelUpgradePolicy userLevelUpgradePolicy;
+
+    @Autowired
+    ApplicationContext context;
 
     List<User> users;
 
@@ -184,6 +193,24 @@ class UserServiceTest {
                 (UserService) Proxy.newProxyInstance(
                         getClass().getClassLoader(), new Class[]{UserService.class}, transactionHandler);
 
+        assertThatThrownBy(txUserService::upgradeLevels)
+                .isInstanceOf(UserServiceTest.TestUserServiceException.class);
+
+        checkLevel(users.get(1), false);
+        checkLevel(users.get(3), false);
+    }
+
+    @Test
+    void upgradeAllOrNothingUsingFactoryBean() throws Exception {
+        users.forEach(userDao::add);
+
+        String id = users.get(3).getId();
+        UserService testUserService = new UserServiceImpl(this.userDao, new TestUserLevelUpgradePolicy(id), mailSender);
+
+        ProxyFactoryBean proxyFactoryBean = context.getBean("&userService", ProxyFactoryBean.class);
+        proxyFactoryBean.setTarget(testUserService);
+
+        UserService txUserService = (UserService) proxyFactoryBean.getObject();
         assertThatThrownBy(txUserService::upgradeLevels)
                 .isInstanceOf(UserServiceTest.TestUserServiceException.class);
 

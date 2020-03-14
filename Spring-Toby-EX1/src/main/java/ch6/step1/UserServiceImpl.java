@@ -4,6 +4,8 @@ import ch5.step2.Level;
 import ch5.step2.User;
 import ch5.step2.UserDao;
 import ch5.step2.UserLevelUpgradePolicy;
+import ch6.step3.Transactional;
+import ch6.step6.Service;
 import lombok.Setter;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -19,6 +21,7 @@ import java.sql.SQLException;
  */
 
 @Setter
+@Service
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
     private UserLevelUpgradePolicy userLevelUpgradePolicy;
@@ -30,16 +33,17 @@ public class UserServiceImpl implements UserService {
         this.mailSender = mailSender;
     }
 
-@Override
-public void upgradeLevels() {
-    userDao.getAll().forEach(user -> {
-        if (userLevelUpgradePolicy.canUpgradeLevel(user)) {
-            userLevelUpgradePolicy.upgradeLevel(user);
-            userDao.update(user);
-            sendUpgradeEmail(user);
-        }
-    });
-}
+    @Transactional
+    @Override
+    public void upgradeLevels() {
+        userDao.getAll().forEach(user -> {
+            if (userLevelUpgradePolicy.canUpgradeLevel(user)) {
+                userLevelUpgradePolicy.upgradeLevel(user);
+                userDao.update(user);
+                sendUpgradeEmail(user);
+            }
+        });
+    }
 
     private void sendUpgradeEmail(User user) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();

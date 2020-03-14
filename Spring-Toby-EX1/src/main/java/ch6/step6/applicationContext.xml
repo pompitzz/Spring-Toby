@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="transactionAdvice" class="ch6.step5.TransactionAdvice">
+        <constructor-arg name="transactionManager" ref="transactionManager"/>
+    </bean>
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+    <bean id="transactionPointCut" class="org.springframework.aop.support.annotation.AnnotationMatchingPointcut">
+        <constructor-arg name="classAnnotationType" value="ch6.step6.Service"/>
+        <constructor-arg name="methodAnnotationType" value="ch6.step3.Transactional"/>
+    </bean>
+
+    <bean id="transactionAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <constructor-arg name="advice" ref="transactionAdvice"/>
+        <constructor-arg name="pointcut" ref="transactionPointCut"/>
+    </bean>
+
+
+    <bean id="userService" class="ch6.step1.UserServiceImpl">
+        <constructor-arg ref="userDao"/>
+        <constructor-arg ref="testUserLevelUpgradePolicy"/>
+        <constructor-arg ref="mailSender"/>
+    </bean>
+
+    <bean id="mailSender" class="ch5.step2.DummyMailSender"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userLevelUpgradePolicy" class="ch5.step2.UserLevelUpgradeDefault"/>
+    <bean id="testUserLevelUpgradePolicy" class="ch6.step6.UserServiceTest$TestUserLevelUpgradePolicy"
+          parent="userLevelUpgradePolicy">
+    </bean>
+
+    <bean id="userDao" class="ch5.step2.UserDaoJdbc">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/springtoby"/>
+        <property name="username" value="sunlee"/>
+        <property name="password" value="pass"/>
+    </bean>
+
+
+</beans>
