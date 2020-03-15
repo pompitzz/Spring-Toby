@@ -2,20 +2,33 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<aop:config>
-    <aop:advisor advice-ref="transactionAdvice" pointcut="bean(*Service)"/>
-</aop:config>
+    <tx:annotation-driven />
+<!--    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="get*" read-only="true"/>-->
+<!--            <tx:method name="*"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
 
-    <bean id="transactionAdvice" class="ch6.step5.TransactionAdvice">
-        <constructor-arg name="transactionManager" ref="transactionManager"/>
+<!--    <aop:config>-->
+<!--        <aop:advisor advice-ref="transactionAdvice" pointcut="bean(*Service)"/>-->
+<!--    </aop:config>-->
+
+    <bean id="userService" class="ch6.step8.UserServiceImpl">
+        <constructor-arg ref="userDao"/>
+        <constructor-arg ref="testUserLevelUpgradePolicy"/>
+        <constructor-arg ref="mailSender"/>
     </bean>
 
-    <bean id="userService" class="ch6.step1.UserServiceImpl">
+    <bean id="testUserService" class="ch6.step8.UserServiceTest$TestUserService">
         <constructor-arg ref="userDao"/>
         <constructor-arg ref="testUserLevelUpgradePolicy"/>
         <constructor-arg ref="mailSender"/>
@@ -28,7 +41,7 @@
     </bean>
 
     <bean id="userLevelUpgradePolicy" class="ch5.step2.UserLevelUpgradeDefault"/>
-    <bean id="testUserLevelUpgradePolicy" class="ch6.step6.UserServiceTest$TestUserLevelUpgradePolicy"
+    <bean id="testUserLevelUpgradePolicy" class="ch6.step8.UserServiceTest$TestUserLevelUpgradePolicy"
           parent="userLevelUpgradePolicy">
     </bean>
 
@@ -42,6 +55,5 @@
         <property name="username" value="sunlee"/>
         <property name="password" value="pass"/>
     </bean>
-
 
 </beans>

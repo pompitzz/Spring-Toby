@@ -1,25 +1,24 @@
-package ch6.step6;
+package ch6.step8;
 
 import ch5.step2.*;
-import ch6.step1.UserService;
-import ch6.step1.UserServiceImpl;
-import ch6.step1.UserServiceTx;
-import ch6.step3.TransactionHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.TransientDataAccessResourceException;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
@@ -38,7 +37,8 @@ import static org.mockito.Mockito.*;
  * @since 2020/03/13
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = "file:src/main/java/ch6/step7/applicationContext.xml")
+@ContextConfiguration(locations = "file:src/main/java/ch6/step8/applicationContext.xml")
+@Rollback
 class UserServiceTest {
     @Autowired
     UserService userService;
@@ -58,6 +58,9 @@ class UserServiceTest {
     @Autowired
     ApplicationContext context;
 
+    @Autowired
+    UserService testUserService;
+
     List<User> users;
 
     @BeforeEach
@@ -70,6 +73,7 @@ class UserServiceTest {
                 new User("user5", "name5", "p1", Level.GOLD, 49, 5000, "test@gmail.com")
         );
         userDao.deleteAll();
+        users.forEach(userDao::add);
     }
 
     // 목 오브젝트로 만들기 (1)
@@ -157,7 +161,7 @@ class UserServiceTest {
 
         @Override
         public void upgradeLevel(User user) {
-            if (user.getId().equals(id)) throw new TestUserServiceException();
+            if (user.getId().equals(id)) throw new UserServiceTest.TestUserServiceException();
             super.upgradeLevel(user);
         }
     }
@@ -167,13 +171,10 @@ class UserServiceTest {
     }
 
     @Test
-    void upgradeAllOrNothing() throws Exception {
+    void upgradeAllOrNothingUsingFactoryBean() throws Exception {
         users.forEach(userDao::add);
-        String id = users.get(3).getId();
-        UserService userServiceImpl = new UserServiceImpl(this.userDao, new TestUserLevelUpgradePolicy(id), mailSender);
-        UserService testUserService = new UserServiceTx(userServiceImpl, transactionManager);
 
-        assertThatThrownBy(() -> testUserService.upgradeLevels())
+        assertThatThrownBy(userService::upgradeLevels)
                 .isInstanceOf(TestUserServiceException.class);
 
         checkLevel(users.get(1), false);
@@ -181,37 +182,8 @@ class UserServiceTest {
     }
 
     @Test
-    void upgradeAllOrNothingUsingHandler() throws Exception {
-        users.forEach(userDao::add);
-        String id = users.get(3).getId();
-        UserService testUserService = new UserServiceImpl(this.userDao, new TestUserLevelUpgradePolicy(id), mailSender);
-        TransactionHandler transactionHandler = new TransactionHandler(testUserService, transactionManager);
-
-        UserService txUserService =
-                (UserService) Proxy.newProxyInstance(
-                        getClass().getClassLoader(), new Class[]{UserService.class}, transactionHandler);
-
-        assertThatThrownBy(txUserService::upgradeLevels)
-                .isInstanceOf(UserServiceTest.TestUserServiceException.class);
-
-        checkLevel(users.get(1), false);
-        checkLevel(users.get(3), false);
-    }
-
-    @Test
-    void upgradeAllOrNothingUsingFactoryBean() throws Exception {
-        users.forEach(userDao::add);
-
-        assertThatThrownBy(userService::upgradeLevels)
-                .isInstanceOf(UserServiceTest.TestUserServiceException.class);
-
-        checkLevel(users.get(1), false);
-        checkLevel(users.get(3), false);
-    }
-
-    @Test
     void realProxy() throws Exception {
-        assertThat(this.userService).isInstanceOf(java.lang.reflect.Proxy.class);
+        assertThat(this.userService).isInstanceOf(Proxy.class);
     }
 
     static class MockMailSender implements MailSender {
@@ -229,6 +201,61 @@ class UserServiceTest {
         @Override
         public void send(SimpleMailMessage... simpleMessages) throws MailException {
 
+        }
+    }
+
+    static class TestUserService extends UserServiceImpl {
+
+        @Autowired
+        UserService userService;
+
+        public TestUserService(UserDao userDao, UserLevelUpgradePolicy userLevelUpgradePolicy, MailSender mailSender) {
+            super(userDao, userLevelUpgradePolicy, mailSender);
+        }
+
+        @Override
+        public List<User> getAll() {
+            for (User user : super.getAll()) {
+                super.update(user);
+            }
+            return null;
+        }
+    }
+
+    @Test
+    void readOnly() {
+        assertThatThrownBy(() -> testUserService.getAll())
+                .isInstanceOf(TransientDataAccessResourceException.class);
+    }
+
+    @Test
+    void transactionSync() throws Exception {
+        DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();
+        txDefinition.setReadOnly(true);
+
+        // 트랜잭션 요청
+        TransactionStatus txStatus = transactionManager.getTransaction(txDefinition);
+
+        assertThatThrownBy(
+                () -> {
+                    userService.deleteAll();
+                    userService.add(users.get(0));
+                    userService.add(users.get(1));
+                })
+                .isInstanceOf(TransientDataAccessResourceException.class);
+    }
+
+    @Test
+    void rollback() throws Exception{
+        DefaultTransactionDefinition txDefinition = new DefaultTransactionDefinition();
+        TransactionStatus txStatus = transactionManager.getTransaction(txDefinition);
+
+        try{
+            userService.deleteAll();
+            userService.add(users.get(1));
+            userService.add(users.get(2));
+        }finally {
+            transactionManager.rollback(txStatus);
         }
     }
 

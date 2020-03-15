@@ -1,19 +1,18 @@
-package ch6.step1;
+package ch6.step8;
 
 import ch5.step2.Level;
 import ch5.step2.User;
 import ch5.step2.UserDao;
 import ch5.step2.UserLevelUpgradePolicy;
-import ch6.step3.Transactional;
 import ch6.step6.Service;
 import lombok.Setter;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
+import java.util.List;
+
+
 
 /**
  * @author Dongmyeong Lee
@@ -21,8 +20,8 @@ import java.sql.SQLException;
  */
 
 @Setter
-@Transactional
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
     private UserLevelUpgradePolicy userLevelUpgradePolicy;
@@ -59,5 +58,27 @@ public class UserServiceImpl implements UserService {
     public void add(User user) {
         if (user.getLevel() == null) user.setLevel(Level.BASIC);
         userDao.add(user);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public User get(String id) {
+        return userDao.get(id);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> getAll() {
+        return userDao.getAll();
+    }
+
+    @Override
+    public void deleteAll() {
+        userDao.deleteAll();
+    }
+
+    @Override
+    public void update(User user) {
+        userDao.update(user);
     }
 }
