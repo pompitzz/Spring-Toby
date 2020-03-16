@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <tx:annotation-driven />
+    <bean id="userService" class="ch6.step8.UserServiceImpl">
+        <constructor-arg ref="userDao"/>
+        <constructor-arg ref="testUserLevelUpgradePolicy"/>
+        <constructor-arg ref="mailSender"/>
+    </bean>
+
+    <bean id="testUserService" class="ch7.step1.UserServiceTest$TestUserService">
+        <constructor-arg ref="userDao"/>
+        <constructor-arg ref="testUserLevelUpgradePolicy"/>
+        <constructor-arg ref="mailSender"/>
+    </bean>
+
+    <bean id="mailSender" class="ch5.step2.DummyMailSender"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userLevelUpgradePolicy" class="ch5.step2.UserLevelUpgradeDefault"/>
+    <bean id="testUserLevelUpgradePolicy" class="ch7.step1.UserServiceTest$TestUserLevelUpgradePolicy"
+          parent="userLevelUpgradePolicy">
+    </bean>
+
+    <bean id="userDao" class="ch7.step1.UserDaoJdbc">
+        <constructor-arg ref="dataSource"/>
+        <property name="sqlAdd" value="insert into users(id, name, password, Level, Login, Recommend, Email) values(?, ?, ?, ?, ?, ?, ?)"/>
+        <property name="sqlGet" value="select * from users where id = ?"/>
+        <property name="sqlGetAll" value="select * from users order by id"/>
+        <property name="sqlUpdate" value="update users set name = ?, password = ?, level = ?, Login = ?, Recommend = ?, Email = ? where id = ?"/>
+        <property name="sqlDelete" value="delete from users"/>
+        <property name="sqlGetCount" value="select count(*) from users"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/springtoby"/>
+        <property name="username" value="sunlee"/>
+        <property name="password" value="pass"/>
+    </bean>
+
+</beans>
