@@ -12,6 +12,8 @@
 - #### [CHAPTER8. 스프링이란 무엇인가?](./Spring-Toby-EX1/src/main/java/ch8/README.md)
 - #### [CHAPTER9. 스프링 프로젝트 시작하기](./Spring-Toby-EX1/src/main/java/ch9/README.md)
 
+## V2
+- #### [CHAPTER1. IoC컨테이나와 DI](./Spring-Toby-EX2/src/main/java/ch1/README.md)
 
 ### 추천 서적
 - Java 프로그래머를 위한 UML 실전에서는 이것만 쓴다(P.84)
