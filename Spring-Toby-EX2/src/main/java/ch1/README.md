@@ -339,7 +339,7 @@ void layerContext() throws Exception{
 - 빈을 만들기 위한 설정 메타정보는 파일이나 애노테이션 같은 리소스로부터 전용 리더를 통해 읽혀서 BeanDefinition 타입의 오브젝트로 변환된다.
 - 이 BeanDefinition 정보를 IoC컨테이너가 활용하는 것이다.
 
-![img](beanmeta.png)
+![img](beanmeta.jpeg)
 
 ### 1.2.1 빈 설정 메타정보
 - BeanDefinition에는 IoC 컨테이너가 빈을 만들 때 필요한 핵심 정보가 담겨 있다.
