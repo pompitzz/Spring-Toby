@@ -8,23 +8,14 @@
 >
 
     <context:annotation-config/>
-    <bean id="hello" class="ch1.step2.Hello">
+
+<bean id="serviceRequestController" class="ch1.step3.ServiceRequestController">
+    <lookup-method name="getServiceRequest" bean="serviceRequest"/>
+</bean>
+    <bean id="hello" class="ch1.step1.Hello">
         <property name="name" value="Spring"/>
     </bean>
 
-    <bean id="serviceRequestFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
-        <property name="targetBeanName" value="serviceRequest"/>
-    </bean>
-
     <bean id="printer" class="ch1.step1.StringPrinter"/>
-
-<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-    <property name="converters">
-        <list>
-            <bean class="ch1.step3.MyTypeConverter"/>
-        </list>
-    </property>
-</bean>
-
 
 </beans>
