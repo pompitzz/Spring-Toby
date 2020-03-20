@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 group 'org.example'
@@ -12,10 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework:spring-context:5.2.4.RELEASE'
-    implementation 'org.springframework:spring-web:5.2.4.RELEASE'
-    implementation 'org.springframework:spring-jdbc:5.2.4.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.5.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
     testImplementation 'org.assertj:assertj-core:3.11.1'

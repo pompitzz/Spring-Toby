@@ -1,6 +1,5 @@
 package ch1.step3;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.core.convert.converter.Converter;
 
 /**
