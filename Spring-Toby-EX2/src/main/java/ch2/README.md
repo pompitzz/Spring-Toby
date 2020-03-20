@@ -1,3 +1,4 @@
+
 # Chapter2. 데이터 액세스 기술
 - 자바에는 JDBC API 이외에도 JDBC의 사용을 추상화해주는 iBatis, SQLMapper라든가, 하이버네이트, JPA와 같은 ORM 기술도 존재한다.
 - 스프링은 자바의 주요 데이터 액세스 기술을 모두 지원한다. 스프링이 지원한다는 의미는 스프링의 철학과 일관된 프로그래밍 모델을 유지하면서, 이런 기술을 사용할 수 있다는 뜻이다.
@@ -323,4 +324,93 @@ public interface PlatformTransactionManager extends TransactionManager {
 > 프록시 AOP는 메서드 레벨에서만 AOP를 적용할 수 있고 타켓 오브젝트에서 자기 자신을 호출할 때에는 AOP가 적용되지 않기 때문에 그럴 경우 트랜잭션이 제대로 동작되지 않을 수 있다.
 
 #### 트랜잭션 속성 및, 전파, 고립은 Vol.1에 정리했으니 생략
- 
+
+### 2.6.4 데이터 액세스 기술 트랜잭션의 통합
+- 스프링은 자바의 다양한 데이터 액세스 기술을 위한 트랜잭션 매니저를 제공해준다.
+- 여러개의 DB를 사용하지 않는 한 트랜잭션 매니저는 한 개만 사용할 수 있다.
+- 만약 DB는 하나이나 두 가지 이상의 데이터 액세스 기술을 동시에 사용하는 경우는 어떨까?
+- JPA DAO로 일부 엔티티-테이블을 업데이트하는 것과 JDBC DAO로는 복잡한 DB전용 쿼리를 사용해 데이터를 가져오는 것을 하나의 트랝개션 안에서 진행시키고 싶을 수 있다.
+- JPA를 사용하지만 때에따라 MyBatis같은 SQL 매퍼를 사용하고 싶을 때도 있을 것이다.
+- 스프링은 두 개 이상의 데이터 액세스 기술로 만든 DAO를 하나의 트랜잭션으로 묶어서 사용하는 방법을 제공한다.
+
+#### 트랜잭션 매니저별 조합 가능 기술
+**DataSourceTransactionManager**
+- DataSourceTransactionManager를 트랜잭션 매니저로 등록하면 JDBC와 iBatis 두 가지 기술을 함께 사용할 수 있다.
+- 트랜잭션을 통합하려면 항상 동일한 DataSource를 사용해야 한다는 점을 잊지말자.
+- JDBC와 iBatis Dao가 같은 DataSource로 부터 커넥션을 가져와 사용한다고 한다면 DataSourceTransactionManager이 트랜잭션 동기화를 진행해줄 것이다.
+
+**JpaTransactionManager**
+- JPA의 트랜잭션은 JPA API를 이용해 처리된다. 따라서 기본적으로는 JPA 단독으로 트랜잭션을 관리하게 된다.
+- 그런데 스프링에서는 JPA의 EntityManagerFactory가 스프링 빈으로 등록된 DataSource를 사용할 수 있다.
+- 그리고 이 DataSource를 JDBC DAO나 iBatis DAO에서도 사용할 수 있다.
+- 이렇게 DataSoruce를 공유하면 JpaTransactionManager에 의해 세 가지 기술을 사용한 DAO 작업을 하나의 트랜잭션으로 관리해줄 수 있다.
+- JpaTransactionManager가 같은 DataSoruce를 사용하는 Dao들에 대해 트랜잭션 동기화를 진행해준다.
+
+**HibernateTransactionManager**
+- JpaTransactionManager과 동일한 방식으로 트랜잭션 동기화를 진행해준다.
+
+**JtaTransactionManager**
+- 서버가 제공하는 트랜잭션 서비스를 JTA를 통해 이용하면 모든 종류의 데이터 액세스 기술의 DAO가 같은 트랜잭션 안에서 동작하게 만들 수 있다.
+- JTA는 같은 DataSoruce를 사용하지 않더라도 하나의 트랜잭션으로 묻어줄 수 있다.
+- 대신 이를 사용하기 위해서는 JTA 서버환경 구성이 필요하다.
+
+#### ORM과 비 ORM DAO를 함께 사용할 때의 주의 사항
+- 서로의 기술을 사용하는 것은 문제가 없으나 각 기술의 특징을 잘 이해하지 못하면 예상치 못한 오류가 발생할 수 있다.
+- JDBC의 경우 메서드 호출 시 바로 SQL을 날리지만 JPA는 쓰기지연이 있기 때문에 이러한 기술적 차이로 인해 문제가 발생할 수 있다.
+- 이를 해결하기 위해서는 의도적으로 flush를 날리거나, AOP같은 것을 이용해 JDBC의 DAO가 호출될 때마다 flush를 날리게하면 될 것이다.
+
+### 2.6.5 JTA를 이용한 글로벌/분산 트랜잭션
+- 한 개 이상의 DB나 JMS의 작업을 하나의 트랜잭션 안에서 동작하게 하려면 서버가 제공하는 트랜잭션 매니저를 JTA를 통해 사용해야 한다.
+- JTA와 글로벌/분산 트랜잭션을 사용하기 위한 설정은 자바 서버마다 다르므로 해당 서버의 매뉴얼을 참고해서 등록하는 방법을 알아둬야 한다.
+- 이건 진짜 사용할 때 보도록하자..
+
+---
+
+## 2.7 스프링3.1의 데이터 액세스 기술
+### 2.7.1 persistence.xml 없이 JPA 사용하기
+- JPA 엔티티 클래스가 담긴 패키지리스트를 LocalEntityManagerFactoryBean 빈의 packagesToScan 프로퍼티에 넣어주면 persistence.xml이 필요 없다.
+
+```xml
+<bean id="emf"
+      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="packagesToScan" value="ch2.step5.jpa"/>
+    <property name="jpaProperties">
+        <props>
+            <prop key="eclipselink.weaving">false</prop>
+        </props>
+    </property>
+    <property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+            <property name="generateDdl" value="true"/>
+            <property name="showSql" value="true"/>
+        </bean>
+    </property>
+</bean>
+```
+
+### 2.7.2 하이버네이트 4 지원
+**LocalSessionFactoryBean**
+- 하이버네이트3의 LocalSessionFactoryBean과 이름은 같지만 AnnotationSessionFactoryBean과 유사한 특징을 가지고 있다.
+- 이는 애노테이션 설정 정보가 보편화되고 있다는 것을 알 수 있다.
+
+**LocalSessionFactoryBuilder**
+- LocalSessionFactoryBuilder는 @Configuration 클래스에서 세션 팩토리 빈을 등록할 때 편리하게 사용할 수 있도록 만들어진 빌더 클래스이다.
+- 하이버네이트용 트랜잭션 매니저 클래스나 OpenSessionInViewInterceptor 등도 하이버네이트4 패키지에 있는것을 사용해야 한다.
+
+### 2.7.3 @EnableTransactionManager
+- \<tx:annotation-driven/>과 동일한 컨테이너 인프라 빈을 등록해주는 자바 코드 설정용 애노테이션이다.
+- @Transactional 애노테이션을 이용한 트랜잭션 설정을 가능하게 해준다.
+
+#### 2.7.4 JdbcTemplate 사용 권장
+- SimpleJdbcTemplate은 @Deprecated되어 버리고 자바 5의 기능을 적극 활용한 JdbcTemplate 사용을 권장한다.
+
+---
+
+## 2.8 정리
+- DAO 패턴을 이용하면 데이터 액세스 계층과 서비스 게층을 깔끔하게 분리하고 데이터 액세스 기술을 자유롭게 변경해서 사용할 수 있다.
+- 스프링 JDBC는 JDBC DAO를 템플릿/콜백 방식을 이용해 편리하게 작성할 수 있게 해준다.
+- SQL 매핑 기능을 제공하는 iBatis로 DAO를 만들 때도 스프링의 템플릿/콜백 지원능을 사용할 수 있다.
+- JPA와 하이버네이트를 이용하는 DAO에서는 템플릿/콜백과 자체적인 API를 선택적으로 사용할 수 있다.
+- 트랜잭션 경계설정은 XML의 스키마 태그와 애노테이션을 이용해 정의할 수 있다. 또한 트랜잭션 AOP를 적용할 때 프록시와 AspectJ를 사용할 수 있다.
+- 스프링은 하나 이상의 데이터 액세스기술로 만들어진 DAO를 같은 트랜잭션 안에서 동작하도록 만들어주며 하나 이상의 DB를 사용할때는 JTA를 이용하면 된다.
