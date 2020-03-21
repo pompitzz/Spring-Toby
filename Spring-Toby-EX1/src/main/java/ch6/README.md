@@ -1950,7 +1950,7 @@ PROPAGATION_NAME, ISOLATION_NAME, readOnly, timeout_NNNN, -Excetpion1, +Exceptio
 - PROPAGATION_REQUIRED이기 떄문에 그 트랜잭션에 참여하므로 readOnly는 적용되지 않을 것이다.
 - upgrade로 시작하는 메서드들은 매 독립적인 트랜잭션을 갖도록 PROPAGATION_REQUIRES_NEW로 하였고 격리수준도 최고 수준으로 설정하였다.
 
-> 메서드 이름이 하나 이상의 패턴과 일치할 경우 가장 정확히 이리하는 것이 적용된다.
+> 메서드 이름이 하나 이상의 패턴과 일치할 경우 가장 정확히 일치하는 것이 적용된다.
 
 #### tx네임스페이스를 이용한 설정 방법
 - transactionAttribute 타입의 속성을 tx스키마의 전용 태그를 이용해 정의할 수도 있다.
@@ -2293,7 +2293,7 @@ public class UserServiceImpl implements UserService {
 - 만약 트랜잭션 전파 속성이 없었다면 트랜잭션을 이어서 사용하기위해 많은 코드들이 중복되었을 것이다.
 - 어떤 이벤트에서 add() 메서드를 호출할 때 항상 새로운 트랜잭션으로 시행된다면 이벤트가 실패 시 롤백이 되지 않아 문제가 발생할 수 있어 add() 메서드의 코드를 복사 붙여넣기 했어야 했을 것이다.
 - **AOP를 이용해 코드 외부에서 트랜잭션의 기능을 부여해주고 속성을 지정할 수 있게하는 방법을 선언전 트랜잭션(declarative transaction)이라고 한다.**
-- 반대로 TransactionTemplate이나 개별 데이터 기술의 트랜잭션 API를 사용해 직접 코드 안에서 사용하는 방법은 프래그램에의 한 프랜잭션(programmatic transaction)이라고 한다.
+- 반대로 TransactionTemplate이나 개별 데이터 기술의 트랜잭션 API를 사용해 직접 코드 안에서 사용하는 방법은 프래그램에 의한 프랜잭션(programmatic transaction)이라고 한다.
 - 스프링은 상황에 따라 이 두가지 모두를 지원한다. 특별한 경우가 아닌 이상 선언적 트랜잭션을 사용하는 것이 바람직하다.
 
 ### 6.8.2 트랜잭션 동기화 테스트

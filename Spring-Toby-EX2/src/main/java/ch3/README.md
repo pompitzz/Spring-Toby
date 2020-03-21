@@ -559,3 +559,242 @@ class HelloServletTest extends AbstractDispatcherServletTest{
 - 현재 대부분 사용하는 애노테이션 기반의 컨트롤러 어댑터이다.
 - 해당 컨트롤러는 특정 인터페이스를 구현한 컨트롤러만을 지원하는게 아닌 타입에 재한이 없어 모든 컨트롤러에게 적용이 가능하다.
 - 그리고 메서드 단위로 url 매핑이 이우러지는 장점이 존재한다.
+
+#### 기반컨트롤러 만들기
+- 기반 컨트롤러를 만들어 모든 컨트롤러가 이 기반 컨트롤러를 상속받아 편리하게 파라미터와 뷰네임을 설정할 수 있도록 해보자.
+
+```Java
+@Setter
+public abstract class SimpleControllerV1 implements Controller {
+    private String[] requiredParams;
+    private String viewName;
+
+
+    @Override
+    final public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        if(viewName == null) throw new IllegalStateException();
+
+        Map<String, String> params = new HashMap<>();
+
+				// 필요한 파라미터를 가져와 맵에 담는다. 없다면 예외를 던진다.
+        for (String param : requiredParams) {
+            String value = request.getParameter(param);
+            if (value == null) throw new IllegalStateException();
+            params.put(param, value);
+        }
+
+        Map<String, Object> model = new HashMap<>();
+
+				// 개별 컨트롤러가 구현한 메서드를 호출한다.
+        this.control(params, model);
+
+        return new ModelAndView(this.viewName, model);
+    }
+
+    public abstract void control(Map<String, String> params, Map<String, Object> model) throws Exception;
+}
+```
+- 개별 컨트롤러에서 세팅하는 뷰네임과 파라미터를 이용하여 ModelAndView를 만들 수 있다.
+- 템플릿 메서드 패턴을 통해 params와 model을 넘겨줬을 떄 개별 컨트롤러가 원하는 기능을 구현할 수 있다.
+
+```Java
+class HelloControllerV1 extends SimpleControllerV1{
+
+    public HelloControllerV1() {
+        this.setRequiredParams(new String[]{"name"});
+        this.setViewName("/WEB-INF/view/hellp.jsp");
+    }
+
+    @Override
+    public void control(Map<String, String> params, Map<String, Object> model) throws Exception {
+        model.put("message", "Hello " + params.get("name"));
+    }
+}
+```
+
+
+## 3.3.2 핸들러 매핑
+- 핸들러 매핑은 HTTP 요청정보를 이용ㅎ 이를 처리한 핸들러 오브젝트인 컨트롤러를 찾아주는 기능을 가진 DispatcherServlet의 전략이다.
+- 핸들러 매피은 타입과 상관없으며 하나의 매핑전략이 여러 타입의 컨트롤러를 선택할 수 있다.
+- 디폴트로는 BeanNameUrlHandlerMapping, DefaultAnnotationHandlerMapping이 존재하고 이외에도 3가지가 추가로 존재한다.
+
+**BeanNameUrlHandlerMapping**
+- 빈의 이름에 들어있는 URL을 HTTP 요청의 URL과 비교해서 일치하는 빈을 찾아준다.
+- 딜포트 전략이며, 빠르고 쉽게 URL 매핑정보를 지정할 수 있으나 컨트롤러가 많아진다면 URL 정보가 XML 빈 선언이나 크래스의 애노테이션 등에 분산되어 나타나므로 전체적인 매핑구조를 한눈에 파악하고 관리하기 힘들다.
+
+**ControllerBeanNameHandlerMpping**
+- 빈의 아이디나 빈의 이름을 이용해 매핑해주는 전략이다.
+- 빈 아이디는 규칙상 /기호를 사용할 수 없으나 ControllerBeanNameHandlerMpping이 자동으로 반아이디에 /를 붙여준다.
+- 이를 사용하기 위해선은 빈으로 등록해주어야 한다. 그럴경우 디폴트인 두 가지의 매핑전략은 적용되지 않는다.
+
+**ControllerClassNameHandlerMapping**
+- 빈 이름 대신 클래스 이름을 URL에 매핑해주는 핸들러 매핑 클래스이다.
+
+**SimpleUrlHandlerMapping**
+- BeanNameUrlHandlerMapping은 빈 이름에 매핑정보를 넣기 떄문에 매핑정보를 관리하기 불편하다.
+- SimpleUrlHandlerMapping은 URL과 컨트롤러의 매핑정보를 한곳에 모아놓을 수 있는 핸들러 매핑전략이다.
+- SimpleUrlHandlerMapping을 빈으로 등록할 때 프로퍼티에 값들을 넣어준다.
+- 설정 정보들이 한곳에 모여  있기 때문에 URL을 관리하기 편리하다는 장점이 존재하므로 대규모프로젝트에서는 SimpleUrlHandlerMapping을 선호학도 한다.
+- 단점으로는 매핑할 정보를 직접 적어야 하므로 오타등의 위허이 있다.
+
+**DefaultAnnotationHandlerMapping**
+- @RequestMapping이라는 애노테이션을 컨트롤러 클래스나 메서드에 직접부여하고 이를 이용해 매핑하는 전략이다.
+- @RequestMapping은 메서드 단위로 URL을 매핑해줄 수 있어 컨트롤러의 개수를 획기적으로 줄일 수 있다.
+
+
+**기타 공통 설정정보**
+- order
+	- 핸들러 매핑은 한 개 이상을 동시에 이용할 수 있으므로 순서를 정할떄 사용한다.
+- defaultHandler
+	- 핸들러 매핑 빈의 defaultHandler 프로퍼티를 지정해두면 URL을 매핑할 대상을 찾지 못했을 경우 자동으로 디폴트 핸들러를 선택해준다.
+	- 404 에러대신 디폴트 핸들러로 넘겨서 친절한 안내 메시지를 뿌려주는 것이 좋은 방법이다.
+
+**detectHandlerAncestorContexts**
+- 핸들러 매핑은 특이하게 서블릿 컨텍스트 안에서만 매핑할 컨트롤러를 찾이 애플리케이션 컨텍스트까지 찾지 않는다.
+- detectHandlerAncestorContexts가 false로 선언되어있기 떄문이다.
+- 웹 환경에 종속적인 컨트롤러 빈은 서블릿 컨텍스트에만 두는 것이 바람직 하기 때문이다.
+
+### 3.3.3 핸들러 인터셉터
+- 핸들러 인터셉터는 DispatcherServlet이 컨트롤러를 호출하기 전, 후에 요청과 응답을 참조하거나 가공할 수 있는 필터이다.
+- 핸들러 매핑의 역할은 URL로부터 컨트롤러만 찾아주는 것이 아니다. 핸들러 매핑은 DispatcherServlet으로부터 매핑 작업을 요청받으면 그 결과로 핸들러 실행 체인(HandlerExecutionChain)을 돌려준다.
+- 이 핸들러 실행 체인은 하나 이상의 핸들러 인터셉터를 거쳐 컨트롤러가 실행될 수 있도록 구성되어 있다.
+
+**HandlerInterceptor**
+- HandlerInterceptor 인터페이스를 구현하여 만들면된다.
+
+```Java
+public interface HandlerInterceptor {
+
+	default boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+
+		return true;
+	}
+
+	default void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			@Nullable ModelAndView modelAndView) throws Exception {
+	}
+
+	default void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
+			@Nullable Exception ex) throws Exception {
+	}
+}
+```
+- preHandle은 말 그대로 컨트롤러가 호출(핸들)되기 전에 실행된다.
+	- 파라미터중 handler 파라미터는 핸들러 매핑이 찾아준 컨트롤러 빈 오브젝트가 된다.
+	- retrun값이 true라면 핸들러 실행 체인의 다음 단계로 실행되나 false라면 중단한다.
+- postHandle은 컨트롤러가 처리되고 난 후에 호출된다.
+	- 파라미터 중 하나인 ModelAndView 타입의 정보가 제공되므로 컨트롤러 작업 결과를 참조하거나 조작할 수 있게 된다.
+- afterCompletion메서드는 이름 그대로 모든 뷰에서 최종결과를 생성하는 일을 포함한 모든 작업을 완료된 후에 실행된다.
+
+**핸들러 인터셉터 적용**
+- 핸들러 인터셉터를 사용하기 위해서는 빈으로 등록후 Config설정을 해주도록 하자.
+
+### 3.3.4 컨트롤러 확장
+- 새로운 컨트롤러를 직접 설계할 수도 있다.
+- 현재 Controller를 이용해 만든 기반 컨트롤러에는 하나의 단점이 존재한다.
+- 그것은 개별 컨트롤러가 특정 클래스를 상속하도록 강제한다는 점이다.
+- 거추장스러운 클래스 상속보다는 인터페이스를 구현하는 깔끔한 방법으로 컨트롤러를 만들고 싶을 수 도 있다.
+- 이럴경우 핸들러 어댑터를 직접 구현해서 아예 새로운 컨트롤러 타입을 도입하는 방법을 고려해봐야 한다.
+- 스프링 MVC의 유연성을 가장 잘 드러내는 부분은 바로 컨트롤러 타입에 제한이 없다는 것이다.
+
+
+```Java
+public interface HandlerAdapter {
+	boolean supports(Object handler);
+
+	@Nullable
+	ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;
+
+	long getLastModified(HttpServletRequest request, Object handler);
+}
+x
+```
+- HandlerAdapter 인터페이스는 단순하다. supports() 메서드는 특정 타입의 컨트롤러를 지원하는지 확인해준다.
+- DispatcherServlet은 이 메서드를 이용해 어떤 핸드러 어댑터에게 어떤 컨트롤러 오브젝트의 실행을 맡길 수 있는지 알아낼 수 있다.
+- 실제 호출은 handle() 메서드를 통해 일어난다.
+- Object 타입으로 전달받은 컨트롤러 오브젝트를 적절한 컨트롤러 타입으로 캐스팅해서 실행해준다.
+- 그 과정에서 HttpServletRequest로부터 필요한 정보를 가져와 컨트롤러에게 전달할 파라미터를 준비하느 것과 컨트롤러가 리턴한 정보를 DispatcherServlet이 인식할 수 있은 ModelAndView로 만들어주는 작업도 수행한다.
+- getLastModified는 최정 변경시간을알려준다.
+
+**커스텀 컨트롤러 인터페이스와 핸들러 어댑터 개발**
+- 앞서 Controller이넡페이스를 구현 해 만들었던 기반 컨트롤러인 SimpleController를 이번에는 핸들러 어댑터를 이용해 호출 가능한 인터페이스로 정의해서 독자적인 컨트롤러 인터페이스로 만들어보자.
+- 기존의 SimpleController는 모든 클래스가 상속할 기반 클래스이므로 viewName, requiredParams 같은 공통 프로퍼티를 정의해놓을 수 있었다.
+- 하지만 인터페이스로 정의하는 새로운 컨트롤러 타입에는 그런 방식을 사용할 수 없다.
+- 그래서 대신 관례를 만들어 비슷한 설정을 가능하게 해보자.
+
+```Java
+public interface SimpleController {
+    void control(Map<String, String> params, Map<String, Object> model);
+}
+```
+- SimpleController는 control메서드만 가진다.
+- 개별 컨트롤러에서 이 설정 정보를 지정하게 하기위해서는 애노테이션이 적절하게 사용될 수 있다.
+
+```Java
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+public @interface ViewName {
+    String value();
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+public @interface RequiredParams {
+    String[] value();
+}
+```
+- 우선 사용할 애노테이션들을 정의한다.
+- viewName은 String, requiredParams은 String 배열을 값으로 가지고 있다.
+- 이제 이 애노테이션이 viewName, RequiredParams의 정보를 가지고 있는 관례를 적용할것이므로 필요한 정보를 구현 컨트롤러에 넣어주기만 하면된다.
+
+```Java
+public class HelloController implements SimpleController {
+    @ViewName("/WEB-INF/view/hello.jsp")
+    @RequiredParams({"name"})
+    @Override
+    public void control(Map<String, String> params, Map<String, Object> model) {
+        model.put("message", "Hello " + params.get("name"));
+    }
+}
+```
+- 애노테이션과 SimpleController인터페이스를 이용하여 HelloController를 구현하였따.
+- 이전에 SimpleController클래스를 통해 구현한 HelloController보다 훨씬 깔끔한것을 알 수 있다.
+- 이제 핸들러 어댑터를 구현해보자.
+
+
+```Java
+public class SimpleHandlerAdapter implements HandlerAdapter {
+    @Override
+    public boolean supports(Object handler) {
+        return (handler instanceof SimpleController);
+    }
+
+    @Override
+    public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        Method m = ReflectionUtils.findMethod(handler.getClass(), "control", Map.class, Map.class);
+
+        ViewName viewName = AnnotationUtils.getAnnotation(m, ViewName.class);
+        RequiredParams requiredParams = AnnotationUtils.getAnnotation(m, RequiredParams.class);
+
+        Map<String, String> params = new HashMap<>();
+        for (String param : requiredParams.value()) {
+            String value = request.getParameter(param);
+            if (value == null) throw new IllegalStateException();
+            params.put(param, value);
+        }
+
+        Map<String, Object> model = new HashMap<>();
+        ((SimpleController) handler).control(params, model);
+
+        return new ModelAndView(viewName.value(), model);
+    }
+
+    @Override
+    public long getLastModified(HttpServletRequest request, Object handler) {
+        return -1;
+    }
+}
+```
+- Reflect을 통해 control 메서드를 가져온 후 해당 애노테이션들을 읽어 애노테이션 값들을 이용해 작업을 수행할 수 있다.
+- 이제 이 HandlerAdapter를 빈으로 등록해주면 DispatcherServlet은 핸들러 매핑에서 HelloController를 찾은 후 DispatcherServlet은 혀내 등록된 모든 핸들러 어댑터의 supports()를 호출하여 처리할 수 있는 핸들러인지 확인한 후 이를 처리하게 될 것이다.
