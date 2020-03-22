@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.apache.geronimo.specs', name: 'geronimo-atinject_1.0_spec', version: '1.1'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
     testImplementation 'org.assertj:assertj-core:3.11.1'
