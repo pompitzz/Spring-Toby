@@ -798,3 +798,243 @@ public class SimpleHandlerAdapter implements HandlerAdapter {
 ```
 - Reflect을 통해 control 메서드를 가져온 후 해당 애노테이션들을 읽어 애노테이션 값들을 이용해 작업을 수행할 수 있다.
 - 이제 이 HandlerAdapter를 빈으로 등록해주면 DispatcherServlet은 핸들러 매핑에서 HelloController를 찾은 후 DispatcherServlet은 혀내 등록된 모든 핸들러 어댑터의 supports()를 호출하여 처리할 수 있는 핸들러인지 확인한 후 이를 처리하게 될 것이다.
+
+```Java
+public class HandlerAdapterTest extends AbstractDispatcherServletTest{
+	@Test
+	void simpleHandlerAdapter() throws ServletException, IOException{
+			setClasses(SimpleHandlerAdapter.class, HelloController.calss);
+			initRequest("/hello").addParameter("name", "Spring").runService();
+			assertViewName("/WEB-INF/view/hello.jsp");
+			assertModel("message", "Spring");
+		}
+}
+```
+- 테스트는 문제 없이 작동할 것이다.
+- 스프링 3.0부터는 애노테이션 방식의 핸들러 어댑터가 있어 매우 유연한 방식으로 컨트롤러를 작성할 수 있다.
+- 구조를 살펴보면 복잡하겠지만 기본적인 개념과 구현방법은 SimpleHandlerAdapter와 다를바가 업다.
+
+> - 프레임워크 개발이란 이미 있는 기술을 조햅해서 어떻게 쓸지 결정하고, 툴이나 공통 모듈정도를 만들어 놓는것이 아니다.
+> - 프레임워크란 애플리케이션의 코드가 효율적인 방법으로 개발돼서 사용될 수 있도록 새로운 틀(framework)을 만드는 작업이다.
+
+---
+
+## 3.4 뷰
+- 뷰는 MVC 아키텍처에서 모델이 가진 정보를 어떻게 표현해야하는지에 대한 로직을 가지고 있는 컴포넌트다.
+- 컨트롤러가 작업을 마친 후 뷰 정보를 ModelAndView 타입 오브젝트에 담아 DispatcherServlet에게 돌려주는 방법은 두개이다.
+- 첫 째는 Vuew 타입의 오브젝트를, 둘 때는 뷰 이름을 돌려주는 것이다.
+
+### 3.4.1 뷰
+- DispatcherServlet이 사용하는 뷰 오브젝트 인터페이스는 아래와 같다.
+
+```Java
+public interface View {
+	String RESPONSE_STATUS_ATTRIBUTE = View.class.getName() + ".responseStatus";
+	String PATH_VARIABLES = View.class.getName() + ".pathVariables";
+	String SELECTED_CONTENT_TYPE = View.class.getName() + ".selectedContentType";
+
+	@Nullable
+	default String getContentType() {
+		return null;
+	}
+
+	void render(@Nullable Map<String, ?> model, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+}
+```
+- 타입정보는 제공해주는 getContentType, 메서드 모델을 전달받아 클라이언트에게 돌려줄 결과물을 만드는 render 메서드로 구성된다.
+- 보통 View를 직정 구현해서 만들 필요가 없다. 스프링에서 자주사용되는 뷰를 이미 구현해놓았기 때문이다.
+- 뷰를 사용하는 방법은 두 가지가 있다.
+- 하나는 스프링이 제공하는 기반 뷰 클래스를 확장해서 코드로 뷰를 만드는 방법이다.
+- 엑셀, PDF 같은 뷰는 콘텐트를 생성하는 API를 이용해서 뷰 로직을 작성해야 한다.
+- 또 다른 방법은 스프링이 제공하는 뷰를 활용하데 뷰 클래스 자체를 상속하거나 코드를 작성하지 않고 JSP나 프리마커 같은 템플릿 파일을 사용해서 모델을 자동으로 뷰로 전환하는 로직을 적용하는 방법이다.
+
+**InternalResourceView와 JstlView**
+- RequestDispatcher의 forward()나 include()를 이용하는 뷰이다.
+- forward, include는 다른 서블릿을 실행해서 그 결과를 현재 서블릿의 결과로 사용하거나 추가하는 방식이다.
+
+**RedirectView**
+- HttpServletResponse의 sendRedirect를 호출해주는 기능을 가진 뷰이다.
+- 따라서 실제 뷰가 생성되는게 아니고 다른페이지로 리다이엑트될 때 생성되는 뷰이다.
+- 직접 오브젝트를 만들 수 있지만 redirect:/main와 같이 redirect: 접두어를 활용할 수 있다.
+
+**VelocityView, FreeMarkerView**
+- 벨로시티와 프리마커라는 두 개의 대표적인 자바 템플릿 엔진을 뷰로 사용하게 해준다.
+- 이 두가지 뷰도 JSP와 같이 컨트롤러에서 직업 뷰 오브젝트를 만드는게 아닌 VelocityViewResolver, FreeMarkerViewResolver를 통해 자동으로 뷰가 만들어져 사용하는 편이 편리하다.
+- JSP는서블릿이 구동되어야 동작하므로 단위 테스트가 힘들지만 프리마커, 벨로시티는 독립적인 템플릿 엔진으로 뷰를 생성하므로 뷰 결과를 쉽게 만들 수 있어 단위 테스트하기 유리하다.
+
+**MarshallingView**
+- OXM 추상화 기능을 활용해 application/xml타입의 XML 콘텐트를 작성하게 해주는 편리한 뷰이다.
+- OXM 기술을 적용해 XML 컨텐르를 만드는 방법은 한 가지 더 존재한다.
+- 마샬링 뷰 대신 메시지 컨버터로 XML 결과를 만들 수 있다. 이는 4장에서 알아본다.
+
+**AbstractExcelView, AbstractJExcelView, AbstractPdfView**
+- 엑셀과 PDF를 문서를 만들어주는 뷰이다.
+- Abstract가 붙어있으니 상속을 해서 코드를 구현해야하는 뷰이기도 하다.
+
+**MappingJacksonJsonView**
+- AJAX에서 많이 사용되는 JSON 타입의 콘텐트를 작성해주는 뷰이다.
+- Set<String>타입인 renderedAttributes프로퍼티를 지정해서 일부 모델 오브젝트에만 JSON 변환에 사용할 수 있다.
+- 이 또한 메시지 컨버터로 사용해서 생성할 수 있는 방법이 존재한다.
+
+### 3.4.2 뷰 리졸버
+- 뷰 리졸버는 뷰 이름으로부터 사용할 뷰 오브젝트를 찾아준다.
+- 뷰 리졸버는 ViewResolver인터페이스를 구현하여 만들어진다.
+- 뷰 리졸버를 빈으로 등록하지 않으면 DispatcherServlet의 디폴트 뷰인 InternalResourceViewResolver가 사용된다.
+
+#### InternalResourceViewResolver
+- 주로 JSP를 뷰로 사용하고자 할 때 쓰인다.
+- suffix, prefix를 설정할 수있으며 RequestToViewNameTranslator를 활용하면 뷰 이름을 컨트롤러가 넘겨주지 안아도 URL을 통해 만들 수 있게 해준다.
+
+#### VelocityViewResolver, FreeMarkerViewResolver
+- 템플릿 엔진 기반의 뷰를 사용하게 해주는 뷰 리졸버이다.
+
+#### ContentNegotiatingViewResolver
+- 이 뷰 리졸버는 여타 뷰 리졸버처럼 직접 뷰 이름으로부터 뷰 오브젝트를 찾아주는게 아닌 미디어 타입 정보를 활용해서 다른 뷰 리볼버에게 뷰를 찾도록 위임한 후에 가장 적절한 뷰를 선정해서 돌려준다.
+- **뷰 리졸버를 결정해주는 뷰 리졻라고 볼 수 있다.**
+- RESTful 스타일의 웹사이트는 같은 리로스에 대해 다양한 타입의 콘텐트를 제공해준다는 특징이 있다.
+- ContentNegotiatingViewResolver를 적극 활용한다면 다양한 타입의 콘텐트를 유연하게 대처할 수 있을것이다.
+- ContentNegotiatingViewResolver는 적용한 뷰 리졸버를 선정하는 알고리즘이 제법 복잡하므로 사용 방법을 정확히 이해하고 적용해야 한다.
+
+#### ContentNegotiatingViewResolver의 뷰 결정법
+**미디어 타입 결정**
+- ContentNegotiatingViewResolver는 가장 먼저 사용자의 요청정보로부터 사용자가 요청한 미디어 타입정보를 추출한다.
+- 첫번쨰는 URL 확장자(/hello.json)으로 찾은 후 없다면 두 번째로 포맷을 지정하는 파라미터로부터 미디어 타입을 추출하는 방법을 사용한다.
+- 세 번째로는 두 가지 방법이 적용되지 않았거나, 원하는 미디어 타입을 찾지 못했을 경우 HTTP의 컨텐트 교섭(content negotiation)에 사용되는 Accept 헤더의 설정을 이용한다.
+- 마지막으로는 앞의 모든 방법으로도 찾지못했다면 defaultContentType 프로퍼티에 설정해준 디폴트 미디어 타입을 사용한다.
+
+**뷰 리졸버 위임을 통한 후보 뷰 선정**
+- 미디어 타입이 결정됐다면 다음은 적용가능한 뷰 후보를 찾아야 한다.
+- 컨트롤러가 돌려준 뷰 이름을 등록된 모든 뷰 리졸버에게 보내서 사용 가능한 뷰를 확인하는 방법을 사용한다.
+- 뷰 후보 선정에 사용할 뷰 리졸버는 viewResolvers 프로퍼티를 이용해 지정해줄 수 있다.
+- 따로 등록하지 않는다면 서블릿 컨텍스트에 등록된 모든 ViewResolver를 찾아 사용한다.
+- 일반적으로 뷰 리졸버가 여러개라면 order 순위에 따라 뷰를 찾을 수 있는지 문의하고 가장 먼저 발견된 뷰를 사용한다.
+- **반면에 ContentNegotiatingViewResolver는 여러 개의 뷰 리졸버를 사용하지만 우선순위는 무시한다.**
+- 대신 모든 뷰 리졸버에게 뷰 이름을 처리할 수 있는지 문의하고 뷰 리졸버가 돌려주는 뷰가 있다면 이를 모두 최종 뷰 선정을 위한 뷰 후보 목록에 추가한다.
+- ContentNegotiatingViewResolver를 사용하면 다른 뷰 리졸버를 독립적으로 사용하지 않으므로 ContentNegotiatingViewResolver의 viewResolvers프로퍼티에 뷰 리졸버를 내부 빈으로 즉시 등록하여도 된다.
+
+**미디어 타입 비교를 통한 최종 뷰 선정**
+- 마지막으로 요청정보에서 가져온 미디어 타입과 뷰 리졸버에서 찾은 후보 뷰 목록을 매칭해서 사용할 뷰를 결정한다.
+- JSON이나 XML로 변환하는 뷰일 경우 뷰 코드를 작성할 필요없이 해당 모델 오브젝트만 주면 특정 타입의 콘텐트를 만들어준다.
+- 이럴경유 따로 뷰 리졸버를 등록하지 않고 디폴트 뷰로 이들을 등록하여 사용하면 된다.
+
+> - 컨트롤러는 뷰의 종류가 여러 가지이더라고 ContentNegotiatingViewResolver를 활용하고 있다면 동일한 핸들러 하나만 만들면 된다.
+> - 뷰를 선정하기 위한 조건문도 필요없이 간단하게 만들 수 있다.
+
+---
+
+## 3.5 기타 전략
+### 3.5.1 핸들러 예외 리졸버
+- HandlerExceptionResolver는 컨트롤러의 작업 중에 발생한 예외를 어떻게 처리할지 결정하는 전략이다.
+
+```Java
+public interface HandlerExceptionResolver {
+	@Nullable
+	ModelAndView resolveException(
+			HttpServletRequest request, HttpServletResponse response, @Nullable Object handler, Exception ex);
+}
+```
+- HandlerExceptionResolver의 반환 타입은 ModelAndView이다. 따라서 사용할 뷰와 그안에 들어갈 모델을 돌려줄 수 있다.
+- 스프링은 총 네개의 HandlerExceptionResolver 구현 전략을 제공한다.
+
+**AnnotationMethodHandlerExceptionResolver**
+- @ExceptionHandler 애노테이션이 붙은 메서드를 찾아 예외 처리를 맡겨주는 핸들러 예외 리졸버이다.
+
+**ResponseStatusExceptionResolver**
+- HTTP 응답 상태 코드로 전환해주는 예외 리졸버이다.
+- 특정 예외가 발생했을 때 단순한 HTTP 500에러 대신 의미있는 HTTP 응답 상태를 돌려주는 방법이다.
+- 예외 클래스에 @ResponseStatus를 붙이고 HttpStatus에 정의되어 있는 HTTP 응답 상태 값을 value 앨리먼트에 저장하고 reason도 넣을 수 있따.
+
+
+```Java
+@ResponseStatus(value = HttpStatus.SERVICE_UNAVAILABLE, reason = "서비스 일시 중지")
+public class NotInServiceException extends RuntimeException {
+}
+```
+- ResponseStatusExceptionResolver는 발생한 예외의 클래스에 @ResponseStatus가 있는지 확인하고, 만약 있다면 애노테이션에 지정해둔 HTTP 응답 상태 코드를 클라이언트에게 전달한다.
+- 이 방법의 당점은 @ResponseStatus를 붙여줄 수 있는 예외 클래스를 만들어 사용해야 한다는 것이다.
+- 따라서 기존에 정의된 예외 클래스에는 바로 적용할 수 없다.
+- 그렇게 하기 위해선 @ExcpetionHandler를 통해 리턴타입은 void로한 후 HttpServletResponse를 파라미터로 받아 setStatus를 해주어야 한다.
+
+**DefaulthandlerExcpetionResolver**
+- 디폴트로 등록된 것 중에서 위의 구 가지 예외 리졸버에서 처리하지 못한 예외를 다루는 마지막 핸들러 예외 리졸버이다.
+- DefaulthandlerExcpetionResolver는 스프링에서 내부적으로 발생하는 주요 에외 처리를 처리해주는 표준 예외처리 로직을담고 있다.
+- NoSuchRequestHandlingMethodException이 발생하면 404 - NotFound로 응답해주는 등이 있다.
+
+**SimleMappingExceptionResolver**
+- web.xml의 \<error-apge>와 비슷하게 예외를 처리할 뷰를 지정할 수 있게 해준다.
+
+### 3.5.2 LocaleResolver
+- LocaleResolver는 애플리케이션에서 사용하는 지역정보를 결정하는 전략이다.
+- 디폴트로 사용되는 AcceptHeaderLocalResolver는 HTTP 헤더의 지역정보를 그대로 사용한다.
+- 브라우저의 설정이 아닌 사용자가 직접 변경하도록 원한다면 Seesion, CookieLocaleResolver를 사용하는 것이 편리할 것이다.
+
+### 3.5.3 MulipartResolver
+- 파일 업로드와 같이 멀티파트 포맷의 요청정보를 처리하는 전략을 설정할 수 있다.
+- 멀티파트는 디폴트로 등록되는 것이 없으므로 직접 빈으로 등록해주어야 한다.
+- DispatcherServlet은 클라이언트로 부터 멀티파트 요청을 받으면 멀티파트 리졸버에게 요청해서 HttpServletRequest의 확장 타입인 MultipartHttpServletRequest 오브젝트로 전환한다.
+- MultipartHttpServletRequest에는 멀티파트를 디코이한 내용과 이를 참조하거나 조작할 수 있는 기능이 추가되어 있다.
+
+---
+
+## 3.6 스프링 3.1의 MVC
+### 3.6.1 플래시 맵 매니저 전략
+#### 플래시 맵
+- 플래시 맵은 플래시 애트리뷰트를 저장하는 맵이다.
+- 플래시 애트리뷰트는 하나의 요청에서 생성되어 다음 요청으로 전달되는 정보를 말한다.
+- 웹 요청 사이에 전달되는 정보라면 HTTP 세션을 생각할 수 있겠지만 플래시 애트리뷰트는 일반 HTTP 세션에 저장되는 정보처럼 오래 유지되지 않는다.
+- 플래시 애트리뷰트는 다음 요청에서 한 번 사용되고 바로 제거된다.
+- 보통 Post/Redirect/Get 패턴을 적용할 때 POST 단계의 작업 결과 메세지를 리다렉트된 페이지로 전달할 때 주로 사용된다. 이런 ㅁ네시지는 페이지가 갱신되는 경우 반본적으로 나타나면 안 된다.
+
+- 위와 같은 방식으로 Post/Redirect/Get 패턴에서 플래시맵은 동작한다.
+- 그런데 AJAX를 이용한 서버 폴링처럼 사용자의 액션 없이 수시로 서버로 요청을 보내는 기능을 가진 웹 페이지에선 자칫하면 POST와 REDIRECT 사이에 다른 요청이 끼어들 위험이 있다.
+- 그럴경우 끼어든 페이지에서 플래시 애트리뷰트를 소모하여 실제 필요한 곳에서는 사용할 수 없는 문제가 발생할 수 있다.
+- 이는 URL 경로나 파라미터 같은 URL 조건을 지정하여 해결할 수 있다.
+- 그리고 플래시 애트리뷰트가 저장된 뒤에 사용자가 브라우저를 중간에 닫거나 강제로 페이지로 이동해서 서버에 저장된 플래시 애트리뷰트가 사용되고 제거되지 않아 서버의 자원이 낭비되는 문제가있을 수 있으므로 시간제한을 두는 것이 좋다.
+
+```Java
+FlashMap fm = new FlashMap();
+fm.put("message", "새로운 사용자가 등록됐습니다.");
+fm.setTargetRequestPath("/user/list");
+fm.startExpirationPeriod(10);
+```
+
+#### 플래시 맵 매니저
+- 컨트롤러에서 만들어진 플래시 맵 오브젝트는 요청이 끝나기 전에 서버 어딘가에 저장돼야 한다.
+- 플래시 맵을 저장, 유지, 조회, 제거 등의 작업을 담당하는 오브젝트를 플래시 맵 매니저라고 하고 FlashMapManger 인터페이스를 구현해서 만든다.
+- DispatcherServlet에서 미리 준비해준 것을 사용하면 된다. RequestContextUtils.getFlashMapManger()로 가져올 수 있다.
+
+#### 플래시 맵 매니저 전략
+- 가장 간단한 저장 방법은 HTTP 세션을 이용하는 것이다. 서버를 여러 대 사용하는 경우라면 서버 사이에 분산되어 저장되고 조회되는 분산 데이터 그리드를 이용할 수도 있다.
+- NoSQL이나 RDB같은 별도의 저종소에 저장하는 것도 가능하다.
+- 이렇게 플래시 맵 정보를 저장하고 가져오는 방법이 스프링 3.1에 새로운 DispatcherServlet의 전략으로 추가되었다. 디폴트 전략은 SessionFlashMapManger로 HTTP 세션을 이용한다.
+
+### 3.6.2 WebApplicationInitializer를 이용한 컨텍스트 등록
+- 서블릿 3.0은 그동안 웹 애플리케이션 구성에 web.xml 파일만을 단독으로 사용하던 것에 탈피해, 설정 방식을 모듈화해서 관리하는 방법을 도입했다.
+- 프레임워크 모듈에서 직접 서블릿 컨텍스트를 초기화할 수 있게 도와주는 ServletContainerInitializer같은 API가 제공된다.
+- 서블릿 컨텍스트를 초기화한다는 것은 대표적으로 서블릿 등록과 매핑, 리스너 등록, 필터 등록 같은 작업을 말한다.
+
+#### 루트 웹 컨텍스트 등록
+- 루트 웹 컨텍스트는 서블릿의 시작, 종료 리스너를 통해 생성하는 것이 좋다.
+- 루트 컨텍스트이 생명주기가 서블릿 컨텍스트와 일치하기 때문에 리스너를 이용하게된다.
+- WebApplicationInitializer를 이용할 수도 있겟지만 이럴경우 종료시점을 알 수 없다.
+- 만약 하나의 WAS에 여러 웹 애프릴케이션이 함께 동작하는 경우라면 웹 애플리케이션이 종료될 떄 루트 컨텍스트가 사용한 공유 리소스를 제대로 반환해야 한다.
+- 그렇지 않으면 리로스 누수가 일어날 수 있다. 그러므로 WebApplicationInitializer를 사용하더라도 루트 컨텍스트는 리스너를 이용해 관리하는 편이 좋다.
+
+#### 서블릿 컨텍스트 등록
+- 루트 컨텍스트가 리스너 안에서 초기화되고 관리되듯이 서블릿 컨텍스트는 서블릿 안에서 초기화되고 서블릿이 종료될 때 같이 종료된다.
+- 이때 사용하는 서블릿이 DispatcherServlet이다.
+
+---
+
+## 3.7 정리
+- 스프링 애플리케이션의 웹 계층에서는 스프링 MVC와 스프링 포트폴리오의 웹 기술 그리고 서드파티 웹 프레임워크를 모두 사용할 수 있다. 이를 위해 웹 계층과 나머지 계층간의 의존관계를 제거하고 독립적으로 개발할 수 있어야 한다.
+- 웹 계층의 테스트도 적절한 목 오브젝트를 이용한다면 서버에 배치하지 않고 자동으로 실행 가능한 단위 테스트로 작성할 수 있다. 스프링은 웹 계층의 테스트를 위해 유용하게 쓸 수 있는 다양한 목 오브젝트를 제공한다.
+- 스프링 MVC의 핵심 엔진인 DispatcherServlet은 7가지 종류의 전략을 제공한다. 각 전략은 빈으로 등록하고 설정할 수 있으며 직접 등록하지 않는 경우 디폴트 전략 구성을 활용한다.
+- 컨트롤러는 여러가지 방식으로 개발할 수 있으며 핸들러 어댑터를 함께 만든다면 새로운 컨트롤러 타입을 추가할 수 있다.
+- 핸들러 매핑은 다양한 전략을 통해 요청정보와 이를 처리하는 컨트롤러를 연결해준다.
+- 핸들러 인터셉터는 컨트롤러를 실행하기 전후에 적용할 부가기능을 만들 때 사용한다.
+- 뷰 리졸버는 컨트롤러가 리턴한 논리적인 뷰 이름을 이용해 뷰 오브젝트를 찾아준다.
+- 핸들러 예외 리졸버를 이용하면 애프릴케이션에서 발생한 예외를 처리하는 방법을 지정해줄 수 있다.
+- 스프링 3.1에는 플래시 맵 매니저 전략이 추가되었고 WebApplicationInitializer를 이용해 컨텍스트 생성과 등록을 위한 초기화 코드를 작성할 수 있다.

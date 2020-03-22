@@ -15,5 +15,6 @@ class SimpleHandlerAdapterTest extends AbstractDispatcherServletTest{
         initRequest("/hello").addParameter("name", "Spring").runService();
         assertViewName("/WEB-INF/view/hello.jsp");
         assertModel("message", "Hello Spriœng");
+        org.springframework.web.servlet.View
     }
 }
