@@ -460,7 +460,7 @@ public class UserController{
 > 단 @SessionAttributes의 기본 구현인 HTTP 세션을 이용한 세션 저장소는 모델 이름을 세션에 저장할 애트리뷰트 이름으로 사용한다. 위의 코드에서는 user라는 세션 애트리뷰트에 User오브젝트가 저장된다. 따라서 @SessionAttributes에 사용하는 모델 이름에 충돌이 발생하지 않아야 한다.
 
 #### SessionStatus
-- @SessionAttribute를 사용할 때는 더 이상 필요 없는 세션 애트리부트를 코드로 제거해줘야 한다.
+- @SessionAttributes를 사용할 때는 더 이상 필요 없는 세션 애트리부트를 코드로 제거해줘야 한다.
 - 위의 경우 수정작업이 끝났다면 세션의 user는 오브젝트가 여전히 남아있게 된다.
 - 세션은 한번 꺼내온다고 꼭 해당 사용의 필요성을 다 하는 것이 아니기 때문에 스프링에서는 개발자가 해당 세션을 제거하도록 한다.
 - 이럴때 핸들러 파라미터의 SessionStatus를 사용하면 세션을 깔끔하게 제거할 수 있게 된다.
@@ -808,3 +808,306 @@ public class UserController {
 
 - 컨트롤러는 싱글톤이므로 Provider를 사용하여 가져오면된다.
 - 이제 Code도 완벽한 오브젝트이므로 비즈니스 로직에서 자유롭게 코드 정보를 활용해도 될 것이다.
+
+### 4.3.2 Converter와 Formatter
+- PropertyEditor는 매번 바인딩할 때마다 새로운 오브젝트를 만들어야 하며 멀티스레드 환경에서 안전하지 않다는 단점이 존재한다.
+- 그래서 스프링 3.0에는 PropertyEditor를 대신할 수 있는 Converter 인터페이스 API가 생겨났다.
+- PropertyEditor와 달리  Converter는 변환 과정에서 메서드가 한 번만 호출되므로 멀티 스레드환경에서 안전하며 싱글톤 빈으로 등록해주고 변환작업을 진행할 수 있다.
+
+#### Converter
+- 문자열과 오브젝트 사이의 양방향 변환 기능을 제공하는 PropertyEditor와는 다르게 Converter 메서드는 소스 타입에서 타깃 타입으로의 단방향 변환만 지원한다.
+
+```java
+public class LevelToStringConverter implements Converter<Level, String> {
+    @Override
+    public String convert(Level source) {
+        return String.valueOf(source.intValue());
+    }
+}
+
+public class StringToLevelConverter implements Converter<String, Level> {
+    @Override
+    public Level convert(String source) {
+        return Level.valueOf(Integer.parseInt(source));
+    }
+}
+```
+- Level, String간의 각각 단뱡항 컨버터를 이렇게 구현할 수 잇다.
+
+#### ConversionService
+- 컨트롤러의 바인딩 작업에 이렇게 만든 컨버터를 등록할 수 있다.
+- 하지만 PropertyEditor처럼 Converter 타입의 컨버터를 개별적으로 추가하는 대신 ConversionService 타입의 오브젝트를 통해 WebDataBinder에 설정해줘야 한다.
+- ConversionService는 여러 종류의 컨버터를 이용해서 하나 이상의 타입 변환 서비스를 제공해주는 오브젝트를 만들 때 사용하는 인터페이스이다.
+- Converter외에도 GenericConverter, ConverterFacotry를 이용해서도 만들 수 있다.
+- GenericConverter는 하나 이상의 소스-타깃 타입 변환을 한 번에 처리할 수 있고 필드 컨텍스트를 제공받을 수 있다.
+
+#### Fomatter와 FormattingConversionService
+- 스프링에서는 Formatter 타입의 추가 변환 API를 제공하는데, 이 포매터는 스트링 타입의 폼 필드 정보와 컨트롤러 메서드의 파라미터 사이에 양방향으로 적용할 수 있도록 두 개의 변환 메서드를 갖고 있다.
+- Fomatter는 그 자체로 Converter와 같이 스프링이 기본적으로 지원하는 범용적인 타입 변환 API가 아니라 GenericConversionService 등에 직접등록하 수 없고 FormattingConversionService를 통해서만 적용이 가능하다.
+- 귀찮은거 같지만 범용적인 타입 변환 기술의 틀을 지키기 위해 스프링이 선택한 방법이다.
+- 포매터는 변화 메서드에 오브젝트나 문자열 뿐만아니라 Local타입의 지역정보까지 제공해주므로 이를 활용할 수 있다.
+
+#### @NumberForamt
+- 다양한 타입의 숫자 변환을 지원하는 포매터이다.
+- 문자열로 표현된 숫자를 java.lang.Number 타입의 오브젝트로 상호 변환해준다.
+- Number의 서브클래스에는 Byte, Double, Float, Integer, Long, Short, BigInteger, BigDecimal등이 있다.
+- pattern을 통해 원하는 식의 숫자표현을 지정할 수 있고 style을 통해 그에 맞는 통화, 숫자, 퍼센트등을 표시할 수 있다.
+
+```java
+public class Product {
+    @NumberFormat(pattern = "$###,##0.00")
+    BigDecimal price;
+}
+```
+- price에 1000.23이라는 값이 있다면 출력시 $1.000.23으로 나타내고 싶고 $1.000.23이 들어오면 1000.23으로 값이 변환되도록 하고 싶을 때 이와 같이 설정하면 된다.
+- 이를 사용하기 위해서는 NumberFormatAnnotationFormatterFactory를 FormattingConversionService에 등록해주어야 한다.
+
+#### @DataTimeFormat
+- 날짜와 시간 포맷을 스타일과 ISO 형식, 커스텀 패턴등으로 선택하여 지정할 수 있는 기능을 제공한다.
+
+
+#### 바인딩 기술의 적용 우선순위와 활용 전략
+**사용자 정의 타입의 바인딩을 위한 일괄 적용 Converter**
+- Level 이늄처럼 애플리케이션에서 정의한 타입이면서 모델에 자주 활용된다면 컨버터를 만들고 컨버전 서비스로 묶어 일괄 적용하는 것이 편리하다.
+
+**필드와 메서드 파라미터, 애노테이션 등의 메타정보를 활용하는 조건부 변환 기능 ConditionalGenericConverter**
+- 특정 타입에 대해 항상 동일한 변환 작업을 한다면 Converter로 충분하나, 바인딩이 일어나느 필드와 메서드 파라미터등의 조건에 따라 변환을 할지 말지 결정하거나, 이런 조건을 변환 로직에 참고할 필요가 있을경우 ConditionalGenericConverter를 이용해야 한다.
+
+**애노테이션 정보를 활용한 HTTP 요청과 모델 필드 바인딩: AnnotationFormatterFactory와 Formatter**
+- @NumberForamt, @DataTimeFormat처럼 필드에 부여하는 애노테이션 정보를 이용해 변환 기능을 지원하려면 AnnotationFormatterFactory를 이용해 애노테이션에 따른 포매터를 생성해주는 팩토리를 구현해야 한다.
+
+**특정 필드에만 적용되는 변환 기능: PropertyEditor**
+- 특정 모델의 필드에 제환해서 변환 기능을 적용해야 할 경우 PropertyEditor를 활용하여 지정된 이름을 가진 필드에 제한적으로 적용할 수 있다.
+- ConditionalGenericConverter를 적용할 수 있겠지만 단순 필드 조건만 판별하는 경우 PropertyEditor가 가장 편리할 것이다.
+
+> - 컨버전 서비스와 프로퍼티 에디터를 함께 사용하다 보면 종종 동일하 ㄴ타입에 대해 두개 이상의 변환 기능이 중복될 경우가 있다.
+> - 이때는 어떤 종류의 변환이 우선적으로 사용되는지 우선순위에 대해 잘 알고 그에 따른 적절한 설정을 해주어야 할 것이다.
+> - 프로퍼티 에디터에서는 디폴트보다 커스텀이 항상 높은 우선순위를 가지고 그외에도 프로퍼티 에디터 > 컨버전 서비스의 컨버터 > 스프링 내장 디폴트 프로퍼티 에디터 순으로 적용된다.
+
+### 4.3.3 WebDataBinder 설정 학목
+- WebDataBinder는 HTTP 요청정보를 컨트롤러 메서드의 파라미터나 모델에 바인딩할 때 사용되는 바인딩 오브젝트다.
+- WebDataBinder는 에디터, 컨버터를 등록하는 것 외에도 유용한 바인딩 기능을 지정해줄 수 있다.
+
+#### allowedFields, disallowedFields
+- 도메인 오브젝트 방식을 사용하는 경우 @ModelAttribute로 HTTP 요청을 전달 받을 때 보안에 신경써야 한다.
+- 사용자가 폼에는 나타나지 않지만 관레쩍으로 많이 사용하는 프로퍼티 이름을 추측해서 이를 추가한 뒤 폼을 서브밋하면 문제가 발생할 수 있다.
+- 그러므로 수정을 허용한 필드외의 프로퍼티들은 모델에 바인딩 되지않도록 설정할 필요가 있을 것이다.
+- 이때 허용된 필드목록을 넣는 allowedFields와 금지 필드 목록을 넣는 disallowedFields를 사용할 수 있다.
+- allowedFields의 경우 등록된 프로퍼티 외의 모든 바인딩을 막아주고, disallowedFields는 등록된 프로퍼티들에 대한 바인딩만 막아준다.
+
+
+```java
+@InitBinder
+public void initBinder(WebDataBinder dataBinder){
+  dataBinder.setAllowedFileds("name", "email", "tel");
+}
+```
+
+- 이렇게 설정할 경우 오직 name, email, tel 프로퍼티만 바인딩될 것이다.
+
+#### requiredFields
+- 컨트롤러가 자신이 필요로 하는 필드 정보가 폼에서 모두 전달됐는지를 혹인하고 싶을 때 코드를 통해 직접확인할 수 있다.
+
+```java
+public String temp(ServletRequest request) throws ServletRequestBindingException {
+    user.setName(ServletRequestUtils.getRequiredStringParameter(request, "name"));
+}
+```
+- ServletRequestUtils를 활용하면 해당 파라미터가 없을 때 예외를 던지도록할 수 있다.
+- 혹은 webDataBinder의 setRequiredFields()를 활용하면 필수 파라미터를 등록할 수 있다.
+
+### 4.3.4 Validator와 BindingResult, Errors
+- @ModelAttribute로 지정된 모델 오브젝트의 바인딩 작업이 실패로 끝나는 경우가 두 가지 있다.
+- 하나는 타입 변환이 불가능한 경우, 다른 하나는 타입 변환은 성공했지만 Validator에서 검증을 통과하지 못한 경우이다.
+- 폼의 서브밋을 처리하는 컨트롤러 메서드에서는 반드시 검증기를 이용해 입력값을 확인하고 그결과에 따라 폼을 정상 처리하고 다음 작업으로 넘어가거나 폼을 다시 띄워서 사용자가 잘못 입력한 값을 수정하도록 해줘야 한다.
+- 스프링은 이런 검증과정에서 사용할 수 있는 Validator라는 이름의 표준 인터페이스를 제공한다.
+- 검증결과는 BidingResult를 통해 확인할 수 있다.
+
+#### Validator
+```java
+public interface Validator {
+	boolean supports(Class<?> clazz);
+	void validate(Object target, Errors errors);
+}
+```
+- Validator에는 두가지 메서드가 존재한다.
+- supports는 이 검증기가 검증할 수 잇는 오브젝트 타입인지 확인해주는 메서드이다.
+- supports가 통과한 경우에만 validate메서드가 호출된다.
+- Validator로 검증한 결과 아무 문제가 없다면 정상 종료되고 문제가 있다면 Errors 인터페이스를 통해 특정 필드나 모델 오브젝트 전체에 대해 오류정보를 등록할 수 있다.
+- JS로 입력 값을 모두 확인한 경우에는 서버에서 검증을 하지 않아도될까? 그렇지 않다.
+- JS의 검증은 서버로 자주 전송이 이렁나느 것을 막아주려는 목적으로만 사용하고 JS 검증이 통과했다고 서버의 검증을 생략하면 자칫 위험할 수 있다.
+- 브라우저에서 자바스크립트가 동작하지 않도록할 수 있고, 스크립트를 조작할 수 있기 때문에 서버의 검증은 필히 필요하다.
+
+```java
+public class UserValidator implements Validator {
+    @Override
+    public boolean supports(Class<?> clazz) {
+        // 하위 타입도 모두 확인할 수 있다.
+        return (User.class.isAssignableFrom(clazz));
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        User user = (User) target;
+
+//        if (user.getName() == null || user.getName().length() == 0)
+//            errors.rejectValue("name", "filed.required");
+         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
+    }
+}
+```
+- UserValidator는 이런식으로 구현할 수 있을 것이다.
+- ValidationUtils를 활용하면 주석처리된 if문의 기능을 간단하게 구현할 수 있다.
+- 여러개의 필드의 조건을 결합해서 검증하는 경우 검증 과정에서 문제가 발견되더라도 특정 필드에 대한 오류로 만드는 것은 적당하지 않으므로 rejectValue가 아닌 reject메서드를 사용하는 것이 좋다.
+- Validator는 보통 미리 정해진 단순 조건을 이용해 검증하는데 사용된다.
+- 필수 값의 입력 여부, 값의 범위, 길이, 형식등이 주로 검증조건이 되는데 때에따라 비즈니스 로직을 적용해서 값을 검증할 수도 있다.
+- Validator는 싱글톤으로 사용될 수 있으며 UserService와 같은 빈을 이용해 비즈니스 로직 관점에서 입력 값을 검증하는 작업을 넣을 수 있다.
+- 검증 로직은 프레젠테이션 계층인지, 서비스 계층인지에 대한 논재잉 많이 있다. 그러므로 검증 로직은 특정 계층에 종속되기 보다 도메인 오브젝트처럼 오브젝트 단위로 만들고 이를 필요한 곳에서 호출해서 사용하거나, 반대로 Validator에서 필요한 로직을 담고 있는 빈을 호출하는 것이 좋을 것이다.
+
+**컨트롤러 메서드 내의 코드**
+- Validator는 빈으로 등록 가능하므로 컨트롤러에서 직접 DI받아 검증을 진행할 수도 있다.
+
+**@Valid를 이용한 자동 검증**
+- Validator를 적용하는 두 번째 방법은 JSR-303의 @Valid 애노테이션을 사용하는 것이다.
+- 내부적으로 Validator를 이용한 검증 작업이 수행된다.
+
+```java
+@Controller
+@RequiredArgsConstructor
+public class UserController {
+    private final UserValidator userValidator;
+
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        dataBinder.setValidator(this.userValidator);
+    }
+
+    @RequestMapping("/add")
+    public void add(@ModelAttribute @Valid User user, BindingResult bindingResult) {
+
+    }
+
+}
+```
+- 이렇게 initBinder에 등록 해준 후 파라미터에 @Valid를사용하면 된다.
+
+#### JSR-303 빈 검증 기능
+- LocalValidatorFactoryBean을 이용해 JSR-303의 검증 기능을 사용할 수 있다.
+- LocalValidatorFactoryBean을 빈으로 등록하면 Validator타입으로 DI 받아 @InitBinder에서 WebDataBinder에 설정하거나 코드에서 직접 validate할 수 있다.
+- JSR-303의 빈 검증 기술의 특징은 모델 오브젝트의 필드에 달린 제약조건 애노테이션을 이용해 검증을 진행할 수 있다는 점이다.
+- @NotNull, @Min 등의 제약조건을 추가하여 사용할 수 있다.
+
+#### BindingResult와 MessageCodeResolver
+- BidingResult에는 모델의 바인딩 작업 중에 나타난 타입 변환 오류정보와 검증 작업에 서 발견된 검증 오류정보가 모두 저장된다.
+- 이 오류정보를 활용해서 에러 메시지를 생성할 수 있다. 스프링은 기본적으로 message.properties와 같은 프로퍼티 파일에 담긴 메시지를 가져와 에러 메시지로 활용한다.
+
+```java
+ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
+```
+- 여기서 field.required는 message.properties 파일의 프로퍼티 키 값이다.
+
+```properties
+field.required=필수 입력 항목입니다.
+```
+- 프로퍼티에는 값을 이렇게 설정해주면 BindingResult에 오류정보가 등록된다.
+- field.required라는 에러코드가 BindingResult에 등록도ㅒㅆ다면 스프링이 디폴트로 사용하는 MessageCodeResolver인 DefaultMessageCodeResolver는 이를 확장한 다음과 같은 네개의 메시지 키 후보를 생성한다.
+
+```properties
+1. 에러코드.모델이름.필드이름: filed.required.user.name
+2. 에러코드.필드이름: filed.required.name
+3. 에러코드.타입이름: filed.required.User
+4. 에러코드 : filed.required
+```
+- 숫자 순서대로 우선순위를 가지고 우선순위가 높은 메시지를 찾으면 뒤에 값들은 무시된다.
+- MessageCodeResolver는 WebDataBinder내부적으로 사용되므로 직접 사용할 일을 없으나 이를 통해 어떤 이름의 메시지 키를 만들어주는지 알고 있어야 메시지 프로퍼티를 작성할 수 있다.
+
+#### MessageSource
+- MessageCodeResolver를 통해 여러 개의 후보로 만들어진 메시지 코드는 어떻게 message.properties 파일에 담긴 메시지를 가져올까?
+- 사실 메시지 코드 message.properties에서 MessageCodeResolver를 한 번 더 거쳐서 최종적인 메시지를 만들기 때문에 message.proeprties 리소스 번들 파일을 사용하도록 고정되어 있진 않ㄴ다.
+- 스프링의 MessageSource의 구현체는 두 가지 종류가 있는데 하나는 코드로 메시지를 등록할 수 있는 StaticMessageSource이며 다른 하나는 message.properties 리소스 번들 방식을 사용하는 ResourceBundleMessageSoruce이다.
+- 서버 가동중 재시작 없이 메시지를 변경하고 싶다면 ReloadableResourceBundleMessageSource를 적용하면 된다.
+- MeesageSourece는 기본적으로 다음 네 가지 정보를 활용해 최종적인 메시지를 만들어 낸다.
+
+**코드**
+- BidingResult또는 Errors에 등록된 에러코드를 DefaultMessageCodeResolver를 이용해 필드와 오브젝트 이름의 조합으로 만들어낸 메시지 키 후보값이 있다.
+- 이 메시지 키 이름 후보가 MessageSource의 첫 번째 정보인 코드로 사용된다.
+- 네 가지 후보가 있다면 우선순위를 따라 가장 먼저 발견된 메시지를 선택한다.
+
+**메시지 파라미터 배열**
+- BidingResult나 Errors의 rejectValue, reject에는 Object[] 타입의 세 번째 파라미터를 지정할 수 있다.
+  - filed.min={0}보다 적은 값은 사용할 수 없습니다.
+- 위와같이 message.properties에 파라미터 값을 지정할 수 있다.
+
+**디폴트 메시지**
+- 메시지 키 후보 값을 모두 이용해 프로퍼티를 찾아봤지만 메시지가 없다면 디폴트 메시지가 사용된다.
+- rejectValue의 네 번째 파라미터가 바로 이 디폴트 에러 메시지 이다.
+
+```java
+rejectValue("name", "filed.required", null, "입력해주세요")
+```
+- 에러코드를 충분히 적용했다면 디폴트 메시지는 없어도 상관이 없을 것이다.
+
+**지역정보**
+- 네번째 정보는 LocaleResolver에 의해 결정된 현재 지역정보이다.
+- 리소스 번들을 활용했으니 당연히 지역에 따른 다른 메시지 프로퍼티 파일을 사용할 수 있다.
+- 디폴트를 message.properties라고 했아면 Local.KOREAN 지역에 대해서는 message_ko.properties를 Locale.ENGLISH라면 message_en.properties를 찾게될 것이다.
+- 만약 해당 지역에 맞는 메시지 파일이 없다면 message.properties가 사용된다.
+
+> - 모둔 코드에 대해 일치하는 메시지를 찾을 수 없고 디폴트 메시지마저 지정되지 않았다면 메시지를 찾을 수 없다는 예외가 발생하니 주의해야 한다.
+> - 메시지 소스는 디폴트로 등록되지 않으므로 사용시 MessageSource의 구현체를 빈을 등록해주어야 한다.
+> - 빈 아이디는 MessageSource를 사용해야 한다.
+
+### 4.3.5 모델의 일생
+- 스프링 MVC 개념을 제대로 이해하는게 가장 중요한 것이 있다면 모델 오브젝트가 어떻게 만들어지고, 다뤄지고, 사용되는가에 대한 지식이다.
+- 그 과정에서 참여하는 다양한 기능을가진 서비스 오브젝트는 어떤 것이 있으며, 이를 어떻게 확장하거나 변경할 수 있는지도 이해해야 한다.
+- 컨트롤러, 뷰와는 다르게 모델은 보이지 않는 곳에서 만들어지기도 하고, 코드 한 줄 만들지 않고 모델 오븢게트에 대한 다양한 조작이 이렁나기도 한다.
+- 애노테이션을 추가하는 것만으로 세션에 저장됐다 다시 사용되기도 하고, 검증이 이렁나기도 한다.
+
+#### HTTP 요청으로부터 컨트롤러 메서드까지
+![img](httpFull.png)
+- HTTP 요청 파라미터가 모델 오브젝트로 만들어져 컨트롤러 메서드의 파라미터로 전달되기 까지의 과정이다.
+
+**@ModelAttribute 메서드 파라미터**
+- 컨트롤러 메서드의 모델 파라미터와 @ModelAttribute로부터 모델 이름, 모델 타입 정보를 가져온다.
+
+**@SessionAttributes 세션 저장 대상 모델 이름**
+- 모델 이름과 동일한 것이 있다면 HTTP 세션에 저장해둔 것이 있는지 확인한다.
+- 만약 있다면 모델 오브젝트를 새로 만드는 대신 세션에 저장된 것을 가져와 사용한다.
+
+**WebDataBinder에 등록된 프로퍼티 에디터, 컨버전 서비스**
+- WebBindingInitializer나 @InitBinder 메서드를 통해서 등록된 변환 기능 오브젝트를 이용해 HTTP 요청 파라미터를 모델의 프로퍼티에 맞도록 변환해서 넣어준다.
+- 커스텀 프로퍼티 에디터, 컨버전 서비스, 디폴트 프로퍼티 에디터 순으로 적용된다.
+
+**WebDataBinder에 등록된 검증기**
+- 메돌 파라미터에 @Valid가 지정되어있다면 WebBindingInitializer나 @InitBinder 메서드를 통해 등록된 검증기 모델로 검증한다.
+
+**ModelAndView의 모델 맵**
+- 모델오브젝트는 컨트롤러 메서드가 실행되기 전에 임시 모델 맵에 저장된다.
+- 이렇게 저장된 모델 오브젝트는 컨트롤러 메서드의 실행을 마친 뒤에 추가로 등록된 모델오브젝트와 함께 ModelAndView 모델 맵에 담겨 DispathcerServlet으로 전달된다.
+
+**컨트롤러 메서드와 BidingResult 파라미터**
+- HTTP 요청을 담은 모델 오브젝트가 @ModelAttribute 파라미터로 전달되면서 컨틀롤러 메서드가 실행된다.
+- 메서드의 모델 파라미터에 다음 BindingResult가 있다면 바인딩과 검증 작업의 결과가 담긴 오브젝트로 제공된다.
+- BidingResult는 ModelAndView의 모델 맵에도 자동으로 추가된다.
+
+#### 컨트롤러 메서드로부터 뷰까지
+![img](controllerView.png)
+
+**ModelAndView의 모델 맵**
+- 컨트롤러 메서드의 실행을 마치고 최종적으로 DispathcerServlet이 전달받는 결과다.
+- @ModelAttribute 오브젝트 뿐만아니라 바인딩과 검증 결과를 담은 BindingResult 타입의 오브젝트로 자동으로 추가된다.
+
+**WebDataBinder에 기본적으로 등록된 MessageCodeResolver**
+- WebDataBinder에 등록되어 있는 MessageCodeResolver는 바인딩 작업 또는 검증 작업에서 등록된 에러 코드를 확장해서 메시지 코드 후보 목록을 만들어준다.
+
+**빈으로 등록된 MessageSource와 LocaleResolver**
+- LocaleResolver에 의해 결정된 지역정보와 MessageCodeResolver가 생성한 메시지 코드 후보 목록을 이용해 MessageSource가 뷰에 출력할 최종 에러 메시지를 결정한다.
+- 메시지소스는 기본적으로 message.properties 파일을 이용하는 ResourceBundleMessageSoruce를 등록해서 사용한다
+
+**@SessionAttributes 세션 저장 대상 모델 이름**
+- 모델 맵에 담긴 모델 중 @SessionAttributes로 지정된 이름과 일치하는 것이 있다면 HTTP 세션에 저장된다.
+
+**뷰의 EL과 스프링태그 또는 매크로**
+- 뷰에의해 최종 콘텐트가 생성될 때 모델 맵으로 전달된 모델 오브젝트는 뷰의 표현식언어를 참조 콘텐트에 포함된다.
+
+---
