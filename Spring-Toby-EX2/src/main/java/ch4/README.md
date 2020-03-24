@@ -1111,3 +1111,231 @@ rejectValue("name", "filed.required", null, "입력해주세요")
 - 뷰에의해 최종 콘텐트가 생성될 때 모델 맵으로 전달된 모델 오브젝트는 뷰의 표현식언어를 참조 콘텐트에 포함된다.
 
 ---
+
+## 4.5 메시지 컨버터와 AJAX
+- 메시지 방식의 컨트롤러를 사용하는 방법은 두 가지로 구분된다.
+- GET요청의 경우 요청정보가 URL과 쿼리 스트링으로 제한되므로 @RequestBody를 사용하는 대신 @RequestParam이나 @ModelAttribute로 요청 파라미터를 전달받는다.
+- 반면에 POST의 경우 요청 본문이 제공되므로 @RequestBody를 사용할 수 있다.
+
+### 4.5.1 메시지 컨버터의 종류
+- 사용할 메시지 컨버터는 AnnotationMethodHandlerAdapter를 통해 등록한다.
+
+#### ByteArrayHttpMessageConverter
+- byte[] 타입의 오브젝트를 지원하며 모든 미디어 타입을 지원한다.
+- 즉 @RequestBody로 전달받을 때 모든 종류의 HTTP요청 메시지 본문을 byte배열로 가져올 수 있다.
+- @ResponseBody로 보낼 떄는 콘텐트 타입이 application/octet-stream으로 설정된다.
+
+#### StringHttpMessageConverter
+- 스트링으로 변환해주는 컨버터이다. 응답의 경우 콘텐트 타입은 text/plain이 된다.
+
+#### FormHttpMessageConverter
+- 미디어 타입이 application/x-www-form-urlencoded로 정의된 폼 데이터를 주고받을 때 사용할 수 있다.
+- 오브젝트 타입은 다중 값을 갖는 확장 인터페이스인 MultiValueMap<String, String>을 지원한다.
+- MultiValueMap은 맵의 값이 List타입인 맵으로, 하나의 이름을 가진 여러개의 파라미터가 사용될 수 있는 HTTP요청 파라미터를 처리하기에 적합하다.
+- HTTP 요청 폼 정보는 @ModelAttribute를 이용해 바인딩하는 것이 훨씬 편리하고 유용하므로 별로 사용할 일은 없을 것이다.
+
+#### SourceHttpMessageConverter
+- xml 문서를 Source 타입의 오브젝트로 전환하고 싶을 때 사용할 수 있따.
+
+> 이렇게 네 가지가 기본적으로 등록되지만 다음에 등장하는 컨버터들이 실제 사용시에는 더 유용하다.
+
+#### Jaxb2RootElementHttpMessageConverter
+- JAXB2의 @XmlRootElement, @XmlType이 붙을 클래스를 이용해서 XML과 오브젝트 사이의 메시지 변환을 지원한다.
+
+#### MarshallingHttpMessageConverter
+- 스프링 OXM 추상화의 Marshaller와 Unmarshaller를 이용해서 XML 문서와 자바 오브젝트 사이의 변환을 지원해주는 컨버터이다.
+
+#### MappingJacksonHttpMessageConverter
+- Jackson ObjectMapper를 이용해서 JSON 문서를 자동변환해주는 메시지 컨버터이다.
+- application/json 미디어 타입을 지원하며 대부부의 자바 타입을 JSON으로 변환해준다.
+- 부가적인 기능이 필요하다면 ObjectMapper를 확장하여 스프링의 컨버전 서비스에 등록하면 될 것이다.
+- AnnotationMethodHandlerAdapter의 messageConverters 프로퍼티에 MappingJacksonHttpMessageConverter를 등록해주어야 한다.
+
+---
+
+## 4.6 MVC 네임스페이스
+- 스프링은 최신 @MVC 기능을 손쉽게 등록할 수 있게 해주는 mvc 스키마의 전용 태그를 제공한다.
+- 스프링의 기본 @MVC 설정을 적용할 경우, mvc 스키마의 태그를 활용하면 설정이 간결해지고 편리할 것이다.
+
+### 1. \<mvc:annotation-driven>
+- 애노테이션 방식의 컨트롤러를 사용할 때 필요한 DispathcerServlet 전략 빈을 자동으로 등록해준다.
+- 또 최신 @MVC 지원 기능을 제공하는 빈도 함께 전략 빈의 프로퍼티로 설정해준다.
+- 라이브러리의 존재여부를 파악해서 자동으로 관련빈을 추가해주는 기능도 제공된다.
+- 자동으로 등록되는 빈 정보를 살펴보자.
+
+#### DefaultAnnotationHandlerMapping
+- @RequestMapping을 이용한 핸들러 매핑 전략을 등록한다.
+- 따라서 다른 디폴트 핸들러 매핑 전략은 자동 등록되지 않는다.
+
+#### AnnotationMethodHandlerAdapter
+- DispathcerServlet이 자동으로 등록해주는 디폴트 핸들러 어댑터다.
+- 하지만 디폴트 설정을 변경하려면 빈으로 등록해주어야 한다.
+- mvc:annotation-driven이 AnnotationMethodHandlerAdapter를 빈으로 등록해주는데 이를 사용할 때는 직접 AnnotationMethodHandlerAdapter를 빈으로 등록하면 문제가 발생할 수 있다.
+- 이 또한 다른 디폴트 핸들러 어댑터 전략은 자동등록되지 않는다.
+
+#### ConfigurableWebBindingInitializer
+- 모든 컨트롤러 메서드에 자동으로 적용되는 WebDataBinder 추기화용 빈을 등록하고 AnnotationMethodHandlerAdapter의 프로퍼티로 연결해준다.
+- 기본적으로 컨버전 서비스는 @NumberFormat과 같은 애노테이션 방식의 포매터를 지원하는 FormattingConversionServiceFactoryBean이 등록된다.
+- 글로벌 검증기는 LocalValidatorFactoryBean으로 설정되므로 JSR-303의 검증용 애노테이션 기능이 자동으로 제공된다.
+- 단 JSR-303 지원 라이브러리가 클래스패쓰에 등록되어 있어야한다.
+
+#### MessageConverter
+- AnnotationMethodHandlerAdapter의 messageConverters 프로퍼티로 메시지 컨버터들이 등록된다.
+- 네 개의 디폴트 메시지 컨버터와 함깨 Jaxb2RootElementHttpMessageConverter, MappingJacksonHttpMessageConverter가 추가로 등록된다.
+- 단 각각의 라이브러리가 클래스패스에 존재하여야 한다.
+
+#### Validator
+- 자동등록되는 ConfigurableWebBindingInitializer의 validator 프로퍼티에 적용할 Validator 타입의 빈을 지정할 수 있다.
+- LocalValidatorFactoryBean으로 충분하지만 모델 단위의 검증기는 컨트롤러 레벨에서 직접 DI 받아 사용하는게 좋다고 판단될 때 직접 사용할 수 있다.
+
+```XML
+<mvn:annotation-driven validator="myValidator"/>
+```
+- 이런식으로 애트리뷰트를 이용해 등록해주어야 한다.
+
+#### conversion-service
+- ConfigurableWebBindingInitializer의 cnversionService 프로퍼티에 설정될 빈을 직접 지정할 수 있다.
+- 스프링이 제공하는 컨버전 서비스만 사용한다면 디폴트로 등록되는 FormattingConversionServiceFactoryBean으로 충분하나 직접 개발한 컨버터, 포맷터를 적용하기 위해선 FormattingConversionServiceFactoryBean을 빈으로 직접 등록하고 재구성해야 할 것이다.
+- 이때는 validator와 같이 conversion-service 애트리뷰트를 이용하면 된다.
+
+> - \<mvn:annotation-driven>은 빠르고 간편하게 @MVC의 주요 빈을 설정해준다.
+> - 단 검증기와 컨버전 서비스를 제외하면 등록되는 빈의 설정을 변경할 수 없다.
+
+### 2. \<mvc:interceptors>
+- HandlerInterceptor의 적용방법은 핸들러 매핑 빈의 interceptors 프로퍼티를 이용하는 방법이 있다.
+- 이는 인터셉터를 등록하기 위해 핸들러 매핑 빈을 명시적으로 빈으로 선언해주고, 핸들러 매핑이 여러개면 인터셉터를 핸들러마다 설정해줘야하는 단점이 있다.
+- \<mvn:interceptors>를 이용한다면 모든 핸들러에 적용되는 인터셉터를 한 번에 설정할 수 있다.
+
+---
+
+## 4.7 @MVC 확장 포인트
+### 4.7.1 AnnotationMethodHandlerAdapter
+#### SessionAttributeStore
+- 클러스터링을 통해 세션 복제로 인한 리소스 낭비, 세션 특징으로인한 리소스 낭비를 예방하기 위해 SessionAttributeStore 인터페이스를 구현하여 직접 세션정보 저장방법을 바꿀 수 있다.
+
+#### WebArgumentResolver
+- 이 인터페이스를 구현하면 컨트롤러 메서드 파라미터 타입을 추가할 수 있다.
+- WebArgumentResolver를 빈으로 등록후 AnnotationMethodHandlerAdapter의 customArgumentResolver 혹은 customArgumentResolvers 프로퍼티에 설정해주면 된다.
+
+#### ModelAndViewResolver
+- 컨트롤러 메서드의 리턴타입과 메서드 정보, 애노테이션 정보등을 참고해 ModelAndView를 생성해주는 기능을 만들 수 있다.
+
+---
+
+## 4.8 URL과 리소스 관리
+### 4.8.1 \<mvn:default-servlet-handelr/>
+- 정적 리소스와 동적 리소스를 이전에는 확장자로 주로 구분했지만 이제는 확장자를 거의 사용하지 않는다.
+- 그러하여 정적, 동적 리소스를 구분하는데 어려움이 있었는데 이를 해결해주는 기능이 스프링 3.0.4부터 생겨났다.
+- 위의 xml을 추가하면 /로 시작하는 모든 URL이 들어올 때 DispathcerServlet이 정적 리소스 파일에 대한 요청을 디폴트 서블릿으로 포워딩해준다.
+- @RequestMapping의 요청 조건이 맞는지 확인 후 핸들러가 없다면 정적 리소스로 판단하고 디폴트 서블릿으로 넘기는 것이다.
+
+### 4.8.2 \<url:resource/>를 이용한 리소스 관리
+- 여러 웹 애플리케이션에서 공통적으로 사용되는 클래스가 존재하면 별도로 프로젝트로 ㅁ나들고 jar로 패키징해 라이브러리로 사용하게 할 수 있다.
+- 반면 js, css 파일등 ui 관련 리소스는 별도로 패키징하여 라이브러리처럼 사용하기가 쉽지 않다.
+- 위의 xml을 이용하면 간단하게 모듈화할 수 있게 해준다.
+
+---
+
+## 4.9 스프링 3.1의 @MVC
+### 4.9.1 새로운 RequestMapping 전략
+- 스프링3.1부터 @RequestMapping을 담당하는 핸들러 매핑 전략, 핸들러 어댑터 전략, 예외 처리 전략이 모두 새로운 방식으로 변경되었다.
+- DefaultAnnotationHandlerMapping이 RequestMappingHandlerMapping으로 변경되었다.
+- AnnotationMethodHandlerAdapter가 RequestMappingHandlerAdapter로 변경되었다.
+- AnnotationMethodHandlerExceptionResolver가 ExceptionHandlerExcpetionResolver로 변경되었다.
+- 컨트롤러 코드에서 볼 때는 애노테이션의 종류가 달라지지도 않았고 사용 방법이 변한 것도 없다.
+- 하지만 DispathcerServlet의 전략 클래스와 같은 인프라 빈을 DI관점으로 바라보고, 필요에 따라 기본 기능을 확장하거나 설정을 바꾸고 싶다면 전략 클래스의 변화에 관심을 가질 필요가 있다.
+
+#### @RequestMapping메서드와 핸들러 매핑 전략의 불일치
+- RequestMapping 전략이 변경되었다는건 이전의 전략이 확장성이 좋지 않았다는 것이다.
+- 그 이유는 DefaultAnnotationHandlerMapping같은 전략 클래스가 DispathcerServlet의 전략 설계와 의도가 맞지 않는 부분이 있기 때문이다.
+- @RequestMapping은 클래스 단위가 아닌 메서드 단위로 매핑을 시켜준다.
+- 자바에서는 메서드는 오브젝트가 아니기 때문에 빈으로 등록될 수 없으므로 해당 핸들러를 매핑하는게 쉽지 않았따.
+- 그렇기 때문에 3.0의 DefaultAnnotationHandlerMapping전략에선 매핑 결과가 요청을 담당할 메서드가 속해 있는 컨트롤러의 오브젝트가 될 수 밖에 없었다.
+- 그래서 선정된 핸들러를 실행하는 책ㅇ미만 맡아야할 AnnotationMethodHandlerAdapter가 실행할 메서드를 찾는 매핑 작업을 추가로 필요했다.
+- 책임과 역할이 얽혀 있고 리플렉션을 통해 메서드를 호출하거나, 파라미터 바인딩을 해줘야 했기 때문에 코드는 지저분해지고 확장성이 떨어졌다.
+- 그리고 선정된 핸들러만 가지곤 메서드를 특정할 수 없으므로 인터셉터활용도 제한적이였다.
+- 스프링 3.1에서는 이러한 문제를 해결하였다.
+- 전략들을 변경한 후 handler를 HandlerMethod 타입으로 캐스팅하여 사용할 수 있도록 하였다.
+- 3.0에서는 핸들러를 컨트롤러 오브젝트로 넘겨주었지만 이제는 HandlerMethod라는 새로운 타입의 오브젝트로 넘겨주는 것이다.
+
+#### HandlerMethod
+- HandlerMethod는 그 자체가 실행 가능한 오브젝트가 아니다.
+- 대신 메서드를 실행하는 데 필요한 관한 참조정보를 담고 있는 오브젝트이다.
+- 핸들러 어댑터가 핸들러 오브젝트의 정보를 간접적으로 RequestMapping 메서드를 실행하도록 접근 방법을 변경한 것이다.
+- 이를 통해 인터셉터 문제들을 해결할 수 있었다.
+- HandlerMethod의 핵심정보 다섯가지는 다음과 같다.
+  - 빈 오브젝트
+  - 메서드 메타정보
+  - 메서드 파라미터 메타정보
+  - 메서드 애노테이션 메타정보
+  - 메서드 리턴 값 메타정보
+
+### 4.9.2 @RequestMapping 핸들러 매핑: RequestMappingHandlerMapping
+- 3.1부터는 consumes 엘리먼트로 COntent-type 헤더를 정할 수 있고 produces 에릴먼트로 Accept 헤를 정할 수 있다.
+- 컨트롤러와 함께 다양한 요청 조건을 설정하면 어떻게 매핑이 되는지 정확히 파악하기 힘들 수가 있다.
+- 이럴때는 빈으로 등록된 RequestMappingHandlerMapping을 가져와서 아래와 같이 출력을 해본다면 어떻게 매핑 정보가 구성되는지 알 수 있을 것이다.
+
+```java
+requestMappingHandlerMapping
+        .getHandlerMethods()
+        .forEach((key, value) -> System.out.println(key + " ====> " + value));
+```
+
+#### 요청 조건의 결합 방식
+**URL 패턴: PatternsRequestCondition**
+- URL 패턴이 하나 이상일 경우 OR로 연결된다.
+- 클래스, 메서드에 둘 다 패턴이 존재하면 합성곱형태로 다 연결된다.
+
+**HTTP 요처방법: RequestMethodsRequestCondition**
+- HTTP 메서드는 OR로 결합된다.
+
+**파라미터: PramsRequestcondition**
+- 파라미터는 AND로 결합된다.
+
+**헤더: HeadersRequestcondition**
+- 헤더는 AND로 연결된다.
+
+**Content-Type 헤더: ConsumesRequestcondition**
+- Content-Type은 헤더와 다르게 OR로 연결된다.
+- 클래스와 메서드 조건이 조합되어 사용되지 않고 메서드 조건이 있다면 클래스는 무시한다.
+
+**Accept헤더: ProducesRequestcondition**
+- OR로 연결되며 메서드에 존재하면 오버라이딩된다.
+
+### 4.9.3 @RequestMapping 핸들러 어댑터
+#### 파라미터 타입
+**@Validated/@Valid**
+- @Validated는 스프링에서지원해주는 검증 기능이다.
+- 그룹을 지정한 후 해당 그룹에 속해있을 때만 검증을 진행할 수 있다.
+
+**RedirectAttributes와 리다이렉트 뷰**
+- 리다이렉트를 할 때 RedirectView 타입을 리턴하는게 아닌 redirect:접두어를 리턴하면 리다이렉트 기능을 지원해준다.
+- redirect:/result{status}와 같이 model의 값이 url 쿼리스트링으로 함께 날라간다.
+- 이때 RedirectAttributes를 파라미터로 받으면 해당 attribute에 있는 값만 날라간다.
+
+**RedirectAttributes와 플래시 애트리뷰트**
+- POST 요청에서 만들어져 다음 GET에서 사용할 수 있게 해주는 기능이다.
+- RedirectAttributes의 addFlashAttribute를 사용하면 된다.
+
+#### 확장 포인트
+- 3.1 이후부터 확장 포인트가 조금 변경되었다.
+
+**HandlerMethodArgumentResolver**
+- 핸들러 메서드에서 사용할 수 있는 새로운 종류의 파라미터 타입을 추가할 수 있다.
+- RequestMappingHandlerAdapter의 customArgumentResolvers프로퍼티에 추가해주면 된다.
+
+**HandlerMethodReturnValueHandler**
+- 리턴 값을 처리하는 기능을 확장할 수 있다.
+- RequestMappingHandlerAdapter의 cusomReturnValueHandlers 프로퍼티에 넣어주면 된다.
+
+### 4.9.4 @EnableWebMvc와 WebMvcConfigurationSupport를 이용한 @MVC 설정
+#### @EnableWebMvc와 WebMvcConfigurer
+- @Configuration 클래스에 @EnableWebMvc를 붙여주면 \<mvc:annotation-config>와 동일한 기능을 제공한다.
+- @Enable 전용 애노테이션의 설정을 위해 사용되는 빈을 설정자 또는 컨피규어러라고 한다.
+- 이런 빈들이 구현해야할 인터페이스의 이름 대부분은 Configurer로 끝난다. 이를 빈 설정자라고도 한다.
+- @EnableWebMvc의 빈 설정자가 구현해야할 인터페이스는 WebMvcConfigurer이다.
+- WebMbcConfigurer를 구현한 클래스를 만들어 빈으로 등록해주면 설정들을 추가할 수 있다.
+
+#### @MVC 설정자 빈 등록 방법
+- @EnableWebMvc가 붙어있는 클래스에 @Bean을 통해 WebMvcConfigurer를 등록하면 된다.
+- 혹은 WebMbcConfigurer를 해당 클래스에서 구현하면된다. 왜냐하면 @Configuration이 붙어있기 때문이다.

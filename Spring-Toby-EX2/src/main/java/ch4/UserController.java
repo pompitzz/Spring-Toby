@@ -6,17 +6,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -27,6 +22,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
     private final UserValidator userValidator;
+    private final RequestMappingHandlerMapping requestMappingHandlerMapping;
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -35,7 +31,9 @@ public class UserController {
 
     @RequestMapping("/add")
     public void add(@ModelAttribute @Valid User user, BindingResult bindingResult) {
-
+        requestMappingHandlerMapping
+                .getHandlerMethods()
+                .forEach((key, value) -> System.out.println(key + " ====> " + value));
     }
 
 }
