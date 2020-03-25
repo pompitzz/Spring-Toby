@@ -19,6 +19,7 @@
 - #### [CHAPTER4. 스프링 @MVC](./Spring-Toby-EX2/src/main/java/ch4/README.md)
 - #### [CHAPTER5. AOP와 LTW](./Spring-Toby-EX2/src/main/java/ch5/README.md)
 - #### [CHAPTER6. 테스트 컨텍스트 프레임워크](./Spring-Toby-EX2/src/main/java/ch6/README.md)
+- #### [CHAPTER7. 스프링의 기타 기술과 효과적인 학습 방법](./Spring-Toby-EX2/src/main/java/ch7/README.md)
 
 ### 추천 서적
 - Java 프로그래머를 위한 UML 실전에서는 이것만 쓴다(P.84)
