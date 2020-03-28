@@ -1,4 +1,4 @@
-# Chapter 3. 스프링 웹 기술과 스프링 MVC
+콘텐츠# Chapter 3. 스프링 웹 기술과 스프링 MVC
 - 스프링은 기본적으로 기술의 변화가 잦은 웹 계층과 여타 계층을 깔끔하게 분리해서 개발하는 아키텍처 모델을 지지한다.
 - 그 덕분에 스프링 애플리케이션이지만 웹 계층은 어떤 기술로 대체하더라도 아무런 문제가 없게 만들 수 있다.
 
@@ -33,14 +33,17 @@
 - 주로  무상태 방식으로 개발되는 스프링 @MVC와 더불어 스프링의 웹 프레임워크의 양 축을 이루고 있는 프레임워크라고 볼 수 있다.
 
 **Srping JavaScript**
+
 **Srping Faces**
+
 **Srping Web Service**
+
 **Srping BlazeDs Intergration**
 
 
 #### 스프링을 기반으로 두지 않는 웹 프레임워크
 **JSP/Servlet**
-- 기존에 만들어둿떤 모델 1 방식의 JSP나 서블릿을 스프링 애플리케이션의 웹 프레젠테이션 계층으로 사용할 수 있다.
+- 기존에 만들어두었던 모델 1 방식의 JSP나 서블릿을 스프링 애플리케이션의 웹 프레젠테이션 계층으로 사용할 수 있다.
 
 **Struts1, 2**
 
@@ -56,7 +59,7 @@
 
 **(2) DispatcherServlet에서 컨트롤러로 HTTP 요청 위임**
 - DispatcherServlet은 핸들러 매핑 전략을 이용해 핸들러를 탐색한다.
-- 핸들러 매핑 전략인 이유는 DI의 가장 대표적인 용도라할 수 있는 전략 패턴이 활용되었기 떄문이다.
+- 핸들러 매핑 전략인 이유는 DI의 가장 대표적인 용도라할 수 있는 전략 패턴이 활용되었기 때문이다.
 - 그러므로 DispatcherServlet의 핸들러 매핑 전략은 DispatcherServlet의 수정없이도 DI를 통해 얼마든지 확장가능하다.
 - 그런데 DispatcherServlet이 매핑으로 찾은 컨트롤러를 가져와 실행하려면 컨트롤러 메서드를 어떻게 호출할지 알고 있어야 한다.
 - DispatcherServlet에서 호출할 컨트롤러의 특정 인터페이스를 구현하는게 아닌 어댑터를 이용하여 특정 컨트롤러에 호출해야 할 때 해당 컨트롤러 타입을 지원하는 어댑터를 중간에 끼워서 호출하게 된다.
@@ -67,8 +70,8 @@
 - DispatcherServlet은 컨트롤러가 어떤 메서드를 가졌고 어떤 인터페이스를 구현했는지 전혀 알지 못한다.
 - 대신 컨트롤러 종류에 따라 적절한 어댑터를 사용하여 컨트롤러에 맞는 호출 방법을 이용해 작업을 요청하고 결과를 다시 반환받는 기법을 사용한다.
 - DispatcherServlet이 핸들러 어댑터에 웹 요청을 전달할 때는 모든 웹 요청 정보가 담긴 HttpServletRequest 타입의 오브젝트를 전달해준다.
-- 이를 어댑터가 적절히 변환해서 컨트롤러의 메서드가 받을 수 있ㅅ는 파라미터로 변환해서 전달해주는 것이다.
-- 컨트롤러가 결괏값으로 돌려주는 대신 HttpServletResponse에 담을 수도 있기 떄문에 HttpServletResponse도 함께 전달한다.
+- 이를 어댑터가 적절히 변환해서 컨트롤러의 메서드가 받을 수 있는 파라미터로 변환해서 전달해주는 것이다.
+- 컨트롤러가 결괏값으로 돌려주는 대신 HttpServletResponse에 담을 수도 있기 때문에 HttpServletResponse도 함께 전달한다.
 
 **(3) 컨트롤러의 모델 생성과 정보 등록**
 - MVC 패턴의 장점은 정보를 담고 있는 모델과 정보를 어떻게 뿌려줄지 알고 있는 뷰가 분리된다는 점이다.
@@ -78,7 +81,7 @@
 - REST API가 아닌 MVC패턴을 이용한 웹일 경우 DispatcherServlet에게 모델 정보와 뷰를 돌려줘야 한다.
 
 **(4) 컨트롤러의 결과 리턴: 모델과 뷰**
-- 모델과 뷰를 ModelAndView에 담아 DispatcherServlet에게 전달해주면 DispatcherServlet의 전략인 뷰 리졸바가 이를 이용해 뷰 오브젝트를 생성해준다.
+- 모델과 뷰를 ModelAndView에 담아 DispatcherServlet에게 전달해주면 DispatcherServlet의 전략인 뷰 리졸버가 이를 이용해 뷰 오브젝트를 생성해준다.
 
 **(5) DispatcherServlet의 뷰 호출과 (6)모델 참조**
 - DispatcherServlet이 컨트롤러로부터 모델과 뷰를 받은 뒤에 진행하는 작업은, 뷰 오브젝트에게 모델을 전달해주고 클라이언트에게 돌려줄 최종 결과물을 생성해달라고 요청하는 것이다.
@@ -151,7 +154,7 @@ public interface Controller {
 
 ### 3.2.2 스프링 웹 학습 테스트
 - 서버에 배치하지 않은채 스프링 MVC의 기능을 테스트할 수 있는 방법을 알아보자.
-- 서블릿이 서버 밖에서 테스트하기가 쉽지 않은 이유는 유사한 환경정보를 담은 오브젝트들을 구성해야하고, 컨테이너가 브라우저에서 받는 사용자의 요청을 해석해서 만들어주는 HttpServletRequest와 결과를 저장할 HttpServletResponse도 필요하기 떄문이다.
+- 서블릿이 서버 밖에서 테스트하기가 쉽지 않은 이유는 유사한 환경정보를 담은 오브젝트들을 구성해야하고, 컨테이너가 브라우저에서 받는 사용자의 요청을 해석해서 만들어주는 HttpServletRequest와 결과를 저장할 HttpServletResponse도 필요하기 때문이다.
 - 스프링은 서블릿을 직접 테스트할 때 사용할 수 있는 각종 서블릿 기술 오브젝트들을 제공해준다.
 
 #### 서블릿 테스트용 목 오브젝트
@@ -192,11 +195,11 @@ void mockServlet() throws Exception{
 - JSP 서블릿과 엔진 자체가 복잡하고 다른 서버에 종속적인 라이브버리이기 때문이다.
 - 그런데 과연 뷰의 생성 내용, 즉 HTML까지 꼭 검증해야 하는지는 한 번쯤 생각해볼일이다.
 - 스프링 MVC의 컨트롤러가 리턴하는 것은 정보가 담긴 모델과 이를 출력해줄 뷰에 관한 정보다.
-- 대부분의 경우는 뷰가 모데을 이용해서 생성하는 최종 결과를 확인하는 대신, 컨트롤러가 어떤 모델과 뷰 정보를 리턴했는지 검증하는 것으로 충분하다.
+- 대부분의 경우는 뷰가 모델을 이용해서 생성하는 최종 결과를 확인하는 대신, 컨트롤러가 어떤 모델과 뷰 정보를 리턴했는지 검증하는 것으로 충분하다.
 
 #### 테스트를 위한 DispatcherServlet 확장
-- DispatcherServlet을 테스트하려면 DispatcherServlet의 디폴트 설정을 최대한 사용한다고 해도 준비할게 재법 많다.
-- DispatcherServlet이 서블릿 애프릴케이션 컨텍스트를 초기화할 수 있도록 WEB=INF 밑에 '서블릿이름-servlet.xml'이라는 이름을 가진 설정파일을 준비해줘야 한다.
+- DispatcherServlet을 테스트하려면 DispatcherServlet의 디폴트 설정을 최대한 사용한다고 해도 준비할게 제법 많다.
+- DispatcherServlet이 서블릿 애플리케이션 컨텍스트를 초기화할 수 있도록 WEB=INF 밑에 '서블릿이름-servlet.xml'이라는 이름을 가진 설정파일을 준비해줘야 한다.
 - 테스트에서 간단한 방법으로 서블릿 컨텍스트를 설정해줄 수 있도록 DispatcherServlet을 확장해서 사용하면 편리하다.
 - DispatcherServlet을 상속해서 컨텍스트 초기화 기능과 편리한 설정 기능을 추가한 테스트용 DispatcherServlet확장 클래스이다.
 
@@ -303,7 +306,7 @@ void controller() throws Exception{
     // /hello로 요청을 보내면 HelloController가 실행될 것이다.
     servlet.service(req, res);
 
-    // 컨트롤러가 실행될 떄의 ModelAndView이다
+    // 컨트롤러가 실행될 때의 ModelAndView이다
     ModelAndView modelAndView = servlet.getModelAndView();
     assertThat((String) modelAndView.getModel().get("message")).isEqualTo("Hello Spring");
 }
@@ -507,7 +510,7 @@ public class SimpleControllerTest extends AbstractDispatcherServletTest {
 - 요청을 추출하고 해당 요청이 올바른지도 검증해야할 것이고, 검증 혹은 서비스에게 위임한 작업의 예외가 발생하면 예러 처리도 해주어야 한다.
 - 파일을 전송, 수신할 때에는 파일을 저장해야할 필요도 있다.
 - 만약 애플리케이션 성격상 컨트롤러의 역할이 크다면 책임의 성격과 특징, 변경 사유 등을 기준으로 세분화해줄 필요가 있다.
-- 스프링 MVC가 컨트롤러 모델을 미리 제한하지 않고 어댑터 패턴을 사용해서라도 컨트롤러의 정류를 필요에 따라 확장할 수 있도록 만든 이유가 바로 이 때문이다.
+- 스프링 MVC가 컨트롤러 모델을 미리 제한하지 않고 어댑터 패턴을 사용해서라도 컨트롤러의 종류를 필요에 따라 확장할 수 있도록 만든 이유가 바로 이 때문이다.
 
 ### 3.3.1 컨트롤러의 종류와 핸들러 어댑터
 - 각 컨트롤러를 DispatcherServlet에 연결해주는 핸들러와 핸들러 어댑터의 종류는 네 가지이다.
@@ -520,6 +523,30 @@ public class SimpleControllerTest extends AbstractDispatcherServletTest {
 - 서블릿 코드를 점진적으로 스프링 애플리케이션에 맞게 포팅할 때 유용하다.
 - 단 서블릿이 컨트롤러 빈으로 등록된 경우엔 자동으로 init(), destroy()와 같은 생명주기 메서드가 호출되지 않는다.
 
+```Java
+public class SimpleServletHandlerAdapter implements HandlerAdapter {
+
+	@Override
+	public boolean supports(Object handler) {
+		return (handler instanceof Servlet);
+	}
+
+	@Override
+	@Nullable
+	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+
+		((Servlet) handler).service(request, response);
+		return null;
+	}
+
+	@Override
+	public long getLastModified(HttpServletRequest request, Object handler) {
+		return -1;
+	}
+
+}
+```
 ```Java
 @Component("/hello") // 빈은 테스트에서 등록해주지만 name을 통해 url 매핑을 위해 사용
 public class HelloServlet extends HttpServlet {
@@ -552,31 +579,34 @@ class HelloServletTest extends AbstractDispatcherServletTest{
 - 서블릿 스펙을 준수할 필요 없이 HTTP 프로토콜 기반으로 한 전용 서비스를 만들 때 사용할 수 있다.
 
 #### Controller, SimpleControllerHandlerAdapter
-- Controller는 위에서 본거처럼 DispatcherServlet이 컨트롤러와 주곱받는 정보 그대로 메서드 파라미터와 리턴값을 가지고 있다.
+- Controller는 위에서 본거처럼 DispatcherServlet이 컨트롤러와 주고받는 정보 그대로 메서드 파라미터와 리턴값을 가지고 있다.
 - 스프링 3.0의 애노테이션과 관례를 이용한 컨트롤러가 등장하기 전까지는 이 Controller를 많이 사용하였다.
 
-#### AnnotationMethodHandlerAdapter
+#### AnnotationMethodHandlerAdapter(3.1부터 RequestMappingHandlerAdapter로 변경 4장 참고)
 - 현재 대부분 사용하는 애노테이션 기반의 컨트롤러 어댑터이다.
-- 해당 컨트롤러는 특정 인터페이스를 구현한 컨트롤러만을 지원하는게 아닌 타입에 재한이 없어 모든 컨트롤러에게 적용이 가능하다.
+- 해당 컨트롤러는 특정 인터페이스를 구현한 컨트롤러만을 지원하는게 아닌 타입에 제한이 없어 모든 컨트롤러에게 적용이 가능하다.
 - 그리고 메서드 단위로 url 매핑이 이우러지는 장점이 존재한다.
 
 #### 기반컨트롤러 만들기
 - 기반 컨트롤러를 만들어 모든 컨트롤러가 이 기반 컨트롤러를 상속받아 편리하게 파라미터와 뷰네임을 설정할 수 있도록 해보자.
 
 ```Java
-@Setter
 public abstract class SimpleControllerV1 implements Controller {
     private String[] requiredParams;
     private String viewName;
 
+    public void setRequiredParams(String[] requiredParams) {
+        this.requiredParams = requiredParams;
+    }
+
+    public void setViewName(String viewName) {
+        this.viewName = viewName;
+    }
 
     @Override
     final public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         if(viewName == null) throw new IllegalStateException();
-
         Map<String, String> params = new HashMap<>();
-
-				// 필요한 파라미터를 가져와 맵에 담는다. 없다면 예외를 던진다.
         for (String param : requiredParams) {
             String value = request.getParameter(param);
             if (value == null) throw new IllegalStateException();
@@ -585,17 +615,17 @@ public abstract class SimpleControllerV1 implements Controller {
 
         Map<String, Object> model = new HashMap<>();
 
-				// 개별 컨트롤러가 구현한 메서드를 호출한다.
         this.control(params, model);
 
         return new ModelAndView(this.viewName, model);
     }
 
     public abstract void control(Map<String, String> params, Map<String, Object> model) throws Exception;
+
 }
 ```
 - 개별 컨트롤러에서 세팅하는 뷰네임과 파라미터를 이용하여 ModelAndView를 만들 수 있다.
-- 템플릿 메서드 패턴을 통해 params와 model을 넘겨줬을 떄 개별 컨트롤러가 원하는 기능을 구현할 수 있다.
+- 템플릿 메서드 패턴을 통해 params와 model을 넘겨줬을 때 개별 컨트롤러가 원하는 기능을 구현할 수 있다.
 
 ```Java
 class HelloControllerV1 extends SimpleControllerV1{
@@ -614,13 +644,21 @@ class HelloControllerV1 extends SimpleControllerV1{
 
 
 ## 3.3.2 핸들러 매핑
-- 핸들러 매핑은 HTTP 요청정보를 이용ㅎ 이를 처리한 핸들러 오브젝트인 컨트롤러를 찾아주는 기능을 가진 DispatcherServlet의 전략이다.
-- 핸들러 매피은 타입과 상관없으며 하나의 매핑전략이 여러 타입의 컨트롤러를 선택할 수 있다.
+- 핸들러 매핑은 HTTP 요청정보를 이용하여 이를 처리할 핸들러 오브젝트인 컨트롤러를 찾아주는 기능을 가진 DispatcherServlet의 전략이다.
+- 핸들러 매핑은 타입과 상관없으며 하나의 매핑전략이 여러 타입의 컨트롤러를 선택할 수 있다.
 - 디폴트로는 BeanNameUrlHandlerMapping, DefaultAnnotationHandlerMapping이 존재하고 이외에도 3가지가 추가로 존재한다.
 
 **BeanNameUrlHandlerMapping**
 - 빈의 이름에 들어있는 URL을 HTTP 요청의 URL과 비교해서 일치하는 빈을 찾아준다.
-- 딜포트 전략이며, 빠르고 쉽게 URL 매핑정보를 지정할 수 있으나 컨트롤러가 많아진다면 URL 정보가 XML 빈 선언이나 크래스의 애노테이션 등에 분산되어 나타나므로 전체적인 매핑구조를 한눈에 파악하고 관리하기 힘들다.
+- 디폴트 전략이며, 빠르고 쉽게 URL 매핑정보를 지정할 수 있으나 컨트롤러가 많아진다면 URL 정보가 XML 빈 선언이나 클래스의 애노테이션 등에 분산되어 나타나므로 전체적인 매핑구조를 한눈에 파악하고 관리하기 힘들다.
+
+```xml
+<bean name="/s*" class="springbook...Controller"/>
+
+<bean name="/root/**/sub" class="springbook...Controller"/>
+```
+- 첫 번째의 경우 /s로 시작하는 모든 url에 해당 Controller를 매핑해준다.
+- 두 번째의 경우 \*가 두개이므로 /root/sub, /root/a/sub. /root/a/b/c/sub등에 매핑해줄 것이다.
 
 **ControllerBeanNameHandlerMpping**
 - 빈의 아이디나 빈의 이름을 이용해 매핑해주는 전략이다.
@@ -631,27 +669,44 @@ class HelloControllerV1 extends SimpleControllerV1{
 - 빈 이름 대신 클래스 이름을 URL에 매핑해주는 핸들러 매핑 클래스이다.
 
 **SimpleUrlHandlerMapping**
-- BeanNameUrlHandlerMapping은 빈 이름에 매핑정보를 넣기 떄문에 매핑정보를 관리하기 불편하다.
+- BeanNameUrlHandlerMapping은 빈 이름에 매핑정보를 넣기 때문에 매핑정보를 관리하기 불편하다.
 - SimpleUrlHandlerMapping은 URL과 컨트롤러의 매핑정보를 한곳에 모아놓을 수 있는 핸들러 매핑전략이다.
 - SimpleUrlHandlerMapping을 빈으로 등록할 때 프로퍼티에 값들을 넣어준다.
-- 설정 정보들이 한곳에 모여  있기 때문에 URL을 관리하기 편리하다는 장점이 존재하므로 대규모프로젝트에서는 SimpleUrlHandlerMapping을 선호학도 한다.
-- 단점으로는 매핑할 정보를 직접 적어야 하므로 오타등의 위허이 있다.
+- 설정 정보들이 한곳에 모여  있기 때문에 URL을 관리하기 편리하다는 장점이 존재하므로 대규모프로젝트에서는 SimpleUrlHandlerMapping을 선호하기도 한다.
+- 단점으로는 매핑할 정보를 직접 적어야 하므로 오타등의 위험이 있다.
 
-**DefaultAnnotationHandlerMapping**
+```xml
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+				<props>
+						<prop key="/hello">helloController</prop>
+						<prop key="/sub/*">subController</prop>
+<!--                /hello=helloController      -->
+<!--                /sub/*=myController         -->
+				</props>
+		</property>
+</bean>
+
+<bean id="helloController"/>
+<bean id="subController"/>
+```
+- props를 이용하는 방법과 주석처럼 한번에 정의할 수도 있다.
+
+**DefaultAnnotationHandlerMapping(3.1부터 RequestMappingHandlerMapping로 변경, 4장 참고)**
 - @RequestMapping이라는 애노테이션을 컨트롤러 클래스나 메서드에 직접부여하고 이를 이용해 매핑하는 전략이다.
 - @RequestMapping은 메서드 단위로 URL을 매핑해줄 수 있어 컨트롤러의 개수를 획기적으로 줄일 수 있다.
 
 
 **기타 공통 설정정보**
 - order
-	- 핸들러 매핑은 한 개 이상을 동시에 이용할 수 있으므로 순서를 정할떄 사용한다.
+	- 핸들러 매핑은 한 개 이상을 동시에 이용할 수 있으므로 순서를 정할때 사용한다.
 - defaultHandler
 	- 핸들러 매핑 빈의 defaultHandler 프로퍼티를 지정해두면 URL을 매핑할 대상을 찾지 못했을 경우 자동으로 디폴트 핸들러를 선택해준다.
 	- 404 에러대신 디폴트 핸들러로 넘겨서 친절한 안내 메시지를 뿌려주는 것이 좋은 방법이다.
 
 **detectHandlerAncestorContexts**
-- 핸들러 매핑은 특이하게 서블릿 컨텍스트 안에서만 매핑할 컨트롤러를 찾이 애플리케이션 컨텍스트까지 찾지 않는다.
-- detectHandlerAncestorContexts가 false로 선언되어있기 떄문이다.
+- 핸들러 매핑은 특이하게 서블릿 컨텍스트 안에서만 매핑할 컨트롤러를 찾으며 애플리케이션 컨텍스트까지 찾지 않는다.
+- detectHandlerAncestorContexts가 false로 선언되어있기 때문이다.
 - 웹 환경에 종속적인 컨트롤러 빈은 서블릿 컨텍스트에만 두는 것이 바람직 하기 때문이다.
 
 ### 3.3.3 핸들러 인터셉터
@@ -711,17 +766,17 @@ public interface HandlerAdapter {
 x
 ```
 - HandlerAdapter 인터페이스는 단순하다. supports() 메서드는 특정 타입의 컨트롤러를 지원하는지 확인해준다.
-- DispatcherServlet은 이 메서드를 이용해 어떤 핸드러 어댑터에게 어떤 컨트롤러 오브젝트의 실행을 맡길 수 있는지 알아낼 수 있다.
+- DispatcherServlet은 이 메서드를 이용해 어떤 핸들러 어댑터에게 어떤 컨트롤러 오브젝트의 실행을 맡길 수 있는지 알아낼 수 있다.
 - 실제 호출은 handle() 메서드를 통해 일어난다.
 - Object 타입으로 전달받은 컨트롤러 오브젝트를 적절한 컨트롤러 타입으로 캐스팅해서 실행해준다.
 - 그 과정에서 HttpServletRequest로부터 필요한 정보를 가져와 컨트롤러에게 전달할 파라미터를 준비하느 것과 컨트롤러가 리턴한 정보를 DispatcherServlet이 인식할 수 있은 ModelAndView로 만들어주는 작업도 수행한다.
-- getLastModified는 최정 변경시간을알려준다.
+- getLastModified는 최종 변경시간을알려준다.
 
 **커스텀 컨트롤러 인터페이스와 핸들러 어댑터 개발**
-- 앞서 Controller이넡페이스를 구현 해 만들었던 기반 컨트롤러인 SimpleController를 이번에는 핸들러 어댑터를 이용해 호출 가능한 인터페이스로 정의해서 독자적인 컨트롤러 인터페이스로 만들어보자.
+- 앞서 Controller인터페이스를 구현해 만들었던 기반 컨트롤러인 SimpleController를 이번에는 핸들러 어댑터를 이용해 호출 가능한 인터페이스로 정의해서 독자적인 컨트롤러 인터페이스로 만들어보자.
 - 기존의 SimpleController는 모든 클래스가 상속할 기반 클래스이므로 viewName, requiredParams 같은 공통 프로퍼티를 정의해놓을 수 있었다.
 - 하지만 인터페이스로 정의하는 새로운 컨트롤러 타입에는 그런 방식을 사용할 수 없다.
-- 그래서 대신 관례를 만들어 비슷한 설정을 가능하게 해보자.
+- 그래서 대신 관례(애노테이션 이용)를 만들어 비슷한 설정을 가능하게 해보자.
 
 ```Java
 public interface SimpleController {
@@ -746,7 +801,7 @@ public @interface RequiredParams {
 ```
 - 우선 사용할 애노테이션들을 정의한다.
 - viewName은 String, requiredParams은 String 배열을 값으로 가지고 있다.
-- 이제 이 애노테이션이 viewName, RequiredParams의 정보를 가지고 있는 관례를 적용할것이므로 필요한 정보를 구현 컨트롤러에 넣어주기만 하면된다.
+- 이제 이 애노테이션이 viewName, RequiredParams의 정보를 가지고 있는 관례를 적용 할것이므로 필요한 정보를 구현 컨트롤러에 넣어주기만 하면된다.
 
 ```Java
 public class HelloController implements SimpleController {
@@ -758,7 +813,7 @@ public class HelloController implements SimpleController {
     }
 }
 ```
-- 애노테이션과 SimpleController인터페이스를 이용하여 HelloController를 구현하였따.
+- 애노테이션과 SimpleController인터페이스를 이용하여 HelloController를 구현하였다.
 - 이전에 SimpleController클래스를 통해 구현한 HelloController보다 훨씬 깔끔한것을 알 수 있다.
 - 이제 핸들러 어댑터를 구현해보자.
 
@@ -797,7 +852,7 @@ public class SimpleHandlerAdapter implements HandlerAdapter {
 }
 ```
 - Reflect을 통해 control 메서드를 가져온 후 해당 애노테이션들을 읽어 애노테이션 값들을 이용해 작업을 수행할 수 있다.
-- 이제 이 HandlerAdapter를 빈으로 등록해주면 DispatcherServlet은 핸들러 매핑에서 HelloController를 찾은 후 DispatcherServlet은 혀내 등록된 모든 핸들러 어댑터의 supports()를 호출하여 처리할 수 있는 핸들러인지 확인한 후 이를 처리하게 될 것이다.
+- 이제 이 HandlerAdapter를 빈으로 등록해주면 DispatcherServlet은 핸들러 매핑에서 HelloController를 찾은 후 DispatcherServlet은 현재 등록된 모든 핸들러 어댑터의 supports()를 호출하여 처리할 수 있는 핸들러인지 확인한 후 이를 처리하게 될 것이다.
 
 ```Java
 public class HandlerAdapterTest extends AbstractDispatcherServletTest{
@@ -844,10 +899,10 @@ public interface View {
 }
 ```
 - 타입정보는 제공해주는 getContentType, 메서드 모델을 전달받아 클라이언트에게 돌려줄 결과물을 만드는 render 메서드로 구성된다.
-- 보통 View를 직정 구현해서 만들 필요가 없다. 스프링에서 자주사용되는 뷰를 이미 구현해놓았기 때문이다.
+- 보통 View를 직접 구현해서 만들 필요가 없다. 스프링에서 자주사용되는 뷰를 이미 구현해놓았기 때문이다.
 - 뷰를 사용하는 방법은 두 가지가 있다.
 - 하나는 스프링이 제공하는 기반 뷰 클래스를 확장해서 코드로 뷰를 만드는 방법이다.
-- 엑셀, PDF 같은 뷰는 콘텐트를 생성하는 API를 이용해서 뷰 로직을 작성해야 한다.
+- 엑셀, PDF 같은 뷰는 콘텐츠를 생성하는 API를 이용해서 뷰 로직을 작성해야 한다.
 - 또 다른 방법은 스프링이 제공하는 뷰를 활용하데 뷰 클래스 자체를 상속하거나 코드를 작성하지 않고 JSP나 프리마커 같은 템플릿 파일을 사용해서 모델을 자동으로 뷰로 전환하는 로직을 적용하는 방법이다.
 
 **InternalResourceView와 JstlView**
@@ -865,8 +920,8 @@ public interface View {
 - JSP는서블릿이 구동되어야 동작하므로 단위 테스트가 힘들지만 프리마커, 벨로시티는 독립적인 템플릿 엔진으로 뷰를 생성하므로 뷰 결과를 쉽게 만들 수 있어 단위 테스트하기 유리하다.
 
 **MarshallingView**
-- OXM 추상화 기능을 활용해 application/xml타입의 XML 콘텐트를 작성하게 해주는 편리한 뷰이다.
-- OXM 기술을 적용해 XML 컨텐르를 만드는 방법은 한 가지 더 존재한다.
+- OXM 추상화 기능을 활용해 application/xml타입의 XML 콘텐츠를 작성하게 해주는 편리한 뷰이다.
+- OXM 기술을 적용해 XML 컨텐츠를 만드는 방법은 한 가지 더 존재한다.
 - 마샬링 뷰 대신 메시지 컨버터로 XML 결과를 만들 수 있다. 이는 4장에서 알아본다.
 
 **AbstractExcelView, AbstractJExcelView, AbstractPdfView**
@@ -874,7 +929,7 @@ public interface View {
 - Abstract가 붙어있으니 상속을 해서 코드를 구현해야하는 뷰이기도 하다.
 
 **MappingJacksonJsonView**
-- AJAX에서 많이 사용되는 JSON 타입의 콘텐트를 작성해주는 뷰이다.
+- AJAX에서 많이 사용되는 JSON 타입의 콘텐츠를 작성해주는 뷰이다.
 - Set<String>타입인 renderedAttributes프로퍼티를 지정해서 일부 모델 오브젝트에만 JSON 변환에 사용할 수 있다.
 - 이 또한 메시지 컨버터로 사용해서 생성할 수 있는 방법이 존재한다.
 
@@ -892,19 +947,19 @@ public interface View {
 
 #### ContentNegotiatingViewResolver
 - 이 뷰 리졸버는 여타 뷰 리졸버처럼 직접 뷰 이름으로부터 뷰 오브젝트를 찾아주는게 아닌 미디어 타입 정보를 활용해서 다른 뷰 리볼버에게 뷰를 찾도록 위임한 후에 가장 적절한 뷰를 선정해서 돌려준다.
-- **뷰 리졸버를 결정해주는 뷰 리졻라고 볼 수 있다.**
-- RESTful 스타일의 웹사이트는 같은 리로스에 대해 다양한 타입의 콘텐트를 제공해준다는 특징이 있다.
-- ContentNegotiatingViewResolver를 적극 활용한다면 다양한 타입의 콘텐트를 유연하게 대처할 수 있을것이다.
+- **뷰 리졸버를 결정해주는 뷰 리졸버라고 볼 수 있다.**
+- RESTful 스타일의 웹사이트는 같은 리소스에 대해 다양한 타입의 콘텐츠를 제공해준다는 특징이 있다.
+- ContentNegotiatingViewResolver를 적극 활용한다면 다양한 타입의 콘텐츠를 유연하게 대처할 수 있을것이다.
 - ContentNegotiatingViewResolver는 적용한 뷰 리졸버를 선정하는 알고리즘이 제법 복잡하므로 사용 방법을 정확히 이해하고 적용해야 한다.
 
 #### ContentNegotiatingViewResolver의 뷰 결정법
-**미디어 타입 결정**
+**1)미디어 타입 결정**
 - ContentNegotiatingViewResolver는 가장 먼저 사용자의 요청정보로부터 사용자가 요청한 미디어 타입정보를 추출한다.
-- 첫번쨰는 URL 확장자(/hello.json)으로 찾은 후 없다면 두 번째로 포맷을 지정하는 파라미터로부터 미디어 타입을 추출하는 방법을 사용한다.
+- 첫번째는 URL 확장자(/hello.json)으로 찾은 후 없다면 두 번째로 포맷을 지정하는 파라미터(/hello?foramt=pdf)로부터 미디어 타입을 추출하는 방법을 사용한다.
 - 세 번째로는 두 가지 방법이 적용되지 않았거나, 원하는 미디어 타입을 찾지 못했을 경우 HTTP의 컨텐트 교섭(content negotiation)에 사용되는 Accept 헤더의 설정을 이용한다.
 - 마지막으로는 앞의 모든 방법으로도 찾지못했다면 defaultContentType 프로퍼티에 설정해준 디폴트 미디어 타입을 사용한다.
 
-**뷰 리졸버 위임을 통한 후보 뷰 선정**
+**2)뷰 리졸버 위임을 통한 후보 뷰 선정**
 - 미디어 타입이 결정됐다면 다음은 적용가능한 뷰 후보를 찾아야 한다.
 - 컨트롤러가 돌려준 뷰 이름을 등록된 모든 뷰 리졸버에게 보내서 사용 가능한 뷰를 확인하는 방법을 사용한다.
 - 뷰 후보 선정에 사용할 뷰 리졸버는 viewResolvers 프로퍼티를 이용해 지정해줄 수 있다.
@@ -914,12 +969,17 @@ public interface View {
 - 대신 모든 뷰 리졸버에게 뷰 이름을 처리할 수 있는지 문의하고 뷰 리졸버가 돌려주는 뷰가 있다면 이를 모두 최종 뷰 선정을 위한 뷰 후보 목록에 추가한다.
 - ContentNegotiatingViewResolver를 사용하면 다른 뷰 리졸버를 독립적으로 사용하지 않으므로 ContentNegotiatingViewResolver의 viewResolvers프로퍼티에 뷰 리졸버를 내부 빈으로 즉시 등록하여도 된다.
 
-**미디어 타입 비교를 통한 최종 뷰 선정**
+**3)미디어 타입 비교를 통한 최종 뷰 선정**
 - 마지막으로 요청정보에서 가져온 미디어 타입과 뷰 리졸버에서 찾은 후보 뷰 목록을 매칭해서 사용할 뷰를 결정한다.
-- JSON이나 XML로 변환하는 뷰일 경우 뷰 코드를 작성할 필요없이 해당 모델 오브젝트만 주면 특정 타입의 콘텐트를 만들어준다.
-- 이럴경유 따로 뷰 리졸버를 등록하지 않고 디폴트 뷰로 이들을 등록하여 사용하면 된다.
+- 만약 모든 뷰 리졸버를 조회하여 HTML, PDF, Excel 미디어 타입의 뷰 후보를 얻었을 때 요청정보에서 추출한 미디어 타입과 일치하는 최종적으로 사용할 뷰를 선택할 것이다.
 
-> - 컨트롤러는 뷰의 종류가 여러 가지이더라고 ContentNegotiatingViewResolver를 활용하고 있다면 동일한 핸들러 하나만 만들면 된다.
+> - 이 세가지 단계를 거쳐 최종 뷰를 결정하는 것이 ContentNegotiatingViewResolver의 역할이다.
+> - 사용자가 요청한 미디어 타입, 컨트롤러가 돌려준 뷰 이름, 뷰 리졸버에 등록된 뷰의 조합을 통해 뷰가 결정되는 것이다.
+
+- JSON이나 XML 같은 뷰는 뷰 클래스를 따로 만들지 않아도 되므로 뷰 리졸버를 사용할 필요 없이 ContentNegotiatingViewResolver의 디폴트 뷰로 등록해놓으면 될 것이다.
+- 디폴트 뷰이므로 모든 뷰 선정 과정의 뷰 후보로 사용될 것이고, 미디어 타입을 XML, JSON으로 지정했다면 해당 미디어타입에 맞는 포맷을 가져올 수 있을 것이다.
+
+> - 컨트롤러는 뷰의 종류가 여러 가지이더라도 ContentNegotiatingViewResolver를 활용하고 있다면 동일한 핸들러 하나만 만들면 된다.
 > - 뷰를 선정하기 위한 조건문도 필요없이 간단하게 만들 수 있다.
 
 ---
@@ -944,7 +1004,7 @@ public interface HandlerExceptionResolver {
 **ResponseStatusExceptionResolver**
 - HTTP 응답 상태 코드로 전환해주는 예외 리졸버이다.
 - 특정 예외가 발생했을 때 단순한 HTTP 500에러 대신 의미있는 HTTP 응답 상태를 돌려주는 방법이다.
-- 예외 클래스에 @ResponseStatus를 붙이고 HttpStatus에 정의되어 있는 HTTP 응답 상태 값을 value 앨리먼트에 저장하고 reason도 넣을 수 있따.
+- 예외 클래스에 @ResponseStatus를 붙이고 HttpStatus에 정의되어 있는 HTTP 응답 상태 값을 value 앨리먼트에 저장하고 reason도 넣을 수 있다.
 
 
 ```Java
@@ -953,12 +1013,12 @@ public class NotInServiceException extends RuntimeException {
 }
 ```
 - ResponseStatusExceptionResolver는 발생한 예외의 클래스에 @ResponseStatus가 있는지 확인하고, 만약 있다면 애노테이션에 지정해둔 HTTP 응답 상태 코드를 클라이언트에게 전달한다.
-- 이 방법의 당점은 @ResponseStatus를 붙여줄 수 있는 예외 클래스를 만들어 사용해야 한다는 것이다.
+- 이 방법의 단점은 @ResponseStatus를 붙여줄 수 있는 예외 클래스를 만들어 사용해야 한다는 것이다.
 - 따라서 기존에 정의된 예외 클래스에는 바로 적용할 수 없다.
 - 그렇게 하기 위해선 @ExcpetionHandler를 통해 리턴타입은 void로한 후 HttpServletResponse를 파라미터로 받아 setStatus를 해주어야 한다.
 
-**DefaulthandlerExcpetionResolver**
-- 디폴트로 등록된 것 중에서 위의 구 가지 예외 리졸버에서 처리하지 못한 예외를 다루는 마지막 핸들러 예외 리졸버이다.
+**DefaultHandlerExceptionResolver**
+- 디폴트로 등록된 것 중에서 위의 두 가지 예외 리졸버에서 처리하지 못한 예외를 다루는 마지막 핸들러 예외 리졸버이다.
 - DefaulthandlerExcpetionResolver는 스프링에서 내부적으로 발생하는 주요 에외 처리를 처리해주는 표준 예외처리 로직을담고 있다.
 - NoSuchRequestHandlingMethodException이 발생하면 404 - NotFound로 응답해주는 등이 있다.
 
@@ -974,7 +1034,7 @@ public class NotInServiceException extends RuntimeException {
 - 파일 업로드와 같이 멀티파트 포맷의 요청정보를 처리하는 전략을 설정할 수 있다.
 - 멀티파트는 디폴트로 등록되는 것이 없으므로 직접 빈으로 등록해주어야 한다.
 - DispatcherServlet은 클라이언트로 부터 멀티파트 요청을 받으면 멀티파트 리졸버에게 요청해서 HttpServletRequest의 확장 타입인 MultipartHttpServletRequest 오브젝트로 전환한다.
-- MultipartHttpServletRequest에는 멀티파트를 디코이한 내용과 이를 참조하거나 조작할 수 있는 기능이 추가되어 있다.
+- MultipartHttpServletRequest에는 멀티파트를 디코딩한 내용과 이를 참조하거나 조작할 수 있는 기능이 추가되어 있다.
 
 ---
 
@@ -985,7 +1045,7 @@ public class NotInServiceException extends RuntimeException {
 - 플래시 애트리뷰트는 하나의 요청에서 생성되어 다음 요청으로 전달되는 정보를 말한다.
 - 웹 요청 사이에 전달되는 정보라면 HTTP 세션을 생각할 수 있겠지만 플래시 애트리뷰트는 일반 HTTP 세션에 저장되는 정보처럼 오래 유지되지 않는다.
 - 플래시 애트리뷰트는 다음 요청에서 한 번 사용되고 바로 제거된다.
-- 보통 Post/Redirect/Get 패턴을 적용할 때 POST 단계의 작업 결과 메세지를 리다렉트된 페이지로 전달할 때 주로 사용된다. 이런 ㅁ네시지는 페이지가 갱신되는 경우 반본적으로 나타나면 안 된다.
+- 보통 Post/Redirect/Get 패턴을 적용할 때 POST 단계의 작업 결과 메세지를 리다렉트된 페이지로 전달할 때 주로 사용된다. 이런 메시지는 페이지가 갱신되는 경우 반본적으로 나타나면 안된다.
 
 - 위와 같은 방식으로 Post/Redirect/Get 패턴에서 플래시맵은 동작한다.
 - 그런데 AJAX를 이용한 서버 폴링처럼 사용자의 액션 없이 수시로 서버로 요청을 보내는 기능을 가진 웹 페이지에선 자칫하면 POST와 REDIRECT 사이에 다른 요청이 끼어들 위험이 있다.
@@ -1007,7 +1067,7 @@ fm.startExpirationPeriod(10);
 
 #### 플래시 맵 매니저 전략
 - 가장 간단한 저장 방법은 HTTP 세션을 이용하는 것이다. 서버를 여러 대 사용하는 경우라면 서버 사이에 분산되어 저장되고 조회되는 분산 데이터 그리드를 이용할 수도 있다.
-- NoSQL이나 RDB같은 별도의 저종소에 저장하는 것도 가능하다.
+- NoSQL이나 RDB같은 별도의 저장소에 저장하는 것도 가능하다.
 - 이렇게 플래시 맵 정보를 저장하고 가져오는 방법이 스프링 3.1에 새로운 DispatcherServlet의 전략으로 추가되었다. 디폴트 전략은 SessionFlashMapManger로 HTTP 세션을 이용한다.
 
 ### 3.6.2 WebApplicationInitializer를 이용한 컨텍스트 등록
@@ -1019,8 +1079,8 @@ fm.startExpirationPeriod(10);
 - 루트 웹 컨텍스트는 서블릿의 시작, 종료 리스너를 통해 생성하는 것이 좋다.
 - 루트 컨텍스트이 생명주기가 서블릿 컨텍스트와 일치하기 때문에 리스너를 이용하게된다.
 - WebApplicationInitializer를 이용할 수도 있겟지만 이럴경우 종료시점을 알 수 없다.
-- 만약 하나의 WAS에 여러 웹 애프릴케이션이 함께 동작하는 경우라면 웹 애플리케이션이 종료될 떄 루트 컨텍스트가 사용한 공유 리소스를 제대로 반환해야 한다.
-- 그렇지 않으면 리로스 누수가 일어날 수 있다. 그러므로 WebApplicationInitializer를 사용하더라도 루트 컨텍스트는 리스너를 이용해 관리하는 편이 좋다.
+- 만약 하나의 WAS에 여러 웹 애플리케이션이 함께 동작하는 경우라면 웹 애플리케이션이 종료될 때 루트 컨텍스트가 사용한 공유 리소스를 제대로 반환해야 한다.
+- 그렇지 않으면 리소스 누수가 일어날 수 있다. 그러므로 WebApplicationInitializer를 사용하더라도 루트 컨텍스트는 리스너를 이용해 관리하는 편이 좋다.
 
 #### 서블릿 컨텍스트 등록
 - 루트 컨텍스트가 리스너 안에서 초기화되고 관리되듯이 서블릿 컨텍스트는 서블릿 안에서 초기화되고 서블릿이 종료될 때 같이 종료된다.
@@ -1036,5 +1096,5 @@ fm.startExpirationPeriod(10);
 - 핸들러 매핑은 다양한 전략을 통해 요청정보와 이를 처리하는 컨트롤러를 연결해준다.
 - 핸들러 인터셉터는 컨트롤러를 실행하기 전후에 적용할 부가기능을 만들 때 사용한다.
 - 뷰 리졸버는 컨트롤러가 리턴한 논리적인 뷰 이름을 이용해 뷰 오브젝트를 찾아준다.
-- 핸들러 예외 리졸버를 이용하면 애프릴케이션에서 발생한 예외를 처리하는 방법을 지정해줄 수 있다.
+- 핸들러 예외 리졸버를 이용하면 애플리케이션에서 발생한 예외를 처리하는 방법을 지정해줄 수 있다.
 - 스프링 3.1에는 플래시 맵 매니저 전략이 추가되었고 WebApplicationInitializer를 이용해 컨텍스트 생성과 등록을 위한 초기화 코드를 작성할 수 있다.

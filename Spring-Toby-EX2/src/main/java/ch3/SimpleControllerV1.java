@@ -1,6 +1,5 @@
 package ch3;
 
-import lombok.Setter;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -13,11 +12,17 @@ import java.util.Map;
  * @author Dongmyeong Lee
  * @since 2020/03/21
  */
-@Setter
 public abstract class SimpleControllerV1 implements Controller {
     private String[] requiredParams;
     private String viewName;
 
+    public void setRequiredParams(String[] requiredParams) {
+        this.requiredParams = requiredParams;
+    }
+
+    public void setViewName(String viewName) {
+        this.viewName = viewName;
+    }
 
     @Override
     final public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -37,6 +42,7 @@ public abstract class SimpleControllerV1 implements Controller {
     }
 
     public abstract void control(Map<String, String> params, Map<String, Object> model) throws Exception;
+
 }
 
 

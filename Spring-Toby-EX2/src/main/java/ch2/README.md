@@ -291,7 +291,7 @@ public interface PlatformTransactionManager extends TransactionManager {
 #### 코드에 의한 트랜잭션 경게설정
 - 스프링 트랜잭션 매니저는 모두 PlatformTransactionManager를 구현하고 있다.
 - 따라서 이 인터페이스로 현재 등록되어있는 트랜잭션 매니저 빈을 가져올 수 있다면 일관된 방식으로 트랜잭션을 제어할 수 있다.
-- 하지만 PlatformTransactionManager를 직적쓰면 try/catch를 사용하여 트랜잭션을 직접 제어해야하는 불편함이 존재한다.
+- 하지만 PlatformTransactionManager를 직접쓰면 try/catch를 사용하여 트랜잭션을 직접 제어해야하는 불편함이 존재한다.
 - 템플릿/콜백 방식의 TransactionTemplate를 사용하면 편리하게 사용할 수 있다.
 - PlatformTransactionManager는 실무에선 잘 사용되지 않지만 PlatformTransactionManager를 이해하고 있어야 오류발생시 해결이 편리해질 것이다.
 
@@ -300,7 +300,7 @@ public interface PlatformTransactionManager extends TransactionManager {
 - 프록시 AOP를 이용하여 해당 기능들을 적용시켜준다.
 - 스프링 AOP는 JDK 다이내믹 프록시로 만들어 진것이므로 포인트컷은 기본적으로 인터페이스에 적용된다.
 - 하지만 클래스만으로 프록시를 만들 수도 있다.
-- 포인트컷은 가능한한 인터페이스에게 적용하는것이 쓸데없응 메서드에게 적용되는것을 막을 수 있을 것이다.
+- 포인트컷은 가능한 한 인터페이스에게 적용하는것이 쓸데없는 메서드에게 적용되는것을 막을 수 있을 것이다.
 - 선언적 트랜잭션 경계설정은 xml혹은 @Transactional을 이용한다.
 - Vol.1에서 자세히 다뤘으니 넘어가자.
 
@@ -329,7 +329,7 @@ public interface PlatformTransactionManager extends TransactionManager {
 - 스프링은 자바의 다양한 데이터 액세스 기술을 위한 트랜잭션 매니저를 제공해준다.
 - 여러개의 DB를 사용하지 않는 한 트랜잭션 매니저는 한 개만 사용할 수 있다.
 - 만약 DB는 하나이나 두 가지 이상의 데이터 액세스 기술을 동시에 사용하는 경우는 어떨까?
-- JPA DAO로 일부 엔티티-테이블을 업데이트하는 것과 JDBC DAO로는 복잡한 DB전용 쿼리를 사용해 데이터를 가져오는 것을 하나의 트랝개션 안에서 진행시키고 싶을 수 있다.
+- JPA DAO로 일부 엔티티-테이블을 업데이트하는 것과 JDBC DAO로는 복잡한 DB전용 쿼리를 사용해 데이터를 가져오는 것을 하나의 트랜잭션 안에서 진행시키고 싶을 수 있다.
 - JPA를 사용하지만 때에따라 MyBatis같은 SQL 매퍼를 사용하고 싶을 때도 있을 것이다.
 - 스프링은 두 개 이상의 데이터 액세스 기술로 만든 DAO를 하나의 트랜잭션으로 묶어서 사용하는 방법을 제공한다.
 
@@ -410,7 +410,7 @@ public interface PlatformTransactionManager extends TransactionManager {
 ## 2.8 정리
 - DAO 패턴을 이용하면 데이터 액세스 계층과 서비스 게층을 깔끔하게 분리하고 데이터 액세스 기술을 자유롭게 변경해서 사용할 수 있다.
 - 스프링 JDBC는 JDBC DAO를 템플릿/콜백 방식을 이용해 편리하게 작성할 수 있게 해준다.
-- SQL 매핑 기능을 제공하는 iBatis로 DAO를 만들 때도 스프링의 템플릿/콜백 지원능을 사용할 수 있다.
+- SQL 매핑 기능을 제공하는 iBatis로 DAO를 만들 때도 스프링의 템플릿/콜백 지원기능을 사용할 수 있다.
 - JPA와 하이버네이트를 이용하는 DAO에서는 템플릿/콜백과 자체적인 API를 선택적으로 사용할 수 있다.
 - 트랜잭션 경계설정은 XML의 스키마 태그와 애노테이션을 이용해 정의할 수 있다. 또한 트랜잭션 AOP를 적용할 때 프록시와 AspectJ를 사용할 수 있다.
 - 스프링은 하나 이상의 데이터 액세스기술로 만들어진 DAO를 같은 트랜잭션 안에서 동작하도록 만들어주며 하나 이상의 DB를 사용할때는 JTA를 이용하면 된다.
