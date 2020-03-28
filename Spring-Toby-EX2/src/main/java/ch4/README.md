@@ -1,5 +1,5 @@
 # Chapter 4. 스프링 @MVC
-- 애노테이션을 중심으로 한 새로운 MVC의 확장 기능은 @MVC라는 별칭으로도 분불린다.
+- 애노테이션을 중심으로 한 새로운 MVC의 확장 기능은 @MVC라는 별칭으로도
 
 ## 4.1 @RequestMapping 핸들러 매핑
 - @MVC의 가장 큰 특징은 핸들러 매핑과 어댑터의 대상이 오브젝트가 아니라 메서드라는 점이다.
@@ -173,7 +173,7 @@ public class UserController extends GenericController<User, Integer, UserService
 - 여기에 RequestMapping을 비롯한 다양한 애노테이션을 메서드나 파라미터에 적용해서 컨트롤러 로직에 대한 추가적인 정보를 제공할 수 있다.
 - 그러므로 @Controller를 담당하는 어댑터 핸들러는 상당히 복잡하다.
 - 사용할 수 있는 파라미터나 리턴타입의 종류도 매우 다양하기 때문에 익숙해지면 최적화된 구조로 컨트롤러를 개발할 수 있다.
-- @MVC와 @Controller 개발 방법은 스프링 역사상 가장 획기적인 변신이다. 이전에 사용하던 방식을 버리고 새로운 방식을 사용하도록 강하게 권장한 적은 없었다,.
+- @MVC와 @Controller 개발 방법은 스프링 역사상 가장 획기적인 변신이다. 이전에 사용하던 방식을 버리고 새로운 방식을 사용하도록 강하게 권장한 적은 없었다.
 - 그만큼 @MVC와 @Controller는 편리하고 강력하게 구현할 수 있다.
 
 ```java
@@ -195,7 +195,7 @@ public String complex(@RequestParam("name") String name,
     return "myview";
 }
 ```
-- 파라미터 값과 쿠기 값을 가져와 컨트롤러 로직에 사용하며 모델에 넣어 뷰로 전달한다.
+- 파라미터 값과 쿠키 값을 가져와 컨트롤러 로직에 사용하며 모델에 넣어 뷰로 전달한다.
 - 리턴타입이 스트링이므로 관례에따라 뷰이름으로 사용한다.
 - HttpServletRequest를 가져와 직접 파라미터와 쿠키 값을 추출하고, 모델 맵 오브젝트를 생성해서 값을 넣고, 모델과 뷰 이름을 담은 ModelAndView 오브젝트를 생성해서 리턴해야하는게 아닌 매우 깔끔하게 구현이 가능하다.
 - 스프링은 메서드의 파라미터와 리턴 값이 어떻게 선언됐는지 살펴보고, 이를 이용해 적절한 파라미터 값을 준비해서 호출해준다.
@@ -257,18 +257,18 @@ public void view(@RequestParam(value="id", required=false, defaultValue="-1"))
 - 컨트롤러가 뷰에 전달하는 모델오브젝트는 하나가 아니므로 보통 맵의 형태로 담아 전달하지만 @ModelAttribute는 모델 맵에 담겨서 전달되는 모델 오브젝트의 하나라고 볼 수 있다.
 - HTTP 요청정보를 통해서 생성되는 오브젝트의 형태의 정보를 @ModelAttribute를 이용하여 받아올 수 있다.
 - 보통 도메인 오브젝트나 DTO의 프로퍼티 요청 파라미터를 바인딩해서 한 번에 받아올 수 있다.
-- 하나의 오브젝트에 클라이언트의 요청정보를 담아서 한 번에 전달되는 것이기 때문에 이를 커맨드 패턴에서 말하는 커맨트 오브젝트라고 부르기도 한다.
+- 하나의 오브젝트에 클라이언트의 요청정보를 담아서 한 번에 전달되는 것이기 때문에 이를 커맨드 패턴에서 말하는 커맨드 오브젝트라고 부르기도 한다.
 - 해당 요청정보를 오브젝트에 바인딩하기 위해서는 수정자 메서드가 필요하다.
 
 > - 주로 URL의 쿼리 스트링으로 들어오는, 검색조건과 같은 정보를 @ModelAttribute가 붙은 파라미터 타입의 오브젝트로 모두 담아서 전달해주는 것은 커맨드라고 부른다.
-> - 해당 오브젝트에 정보를 활용하는 부가기능까지 넣는다면 커맨트 패턴 오브젝트처럼 사용할 수 있기 때문이다.
+> - 해당 오브젝트에 정보를 활용하는 부가기능까지 넣는다면 커맨드 패턴 오브젝트처럼 사용할 수 있기 때문이다.
 
 - @ModelAttribute는 그이외에 컨트롤러가 리턴하는 모델 파라미터로 오브젝트를 자동으로 추가해줄 수도 있다.
 
 #### Errors, BindingResult
 - @ModelAttribute는 단지 오브젝트에 여러개의 요청 파라미터 값을 넣어서 넘겨주는게아닌 검증작업이 추가로 이루어진다.
-- @RequestParam은 스프링의 기본 타입 변환 기능을 이용해 요청 파라미터 값을 메서트 파라미터 타입으로 변환한다.
-- 요청 파라미턴느 문자열로 오므로 스트릉이 가장 단순하고 숫자 타입일 경우 스트링 타입으로 들어오면 요청 파라미터의 타입 변환을 시도한다.
+- @RequestParam은 스프링의 기본 타입 변환 기능을 이용해 요청 파라미터 값을 메서드 파라미터 타입으로 변환한다.
+- 요청 파라미터는 문자열로 오기때문에 스트링이 가장 단순하고 숫자 타입일 경우 스트링 타입으로 들어오면 요청 파라미터의 타입 변환을 시도한다.
 - 성공한다면 숫자형 파라미터로 전달될 것이고 그렇지 않다면 400 응답이 전달될 것이다.
 - 그런데 @ModelAttribute를 사용했을 때는 요청 프로퍼티가 일치하지 않아 예외가 발생하면 400 응답이 전달되는게 아닌 타입 변환이 실패해도 작업은 계속 진행된다.
 - 타입 변환중 발생한 예외들은 BindingResult 타입 오브젝트에 담겨서 컨트롤러로 전달될 뿐이다.
@@ -322,7 +322,7 @@ public class HelloController{
 - JSR-303의 빈 검증기를 이용해 모델 오브젝트를 검증하도록 지시하는 지시자이다.
 - 보통 @ModelAttribute와 함께 사용한다.
 
-> - AnnotationMethodHandlerAdapter가 호출하는 컨트롤러 메서드의 사용 간으한 파라미터는 이렇게 많이 존재한다.
+> - AnnotationMethodHandlerAdapter가 호출하는 컨트롤러 메서드의 사용 가능한 파라미터는 이렇게 많이 존재한다.
 > - 스프링에서는 컨트롤러 메서드를 매우 자유롭게 작성할 수 있다.
 > - **유연성이 보장된다고 방만하게 사용하면 오히려 코드를 관리하기가 매우 힘들어 질 수 있다.**
 > - 최종적으로 어떤 파라미터 타입을 어떻게 사용할지는 개발자가 결정해야하며 그 책임도 개발자가 져야 한다.
@@ -335,7 +335,7 @@ public class HelloController{
 - 메서드의 리턴 타입을 결정할 때에는 ModelAndView에 함께 들어갈 정보로 어떤 게 있는지도 함께 고려해봐야 한다.
 
 #### 자동 추가 모델 오브젝트와 자동생성 뷰 이름
-- 다임 네 가지 정보는 메서드 리턴 타입에 관계없이 조건만 맞으면 모델에 자동으로 추가된다.
+- 다음 네 가지 정보는 메서드 리턴 타입에 관계없이 조건만 맞으면 모델에 자동으로 추가된다.
 
 **@ModelAttribute 모델 오브젝트 또는 커맨드 오브젝트**
 - @ModelAttribute를 붙인 모델 오브젝트는 컨트롤러가 리턴하는 모델에 추가된다.
@@ -360,7 +360,7 @@ public void add(User user)
 **BidingResult**
 - BidingResult 타입의 오브젝트도 모델에 자동으로 추가된다.
 - BidingResult가 추가되는 이유는 JSP, 프리마커, 벨로시티등의 뷰에 사용되는 커스텀 태그나 매크로에서 사용되기 때문이다.
-- 주로 잘못 입력된 폼의 값을 가져와 오류 메시지를 생성할 떄 사용된다.
+- 주로 잘못 입력된 폼의 값을 가져와 오류 메시지를 생성할 때 사용된다.
 
 
 > 컨트롤러에서 어떤 식으로든 뷰 정보를 제공해주지 않는 경우 RequuestToViewNameTranslator 전략에 의해 자동으로 뷰 이름이 만들어진다.
@@ -369,7 +369,7 @@ public void add(User user)
 #### ModelAndView
 - ModelAndView는 컨트롤러가 리턴해야 하는 정보를 담고 있는 가장 대표적인 타입이다.
 - 하지만 @Controller에서는 ModelAndView를 이용하는 것보다 편리한 방법이 많아서 자주 사용되지는 않는다.
-- 물론 @Controller에서 리턴타입을 ModelAndView로 해도 전혀 문제가 됮 ㅣ않는다.
+- 물론 @Controller에서 리턴타입을 ModelAndView로 해도 전혀 문제가 되지않는다.
 - ModelAndView를 만들어 리턴하더라도 @ModelAttribute모델과 Map, Model, ModelMap 파라미터 모델 등은 자동으로 추가된다.
 
 #### String
@@ -385,7 +385,7 @@ public String hello(@RequestParam String name, Model model){
 
 #### void
 - void로 리턴타입을 설정한다면 RequestToViewNameResolver전략을 통해 자동생성되는 뷰이름이 사용된다.
-- URL과 뷰이름을 일관되게 통일할 수 있담ㄴ void 형의 사용도 고려해볼만 하다.
+- URL과 뷰이름을 일관되게 통일할 수 있다면 void 형의 사용도 고려해볼만 하다.
 
 ```java
 @RequestMapping("/hello")
@@ -395,7 +395,7 @@ public void hello(@RequestParam String name, Model model){
 ```
 
 #### 모델 오브젝트
-- RequestToViewNameResolver로 자동생성하는 것을 사용하고 코드를 이용해 모델에 추가할 오브젝트가 하나라면 Model 파라미터를 받아 저장하는 데신 모델 오브젝트를 바로 리턴하여도 된다.
+- RequestToViewNameResolver로 자동생성하는 것을 사용하고 코드를 이용해 모델에 추가할 오브젝트가 하나라면 Model 파라미터를 받아 저장하는 대신 모델 오브젝트를 바로 리턴하여도 된다.
 - 모델이름은 리턴 값의 타입 이름을 따르게 되어있다.
 
 #### Map, Model, ModelMap
@@ -418,7 +418,7 @@ public String hello(){
   return "<html><body>Hello Spring</body></html>";
 }
 ```
-- 만약 ResponseBody가 없다면 린턴 값은 뷰이름으로 인식될 것이다. 하지만 ResponseBody가 붙어 있으므로 스트링 타입을 지원하는 ㄴ메시지 컨버터가 이를 변환해서ㅗ HttpServletRequest의 출력 스트림에 넣어준다.
+- 만약 ResponseBody가 없다면 리턴 값은 뷰이름으로 인식될 것이다. 하지만 ResponseBody가 붙어 있으므로 스트링 타입을 지원하는 메시지 컨버터가 이를 변환해서 HttpServletRequest의 출력 스트림에 넣어준다.
 
 ### 4.2.3 @SessionAttributes와 SessionStatus
 - HTTP 요청에 의해 동작하는 서블릿은 기본적으로 상태를 유지하지 않는다.
@@ -467,7 +467,7 @@ public class UserController{
 
 ```java
 @RequestMapping(value="user/edit", method=POST)
-public String submit(@ModelAttribute User user, SessionStatus){
+public String submit(@ModelAttribute User user, SessionStatus sessionStatus){
   userService.updateUser(user);
   sessionStatus.setComplete(); // 세션 제거
   return "user/editsuccess";
@@ -483,7 +483,7 @@ public String submit(@ModelAttribute User user, SessionStatus){
 - 등록을 담당하는 폼에서 초기에 빈 폼을 보여주는 것과 문제가 있을 때 기존 입렵 값을 보여주는 폼 두개는 만드는게 아닌 애초에 빈 모델 오브젝트를 리턴한다면 하나의 폼으로도 사용이 가능하다.
 - 이러한 방식을 사용하는것이 전형적인 스프링 MVC의 폼 처리 방식이다.
 
-#### 스프링 목 오브젝트와 AbstractDispatcherServletTest를 이용해 세선 테스트 만들기
+#### 스프링 목 오브젝트와 AbstractDispatcherServletTest를 이용해 세션 테스트 만들기
 - 웹 애플리케이션을 테스트할 때마다 서버를 띄우는 것은 번거로우며 여러 페이지를 걸쳐 세션이 동작하는 것을 테스트하는 것도 매우 번거롭다.
 - 하지만 앞에서 만들었던 스프링 MVC를 위한 기반 테스트인 AbstractDispatcherServletTest와 스프링의 서블릿 목 오브젝트를 이용하면 여러번의 요청을 거치면서 세션이 참여하는 작업을 당당하는 기능을 손쉽게 테스트할 수 있다.
 
@@ -555,7 +555,7 @@ public class SessionAttributesTest extends AbstractDispatcherServletTest {
 
 ## 4.3 모델 바인딩과 검증
 - @ModelAttribute가 지정된 파라미터를 @Controller메서드에 추가하면 크게 세 가지 작업이 자동으로 진행된다.
-- 첫째, 파라미터 타입의 오브젝트를 만든다. 해당 오브젝트의 디폴트 생성자가 반드시 필요하다. @SessionAttributes에 의해 세션에 저장된 모델 오브젝트가 있다면 새로운 오브젝트를 생성하는 대신 세션에 저장되어 있는 오브젝트를 가져온다.
+- 첫째, 파라미터 타입의 오브젝트를 만든다. 해당 오브젝트의 **디폴트 생성자가 반드시 필요하다.** @SessionAttributes에 의해 세션에 저장된 모델 오브젝트가 있다면 새로운 오브젝트를 생성하는 대신 세션에 저장되어 있는 오브젝트를 가져온다.
 - 둘째, 준비된 모델 오브젝트의 프로퍼티에 웹 파라미터를 바인딩해주는 것이다. HTTP를 통해 전달되는 파라미터는 기본적으로 문자열로 되어있다. 만약 오브젝트의 프로퍼티가 스트링 타입이 아니라면 적절한 변환이 필요할 것이다. 프로퍼티 에디터로 변환을 시도하고 변환이 불가능하다면 BidingResult에 오류가 담기게 된다.
 - 셋째, 모델의 값을 검증한다. 바인딩 단계에서 타입에 대한 검증을 끝났지만 그 외 검증할 내용들을 검증한다.
 - 스프링에서 바인딩이라고 말할 때는 오브젝트의 프로퍼티에 값을 넣는 것을 말한다. 또는 프로퍼티로부터 값을 읽어오는 경우도 있다.
@@ -601,7 +601,7 @@ public enum Level {
     }
 }
 ```
-- Vol.1에서 사용헀던 Level enum이다. 만약 컨트롤러 메서드가 /user/search?level=1에 대해 정상적으로 동작하도록 만들어보자.
+- Vol.1에서 사용헀던 Level enum이다. 컨트롤러 메서드가 /user/search?level=1에 대해 정상적으로 동작하도록 만들어보자.
 
 ```java
 public class LevelPropertyEditor extends PropertyEditorSupport {
@@ -636,7 +636,7 @@ class LevelPropertyEditorTest {
 
 #### @InitBinder
 - @MVC에는 스프링 컨테이너에 정의된 디폴트 프로퍼티 에디터로만 등록되어 있다. 여기에 LevelPropertyEditor를 추가하여 level 타입의 변환이 필요할 때 사용되도록 만들어야 한다.
-- @Controller 메서드를 호출해줄 책임이 있는 AnnotationMethodHandlerAdapter는 @RequestParam, @ModelAttribute, @PathVariable등 처럼 HTTP 요청을 파라미터 변수에 바인딩해주는 작업이 필요한 애노테이션을 마난면 먼저 WebDataBinder를 만든다.
+- @Controller 메서드를 호출해줄 책임이 있는 AnnotationMethodHandlerAdapter는 @RequestParam, @ModelAttribute, @PathVariable등 처럼 HTTP 요청을 파라미터 변수에 바인딩해주는 작업이 필요한 애노테이션을 만나면 먼저 WebDataBinder를 만든다.
 - 하지만 WebDataBinder는 AnnotationMethodHandlerAdapter가 복잡한 과정을 통해 메서드 파라미터와 애노테이션 등을 분석하고 바인딩이 내부적으로 만들어져 노출되지 않기 때문에 WebDataBinder의 초기화 메서드를 이용해야 한다.
 - 그것이 바로 컨트롤러 클래스에서 사용할 수 있는 @InitBinder이다.
 
@@ -645,7 +645,7 @@ class LevelPropertyEditorTest {
 public void initBinder(WebDataBinder dataBinder){
     dataBinder.registerCustomEditor(Level.class, new LevelPropertyEditor());
 }
-``
+```
 - @InitBinder가 붙은 initBinder() 메서드는 메서드 파라미터 바인딩을 하기 전에 자동으로 호출된다.
 
 
@@ -670,7 +670,7 @@ void webDataBinder() throws Exception{
 - 따라서 같은 타입이지만 프로퍼티 이름이 일치하지 않는 경우에는 등록한 커스텀 프로퍼티 에디터가 적용되지 않는다.
 - 프로퍼티 이름이 필요하므로 @RequestParam과 같은 단일 파라미터 바인딩에는 적용되지 않는다. @ModelAttribute로 지정된 모델 오브젝트의 프로퍼티 바인딩에 사용할 수 있다.
 - 이름이 포함된 프로퍼티 에디터의 등록은 이미 프로퍼티 에디터가 존재할 경우 사용하기 적합하다.
-- WebDataBinder는 바인딩 작업 시 커스텀 프로퍼티 에디터를 먼저 적용해보고 적절한 프로퍼티 에디터가 없으면 디폴트 에디터를 사용한다. 즉 커스텀 프로퍼티 에티거가 우선순위를 갖는다.
+- WebDataBinder는 바인딩 작업 시 커스텀 프로퍼티 에디터를 먼저 적용해보고 적절한 프로퍼티 에디터가 없으면 디폴트 에디터를 사용한다. 즉 커스텀 프로퍼티 에디터 가 우선순위를 갖는다.
 
 
 ```java
@@ -706,7 +706,7 @@ public void initBinder(WebDataBinder dataBinder){
 - 이제 age에만 적용되므로 id는 그대로 1000이 적용될 것이다.
 
 #### WebBindingInitializer
-- @InitBinder메서드에 추가된 프로퍼티 에디터는 클래스 안에서만 동작한다. 만약 애프릴케이션 전반에 걸쳐 적용하고 싶을때 WebBindingInitializer를 이용하면된다.
+- @InitBinder메서드에 추가된 프로퍼티 에디터는 클래스 안에서만 동작한다. 만약 애플리케이션 전반에 걸쳐 적용하고 싶을때 WebBindingInitializer를 이용하면된다.
 
 ```java
 @Component
@@ -725,7 +725,7 @@ public class MyWebBindingInitializer implements WebBindingInitializer {
 - 그렇다면 프로퍼티 에디터가 다른 스프링 빈을 참조해야 한다면 어떻게 될까? 그럴경우 해당 데이터를 빈으로 등록해야 하는데 싱글톤은 불가능하니 적절한 프로포타입 빈으로 만들어 져야할 것이다.
 - 어떤 경우에 프로퍼티 에디터가 다른 빈을 참조할수 있을까?
 - HTTP 요청 파라미터로 도메인 오브젝트의 ID를 제공받았을 때 이를 바인딩 과정에서 ID에 해당하는 실제 도메인 오브젝트로 만들어줄 때 사용할 수 있을 것이다.
-- 뿌만아니라 폼의 파라미터가 모델의 프로퍼티에 바인딩될 떄 단순 타입이 아닐경우도 존재한다.
+- 뿐만아니라 폼의 파라미터가 모델의 프로퍼티에 바인딩될 때 단순 타입이 아닐경우도 존재한다.
 
 ```java
 public class User{
@@ -815,7 +815,7 @@ public class UserController {
 - PropertyEditor와 달리  Converter는 변환 과정에서 메서드가 한 번만 호출되므로 멀티 스레드환경에서 안전하며 싱글톤 빈으로 등록해주고 변환작업을 진행할 수 있다.
 
 #### Converter
-- 문자열과 오브젝트 사이의 양방향 변환 기능을 제공하는 PropertyEditor와는 다르게 Converter 메서드는 소스 타입에서 타깃 타입으로의 단방향 변환만 지원한다.
+- 문자열과 오브젝트 사이의 양방향 변환 기능을 제공하는 PropertyEditor와는 다르게 Converter 메서드는 소스 타입에서 타깃 타입으로의 단방향 변환만 지원한다.
 
 ```java
 public class LevelToStringConverter implements Converter<Level, String> {
@@ -843,7 +843,7 @@ public class StringToLevelConverter implements Converter<String, Level> {
 
 #### Fomatter와 FormattingConversionService
 - 스프링에서는 Formatter 타입의 추가 변환 API를 제공하는데, 이 포매터는 스트링 타입의 폼 필드 정보와 컨트롤러 메서드의 파라미터 사이에 양방향으로 적용할 수 있도록 두 개의 변환 메서드를 갖고 있다.
-- Fomatter는 그 자체로 Converter와 같이 스프링이 기본적으로 지원하는 범용적인 타입 변환 API가 아니라 GenericConversionService 등에 직접등록하 수 없고 FormattingConversionService를 통해서만 적용이 가능하다.
+- Fomatter는 그 자체로 Converter와 같이 스프링이 기본적으로 지원하는 범용적인 타입 변환 API가 아니라 GenericConversionService 등에 직접등록 할 수 없고 FormattingConversionService를 통해서만 적용이 가능하다.
 - 귀찮은거 같지만 범용적인 타입 변환 기술의 틀을 지키기 위해 스프링이 선택한 방법이다.
 - 포매터는 변화 메서드에 오브젝트나 문자열 뿐만아니라 Local타입의 지역정보까지 제공해주므로 이를 활용할 수 있다.
 
@@ -866,12 +866,12 @@ public class Product {
 - 날짜와 시간 포맷을 스타일과 ISO 형식, 커스텀 패턴등으로 선택하여 지정할 수 있는 기능을 제공한다.
 
 
-#### 바인딩 기술의 적용 우선순위와 활용 전략
+### 바인딩 기술의 적용 우선순위와 활용 전략
 **사용자 정의 타입의 바인딩을 위한 일괄 적용 Converter**
 - Level 이늄처럼 애플리케이션에서 정의한 타입이면서 모델에 자주 활용된다면 컨버터를 만들고 컨버전 서비스로 묶어 일괄 적용하는 것이 편리하다.
 
 **필드와 메서드 파라미터, 애노테이션 등의 메타정보를 활용하는 조건부 변환 기능 ConditionalGenericConverter**
-- 특정 타입에 대해 항상 동일한 변환 작업을 한다면 Converter로 충분하나, 바인딩이 일어나느 필드와 메서드 파라미터등의 조건에 따라 변환을 할지 말지 결정하거나, 이런 조건을 변환 로직에 참고할 필요가 있을경우 ConditionalGenericConverter를 이용해야 한다.
+- 특정 타입에 대해 항상 동일한 변환 작업을 한다면 Converter로 충분하나, 바인딩이 일어나는 필드와 메서드 파라미터등의 조건에 따라 변환을 할지 말지 결정하거나, 이런 조건을 변환 로직에 참고할 필요가 있을경우 ConditionalGenericConverter를 이용해야 한다.
 
 **애노테이션 정보를 활용한 HTTP 요청과 모델 필드 바인딩: AnnotationFormatterFactory와 Formatter**
 - @NumberForamt, @DataTimeFormat처럼 필드에 부여하는 애노테이션 정보를 이용해 변환 기능을 지원하려면 AnnotationFormatterFactory를 이용해 애노테이션에 따른 포매터를 생성해주는 팩토리를 구현해야 한다.
@@ -880,17 +880,17 @@ public class Product {
 - 특정 모델의 필드에 제환해서 변환 기능을 적용해야 할 경우 PropertyEditor를 활용하여 지정된 이름을 가진 필드에 제한적으로 적용할 수 있다.
 - ConditionalGenericConverter를 적용할 수 있겠지만 단순 필드 조건만 판별하는 경우 PropertyEditor가 가장 편리할 것이다.
 
-> - 컨버전 서비스와 프로퍼티 에디터를 함께 사용하다 보면 종종 동일하 ㄴ타입에 대해 두개 이상의 변환 기능이 중복될 경우가 있다.
+> - 컨버전 서비스와 프로퍼티 에디터를 함께 사용하다 보면 종종 동일한 타입에 대해 두개 이상의 변환 기능이 중복될 경우가 있다.
 > - 이때는 어떤 종류의 변환이 우선적으로 사용되는지 우선순위에 대해 잘 알고 그에 따른 적절한 설정을 해주어야 할 것이다.
-> - 프로퍼티 에디터에서는 디폴트보다 커스텀이 항상 높은 우선순위를 가지고 그외에도 프로퍼티 에디터 > 컨버전 서비스의 컨버터 > 스프링 내장 디폴트 프로퍼티 에디터 순으로 적용된다.
+> - 프로퍼티 에디터에서는 디폴트보다 커스텀이 항상 높은 우선순위를 가지고 있으며 정리하자면 프로퍼티 에디터 > 컨버전 서비스의 컨버터 > 스프링 내장 디폴트 프로퍼티 에디터 순으로 적용된다.
 
-### 4.3.3 WebDataBinder 설정 학목
+### 4.3.3 WebDataBinder 설정 항목
 - WebDataBinder는 HTTP 요청정보를 컨트롤러 메서드의 파라미터나 모델에 바인딩할 때 사용되는 바인딩 오브젝트다.
 - WebDataBinder는 에디터, 컨버터를 등록하는 것 외에도 유용한 바인딩 기능을 지정해줄 수 있다.
 
 #### allowedFields, disallowedFields
 - 도메인 오브젝트 방식을 사용하는 경우 @ModelAttribute로 HTTP 요청을 전달 받을 때 보안에 신경써야 한다.
-- 사용자가 폼에는 나타나지 않지만 관레쩍으로 많이 사용하는 프로퍼티 이름을 추측해서 이를 추가한 뒤 폼을 서브밋하면 문제가 발생할 수 있다.
+- 사용자가 폼에는 나타나지 않지만 관레적으로 많이 사용하는 프로퍼티 이름을 추측해서 이를 추가한 뒤 폼을 서브밋하면 문제가 발생할 수 있다.
 - 그러므로 수정을 허용한 필드외의 프로퍼티들은 모델에 바인딩 되지않도록 설정할 필요가 있을 것이다.
 - 이때 허용된 필드목록을 넣는 allowedFields와 금지 필드 목록을 넣는 disallowedFields를 사용할 수 있다.
 - allowedFields의 경우 등록된 프로퍼티 외의 모든 바인딩을 막아주고, disallowedFields는 등록된 프로퍼티들에 대한 바인딩만 막아준다.
@@ -935,7 +935,7 @@ public interface Validator {
 - supports가 통과한 경우에만 validate메서드가 호출된다.
 - Validator로 검증한 결과 아무 문제가 없다면 정상 종료되고 문제가 있다면 Errors 인터페이스를 통해 특정 필드나 모델 오브젝트 전체에 대해 오류정보를 등록할 수 있다.
 - JS로 입력 값을 모두 확인한 경우에는 서버에서 검증을 하지 않아도될까? 그렇지 않다.
-- JS의 검증은 서버로 자주 전송이 이렁나느 것을 막아주려는 목적으로만 사용하고 JS 검증이 통과했다고 서버의 검증을 생략하면 자칫 위험할 수 있다.
+- JS의 검증은 서버로 자주 전송이 일어나는 것을 막아주려는 목적으로만 사용하고 JS 검증이 통과했다고 서버의 검증을 생략하면 자칫 위험할 수 있다.
 - 브라우저에서 자바스크립트가 동작하지 않도록할 수 있고, 스크립트를 조작할 수 있기 때문에 서버의 검증은 필히 필요하다.
 
 ```java
@@ -960,9 +960,9 @@ public class UserValidator implements Validator {
 - ValidationUtils를 활용하면 주석처리된 if문의 기능을 간단하게 구현할 수 있다.
 - 여러개의 필드의 조건을 결합해서 검증하는 경우 검증 과정에서 문제가 발견되더라도 특정 필드에 대한 오류로 만드는 것은 적당하지 않으므로 rejectValue가 아닌 reject메서드를 사용하는 것이 좋다.
 - Validator는 보통 미리 정해진 단순 조건을 이용해 검증하는데 사용된다.
-- 필수 값의 입력 여부, 값의 범위, 길이, 형식등이 주로 검증조건이 되는데 때에따라 비즈니스 로직을 적용해서 값을 검증할 수도 있다.
+- 필수 값의 입력 여부, 값의 범위, 길이, 형식등이 주로 검증조건이 되는데 때에 따라 비즈니스 로직을 적용해서 값을 검증할 수도 있다.
 - Validator는 싱글톤으로 사용될 수 있으며 UserService와 같은 빈을 이용해 비즈니스 로직 관점에서 입력 값을 검증하는 작업을 넣을 수 있다.
-- 검증 로직은 프레젠테이션 계층인지, 서비스 계층인지에 대한 논재잉 많이 있다. 그러므로 검증 로직은 특정 계층에 종속되기 보다 도메인 오브젝트처럼 오브젝트 단위로 만들고 이를 필요한 곳에서 호출해서 사용하거나, 반대로 Validator에서 필요한 로직을 담고 있는 빈을 호출하는 것이 좋을 것이다.
+- 검증 로직은 프레젠테이션 계층인지, 서비스 계층인지에 대한 논쟁이 많다. 그러므로 검증 로직은 특정 계층에 종속되기 보다 도메인 오브젝트처럼 오브젝트 단위로 만들고 이를 필요한 곳에서 호출해서 사용하거나, 반대로 Validator에서 필요한 로직을 담고 있는 빈을 호출하는 것이 좋을 것이다.
 
 **컨트롤러 메서드 내의 코드**
 - Validator는 빈으로 등록 가능하므로 컨트롤러에서 직접 DI받아 검증을 진행할 수도 있다.
@@ -1010,7 +1010,7 @@ ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
 field.required=필수 입력 항목입니다.
 ```
 - 프로퍼티에는 값을 이렇게 설정해주면 BindingResult에 오류정보가 등록된다.
-- field.required라는 에러코드가 BindingResult에 등록도ㅒㅆ다면 스프링이 디폴트로 사용하는 MessageCodeResolver인 DefaultMessageCodeResolver는 이를 확장한 다음과 같은 네개의 메시지 키 후보를 생성한다.
+- field.required라는 에러코드가 BindingResult에 등록됐다면 스프링이 디폴트로 사용하는 MessageCodeResolver인 DefaultMessageCodeResolver는 이를 확장한 다음과 같은 네개의 메시지 키 후보를 생성한다.
 
 ```properties
 1. 에러코드.모델이름.필드이름: filed.required.user.name
@@ -1023,7 +1023,7 @@ field.required=필수 입력 항목입니다.
 
 #### MessageSource
 - MessageCodeResolver를 통해 여러 개의 후보로 만들어진 메시지 코드는 어떻게 message.properties 파일에 담긴 메시지를 가져올까?
-- 사실 메시지 코드 message.properties에서 MessageCodeResolver를 한 번 더 거쳐서 최종적인 메시지를 만들기 때문에 message.proeprties 리소스 번들 파일을 사용하도록 고정되어 있진 않ㄴ다.
+- 사실 메시지 코드 message.properties에서 MessageCodeResolver를 한 번 더 거쳐서 최종적인 메시지를 만들기 때문에 message.proeprties 리소스 번들 파일을 사용하도록 고정되어 있진 않다.
 - 스프링의 MessageSource의 구현체는 두 가지 종류가 있는데 하나는 코드로 메시지를 등록할 수 있는 StaticMessageSource이며 다른 하나는 message.properties 리소스 번들 방식을 사용하는 ResourceBundleMessageSoruce이다.
 - 서버 가동중 재시작 없이 메시지를 변경하고 싶다면 ReloadableResourceBundleMessageSource를 적용하면 된다.
 - MeesageSourece는 기본적으로 다음 네 가지 정보를 활용해 최종적인 메시지를 만들어 낸다.
@@ -1036,7 +1036,7 @@ field.required=필수 입력 항목입니다.
 **메시지 파라미터 배열**
 - BidingResult나 Errors의 rejectValue, reject에는 Object[] 타입의 세 번째 파라미터를 지정할 수 있다.
   - filed.min={0}보다 적은 값은 사용할 수 없습니다.
-- 위와같이 message.properties에 파라미터 값을 지정할 수 있다.
+- 위와같이 message.properties에 파라미터 값을 사용할 수 있다.
 
 **디폴트 메시지**
 - 메시지 키 후보 값을 모두 이용해 프로퍼티를 찾아봤지만 메시지가 없다면 디폴트 메시지가 사용된다.
@@ -1060,8 +1060,8 @@ rejectValue("name", "filed.required", null, "입력해주세요")
 ### 4.3.5 모델의 일생
 - 스프링 MVC 개념을 제대로 이해하는게 가장 중요한 것이 있다면 모델 오브젝트가 어떻게 만들어지고, 다뤄지고, 사용되는가에 대한 지식이다.
 - 그 과정에서 참여하는 다양한 기능을가진 서비스 오브젝트는 어떤 것이 있으며, 이를 어떻게 확장하거나 변경할 수 있는지도 이해해야 한다.
-- 컨트롤러, 뷰와는 다르게 모델은 보이지 않는 곳에서 만들어지기도 하고, 코드 한 줄 만들지 않고 모델 오븢게트에 대한 다양한 조작이 이렁나기도 한다.
-- 애노테이션을 추가하는 것만으로 세션에 저장됐다 다시 사용되기도 하고, 검증이 이렁나기도 한다.
+- 컨트롤러, 뷰와는 다르게 모델은 보이지 않는 곳에서 만들어지기도 하고, 코드 한 줄 만들지 않고 모델 오브젝트에 대한 다양한 조작이 일어나기도 한다.
+- 애노테이션을 추가하는 것만으로 세션에 저장됐다 다시 사용되기도 하고, 검증이 일어나기도 한다.
 
 #### HTTP 요청으로부터 컨트롤러 메서드까지
 ![img](httpFull.png)
@@ -1079,7 +1079,7 @@ rejectValue("name", "filed.required", null, "입력해주세요")
 - 커스텀 프로퍼티 에디터, 컨버전 서비스, 디폴트 프로퍼티 에디터 순으로 적용된다.
 
 **WebDataBinder에 등록된 검증기**
-- 메돌 파라미터에 @Valid가 지정되어있다면 WebBindingInitializer나 @InitBinder 메서드를 통해 등록된 검증기 모델로 검증한다.
+- 메서드 파라미터에 @Valid가 지정되어있다면 WebBindingInitializer나 @InitBinder 메서드를 통해 등록된 검증기 모델로 검증한다.
 
 **ModelAndView의 모델 맵**
 - 모델오브젝트는 컨트롤러 메서드가 실행되기 전에 임시 모델 맵에 저장된다.
@@ -1123,7 +1123,7 @@ rejectValue("name", "filed.required", null, "입력해주세요")
 #### ByteArrayHttpMessageConverter
 - byte[] 타입의 오브젝트를 지원하며 모든 미디어 타입을 지원한다.
 - 즉 @RequestBody로 전달받을 때 모든 종류의 HTTP요청 메시지 본문을 byte배열로 가져올 수 있다.
-- @ResponseBody로 보낼 떄는 콘텐트 타입이 application/octet-stream으로 설정된다.
+- @ResponseBody로 보낼 때는 콘텐트 타입이 application/octet-stream으로 설정된다.
 
 #### StringHttpMessageConverter
 - 스트링으로 변환해주는 컨버터이다. 응답의 경우 콘텐트 타입은 text/plain이 된다.
@@ -1174,7 +1174,7 @@ rejectValue("name", "filed.required", null, "입력해주세요")
 - 이 또한 다른 디폴트 핸들러 어댑터 전략은 자동등록되지 않는다.
 
 #### ConfigurableWebBindingInitializer
-- 모든 컨트롤러 메서드에 자동으로 적용되는 WebDataBinder 추기화용 빈을 등록하고 AnnotationMethodHandlerAdapter의 프로퍼티로 연결해준다.
+- 모든 컨트롤러 메서드에 자동으로 적용되는 WebDataBinder 초기화용 빈을 등록하고 AnnotationMethodHandlerAdapter의 프로퍼티로 연결해준다.
 - 기본적으로 컨버전 서비스는 @NumberFormat과 같은 애노테이션 방식의 포매터를 지원하는 FormattingConversionServiceFactoryBean이 등록된다.
 - 글로벌 검증기는 LocalValidatorFactoryBean으로 설정되므로 JSR-303의 검증용 애노테이션 기능이 자동으로 제공된다.
 - 단 JSR-303 지원 라이브러리가 클래스패쓰에 등록되어 있어야한다.
@@ -1223,14 +1223,14 @@ rejectValue("name", "filed.required", null, "입력해주세요")
 ---
 
 ## 4.8 URL과 리소스 관리
-### 4.8.1 \<mvn:default-servlet-handelr/>
+### 4.8.1 \<mvn:default-servlet-handler/>
 - 정적 리소스와 동적 리소스를 이전에는 확장자로 주로 구분했지만 이제는 확장자를 거의 사용하지 않는다.
 - 그러하여 정적, 동적 리소스를 구분하는데 어려움이 있었는데 이를 해결해주는 기능이 스프링 3.0.4부터 생겨났다.
 - 위의 xml을 추가하면 /로 시작하는 모든 URL이 들어올 때 DispathcerServlet이 정적 리소스 파일에 대한 요청을 디폴트 서블릿으로 포워딩해준다.
 - @RequestMapping의 요청 조건이 맞는지 확인 후 핸들러가 없다면 정적 리소스로 판단하고 디폴트 서블릿으로 넘기는 것이다.
 
 ### 4.8.2 \<url:resource/>를 이용한 리소스 관리
-- 여러 웹 애플리케이션에서 공통적으로 사용되는 클래스가 존재하면 별도로 프로젝트로 ㅁ나들고 jar로 패키징해 라이브러리로 사용하게 할 수 있다.
+- 여러 웹 애플리케이션에서 공통적으로 사용되는 클래스가 존재하면 별도로 프로젝트로 만들고 jar로 패키징해 라이브러리로 사용하게 할 수 있다.
 - 반면 js, css 파일등 ui 관련 리소스는 별도로 패키징하여 라이브러리처럼 사용하기가 쉽지 않다.
 - 위의 xml을 이용하면 간단하게 모듈화할 수 있게 해준다.
 
@@ -1249,9 +1249,9 @@ rejectValue("name", "filed.required", null, "입력해주세요")
 - RequestMapping 전략이 변경되었다는건 이전의 전략이 확장성이 좋지 않았다는 것이다.
 - 그 이유는 DefaultAnnotationHandlerMapping같은 전략 클래스가 DispathcerServlet의 전략 설계와 의도가 맞지 않는 부분이 있기 때문이다.
 - @RequestMapping은 클래스 단위가 아닌 메서드 단위로 매핑을 시켜준다.
-- 자바에서는 메서드는 오브젝트가 아니기 때문에 빈으로 등록될 수 없으므로 해당 핸들러를 매핑하는게 쉽지 않았따.
+- 자바에서는 메서드는 오브젝트가 아니기 때문에 빈으로 등록될 수 없으므로 해당 핸들러를 매핑하는게 쉽지 않았다.
 - 그렇기 때문에 3.0의 DefaultAnnotationHandlerMapping전략에선 매핑 결과가 요청을 담당할 메서드가 속해 있는 컨트롤러의 오브젝트가 될 수 밖에 없었다.
-- 그래서 선정된 핸들러를 실행하는 책ㅇ미만 맡아야할 AnnotationMethodHandlerAdapter가 실행할 메서드를 찾는 매핑 작업을 추가로 필요했다.
+- 그래서 선정된 핸들러를 실행하는 책임만 맡아야할 AnnotationMethodHandlerAdapter가 실행할 메서드를 찾는 매핑 작업을 추가로 필요했다.
 - 책임과 역할이 얽혀 있고 리플렉션을 통해 메서드를 호출하거나, 파라미터 바인딩을 해줘야 했기 때문에 코드는 지저분해지고 확장성이 떨어졌다.
 - 그리고 선정된 핸들러만 가지곤 메서드를 특정할 수 없으므로 인터셉터활용도 제한적이였다.
 - 스프링 3.1에서는 이러한 문제를 해결하였다.
@@ -1271,7 +1271,7 @@ rejectValue("name", "filed.required", null, "입력해주세요")
   - 메서드 리턴 값 메타정보
 
 ### 4.9.2 @RequestMapping 핸들러 매핑: RequestMappingHandlerMapping
-- 3.1부터는 consumes 엘리먼트로 COntent-type 헤더를 정할 수 있고 produces 에릴먼트로 Accept 헤를 정할 수 있다.
+- 3.1부터는 consumes 엘리먼트로 Content-type 헤더를 정할 수 있고 produces 엘리먼트로 Accept 헤더를 정할 수 있다.
 - 컨트롤러와 함께 다양한 요청 조건을 설정하면 어떻게 매핑이 되는지 정확히 파악하기 힘들 수가 있다.
 - 이럴때는 빈으로 등록된 RequestMappingHandlerMapping을 가져와서 아래와 같이 출력을 해본다면 어떻게 매핑 정보가 구성되는지 알 수 있을 것이다.
 
