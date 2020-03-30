@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ch5.step2.UserServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-12T13:49:44" hostname="DESKTOP-J4GNLIC" time="1.457">
+  <properties/>
+  <testcase name="upgradeLevels()" classname="ch5.step2.UserServiceTest" time="1.457"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[3월 12, 2020 10:49:44 오후 org.springframework.test.context.support.AbstractTestContextBootstrapper getDefaultTestExecutionListenerClassNames
+INFO: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+3월 12, 2020 10:49:44 오후 org.springframework.test.context.support.AbstractTestContextBootstrapper getTestExecutionListeners
+INFO: Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2b874cf, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@b519ec2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@55acceef, org.springframework.test.context.transaction.TransactionalTestExecutionListener@79bbe3fb, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@38e4ee0f, org.springframework.test.context.event.EventPublishingTestExecutionListener@3fc4d05f]
+]]></system-err>
+</testsuite>

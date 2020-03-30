@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="temp.typeToken.V1TypeTokenTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-27T13:19:34" hostname="DESKTOP-J4GNLIC" time="0.182">
+  <properties/>
+  <testcase name="typeSafe()" classname="temp.typeToken.V1TypeTokenTest" time="0.182"/>
+  <system-out><![CDATA[put -> class java.lang.String
+put -> class java.lang.Integer
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="de6c02e5-8718-4781-b48c-bc5de6d1473f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/c:/LogExample/logexample2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/sun/tobyreview/non_spring/reactive/ch3/Ex1DelegateSub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/sun/tobyreview/non_spring/reactive/ch3/Ex1DelegateSub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/sun/tobyreview/non_spring/reactive/ch3/Ex1Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/sun/tobyreview/non_spring/reactive/ch3/Ex1Operators.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ZjaWovNQWgKNoIrIktRONbP73J" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Spring-Toby-EX2" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+  </component>
+  <component name="RunManager" selected="Application.Ex3IntervalImpl">
+    <configuration name="Ex1Operators" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.sun.tobyreview.non_spring.reactive.ch3.Ex1Operators" />
+      <module name="toby-review.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.sun.tobyreview.non_spring.reactive.ch3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ex1Scheduler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.sun.tobyreview.non_spring.reactive.ch4.Ex1Scheduler" />
+      <module name="toby-review.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.sun.tobyreview.non_spring.reactive.ch4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ex2FluxSc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.sun.tobyreview.non_spring.reactive.ch4.Ex2FluxSc" />
+      <module name="toby-review.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.sun.tobyreview.non_spring.reactive.ch4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ex3IntervalImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.sun.tobyreview.non_spring.reactive.ch4.Ex3IntervalImpl" />
+      <module name="toby-review.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.sun.tobyreview.non_spring.reactive.ch4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ex3Reactor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="me.sun.tobyreview.non_spring.reactive.ch3.Ex3Reactor" />
+      <module name="toby-review.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.sun.tobyreview.non_spring.reactive.ch3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TobyReviewApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="toby-review.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="me.sun.tobyreview.TobyReviewApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Ex3IntervalImpl" />
+        <item itemvalue="Application.Ex2FluxSc" />
+        <item itemvalue="Application.Ex1Scheduler" />
+        <item itemvalue="Application.Ex3Reactor" />
+        <item itemvalue="Application.Ex1Operators" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de6c02e5-8718-4781-b48c-bc5de6d1473f" name="Default Changelist" comment="" />
+      <created>1585354992166</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585354992166</updated>
+      <workItem from="1585355002543" duration="4942000" />
+      <workItem from="1585389178231" duration="3578000" />
+      <workItem from="1585437510524" duration="5860000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="243" key="#com.intellij.ide.util.MemberChooser" timestamp="1585439026511">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="765" y="243" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585439026511" />
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1585390715901">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585390715901" />
+    <state width="1877" height="89" key="GridCell.Tab.0.bottom" timestamp="1585495159715">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="89" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585495159715" />
+    <state width="1877" height="89" key="GridCell.Tab.0.center" timestamp="1585495159715">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="89" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585495159715" />
+    <state width="1877" height="89" key="GridCell.Tab.0.left" timestamp="1585495159715">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="89" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585495159715" />
+    <state width="1877" height="89" key="GridCell.Tab.0.right" timestamp="1585495159715">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="89" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585495159715" />
+    <state x="461" y="182" key="SettingsEditor" timestamp="1585461660857">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585461660857" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1585460440012">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585460440012" />
+  </component>
+</project>

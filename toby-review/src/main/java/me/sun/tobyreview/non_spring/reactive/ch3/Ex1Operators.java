@@ -13,8 +13,8 @@ import java.util.function.Function;
 public class Ex1Operators {
     public static void main(String[] args) {
         Publisher<Integer> pub = iterPub(Arrays.asList(1, 2, 3, 4, 5));
-        Publisher<Integer> sumPub = reducePub(pub, 1, (pre, cur) -> pre * cur);
-        sumPub.subscribe(logSub());
+        Publisher<Integer> mapPub = mapPub(pub, i -> i * 3);
+        mapPub.subscribe(logSub());
     }
 
     private static <T, R> Publisher<R> reducePub(Publisher<T> pub, R init, BiFunction<R, T, R> bf) {
@@ -24,6 +24,7 @@ public class Ex1Operators {
 
                     @Override
                     public void onNext(T t) {
+                        log.debug("onNext:{}", t);
                         result = bf.apply(result, t);
                     }
 
@@ -49,22 +50,23 @@ public class Ex1Operators {
 
     private static Publisher<Integer> iterPub(Iterable<Integer> iterable) {
         return s ->
-                s.onSubscribe(new Subscription() {
-                    @Override
-                    public void request(long n) {
-                        try {
-                            iterable.forEach(s::onNext);
-                            s.onComplete();
-                        } catch (RuntimeException e) {
-                            s.onError(e);
-                        }
-                    }
+                s.onSubscribe(
+                        new Subscription() {
+                            @Override
+                            public void request(long n) {
+                                try {
+                                    iterable.forEach(s::onNext);
+                                    s.onComplete();
+                                } catch (RuntimeException e) {
+                                    s.onError(e);
+                                }
+                            }
 
-                    @Override
-                    public void cancel() {
+                            @Override
+                            public void cancel() {
 
-                    }
-                });
+                            }
+                        });
     }
 
     private static <T> Subscriber<T> logSub() {

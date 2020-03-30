@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="43f03868-0434-4487-987b-28c12a3c5fd5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/Level_Ex1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserLevelUpgradeDefault.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserLevelUpgradePolicy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService_Ex1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService_Ex2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService_Ex3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ch5/step2/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch1/ch1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch1/ch1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch4/step1/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch4/step1/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/applicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch5/step2/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch5/step2/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/c:/LogExample/logexample2.log" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1YyaYu6DW22McX6EwDndawtJeBW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="abbreviatePackageNames" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Spring-of-TobyTV" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ch5.step2" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ch5.step2" />
+      <recent name="ch5.step3" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.UserServiceTest.upgradeLevels">
+    <configuration name="UserServiceTest.add" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ch5.step2.UserServiceTest.add&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserServiceTest.upgradeLevels" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ch5.step2.UserServiceTest.upgradeLevels&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserTest.cannotUpgradeLevel" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ch5.step2.UserTest.cannotUpgradeLevel&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserTest.upgradeLevel" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ch5.step2.UserTest.upgradeLevel&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.UserServiceTest.upgradeLevels" />
+        <item itemvalue="Gradle.UserTest.upgradeLevel" />
+        <item itemvalue="Gradle.UserTest.cannotUpgradeLevel" />
+        <item itemvalue="Gradle.UserServiceTest.add" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:springtoby@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:springtoby@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@32a38d27" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="43f03868-0434-4487-987b-28c12a3c5fd5" name="Default Changelist" comment="" />
+      <created>1583917339351</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583917339351</updated>
+      <workItem from="1583917349012" duration="967000" />
+      <workItem from="1583995253046" duration="4470000" />
+      <workItem from="1584020292035" duration="916000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="91" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583996077407">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="361" y="91" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1583996077407" />
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1584020446275">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1584020446275" />
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1584021205983">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1584021205983" />
+    <state width="1492" height="202" key="GridCell.Tab.0.bottom" timestamp="1584021208791">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1492" height="202" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
+    <state width="1492" height="202" key="GridCell.Tab.0.center" timestamp="1584021208791">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1492" height="202" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
+    <state width="1492" height="202" key="GridCell.Tab.0.left" timestamp="1584021208791">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1492" height="202" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
+    <state width="1492" height="202" key="GridCell.Tab.0.right" timestamp="1584021208791">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1492" height="202" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
+    <state x="533" y="123" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1583998545892">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="533" y="123" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.864@0.0.1536.864" timestamp="1583998545892" />
+    <state x="384" y="112" width="767" height="640" key="find.popup" timestamp="1583995617367">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="384" y="112" width="767" height="640" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1583995617367" />
+    <state x="432" y="200" key="run.anything.popup" timestamp="1583999031031">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="432" y="200" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1583999031031" />
+  </component>
+</project>
