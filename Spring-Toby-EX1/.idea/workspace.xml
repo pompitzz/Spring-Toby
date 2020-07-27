@@ -2,27 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43f03868-0434-4487-987b-28c12a3c5fd5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/Level_Ex1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserLevelUpgradeDefault.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserLevelUpgradePolicy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService_Ex1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService_Ex2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService_Ex3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ch5/step2/UserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch1/ch1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch1/ch1.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch4/step1/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch4/step1/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ch5/step2/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ch5/step2/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ch5/step2/UserDaoJdbc.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ch5/step2/UserDaoJdbc.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/ch5/step2/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/ch5/step2/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ch5/step2/UserDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ch5/step2/UserDaoTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ch5/step2/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ch5/step2/UserServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ch5/step2/UserTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/test/ch5/step2/UserTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/ch5.step2.UserServiceTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/ch5.step2.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/ch5.step2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-ch5.step2.UserServiceTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch1/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch3/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch4/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch4/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch5/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch5/step2/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch5/step2/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ch5/step2/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch5/step2/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/c:/LogExample/logexample2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch6/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch6/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch5/step2/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch5/step2/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -70,6 +93,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="1YyaYu6DW22McX6EwDndawtJeBW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -94,6 +120,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="/usr/local/lib/node_modules/prettier" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -112,7 +139,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.UserServiceTest.upgradeLevels">
+  <component name="RunManager" selected="Gradle.UserTest.cannotUpgradeLevel">
     <configuration name="UserServiceTest.add" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -195,9 +222,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.UserTest.cannotUpgradeLevel" />
         <item itemvalue="Gradle.UserServiceTest.upgradeLevels" />
         <item itemvalue="Gradle.UserTest.upgradeLevel" />
-        <item itemvalue="Gradle.UserTest.cannotUpgradeLevel" />
         <item itemvalue="Gradle.UserServiceTest.add" />
       </list>
     </recent_temporary>
@@ -237,6 +264,11 @@
       <workItem from="1583917349012" duration="967000" />
       <workItem from="1583995253046" duration="4470000" />
       <workItem from="1584020292035" duration="916000" />
+      <workItem from="1596903549850" duration="511000" />
+      <workItem from="1596935325890" duration="4546000" />
+      <workItem from="1596949794973" duration="141000" />
+      <workItem from="1597069100846" duration="12000" />
+      <workItem from="1597564623435" duration="24000" />
     </task>
     <servers />
   </component>
@@ -244,45 +276,33 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="91" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583996077407">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="388" y="86" key="CommitChangelistDialog2" timestamp="1597564640835">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="361" y="91" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1583996077407" />
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1584020446275">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="388" y="86" key="CommitChangelistDialog2/0.23.1792.1097@0.23.1792.1097" timestamp="1597564640835" />
+    <state width="1750" height="284" key="GridCell.Tab.0.bottom" timestamp="1596948714270">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1584020446275" />
-    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1584021205983">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1750" height="284" key="GridCell.Tab.0.bottom/0.23.1792.1097@0.23.1792.1097" timestamp="1596948714270" />
+    <state width="1750" height="284" key="GridCell.Tab.0.center" timestamp="1596948714270">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1584021205983" />
-    <state width="1492" height="202" key="GridCell.Tab.0.bottom" timestamp="1584021208791">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1750" height="284" key="GridCell.Tab.0.center/0.23.1792.1097@0.23.1792.1097" timestamp="1596948714270" />
+    <state width="1750" height="284" key="GridCell.Tab.0.left" timestamp="1596948714270">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1492" height="202" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
-    <state width="1492" height="202" key="GridCell.Tab.0.center" timestamp="1584021208791">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1750" height="284" key="GridCell.Tab.0.left/0.23.1792.1097@0.23.1792.1097" timestamp="1596948714270" />
+    <state width="1750" height="284" key="GridCell.Tab.0.right" timestamp="1596948714270">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1492" height="202" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
-    <state width="1492" height="202" key="GridCell.Tab.0.left" timestamp="1584021208791">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1750" height="284" key="GridCell.Tab.0.right/0.23.1792.1097@0.23.1792.1097" timestamp="1596948714270" />
+    <state x="544" y="312" width="858" height="582" key="find.popup" timestamp="1596943095502">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1492" height="202" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
-    <state width="1492" height="202" key="GridCell.Tab.0.right" timestamp="1584021208791">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="544" y="312" width="858" height="582" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1596943095502" />
+    <state x="2417" y="258" width="670" height="676" key="search.everywhere.popup" timestamp="1597069108508">
+      <screen x="1792" y="23" width="1920" height="1057" />
     </state>
-    <state width="1492" height="202" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1584021208791" />
-    <state x="533" y="123" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1583998545892">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="533" y="123" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.864@0.0.1536.864" timestamp="1583998545892" />
-    <state x="384" y="112" width="767" height="640" key="find.popup" timestamp="1583995617367">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="384" y="112" width="767" height="640" key="find.popup/0.0.1536.864@0.0.1536.864" timestamp="1583995617367" />
-    <state x="432" y="200" key="run.anything.popup" timestamp="1583999031031">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="432" y="200" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1583999031031" />
+    <state x="2417" y="258" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097/1792.23.1920.1057@1792.23.1920.1057" timestamp="1597069108508" />
   </component>
 </project>

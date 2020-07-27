@@ -861,7 +861,7 @@ void upgradeAllOrNothingUsingHandler() throws Exception {
 
 ### 6.3.4 다이내믹 프록시를 위한 팩토리 빈
 - 이제 trasactionHandler와 다이내믹 프록시를 스프링의 빈으로 등록시켜 스프링 DI를 통해 활용할 수 있도록 하면 될 것이다.
-- 하지만 다애내믹 프록시는 스프링 빈으로 등록할 수 없다. 다이내믹 프록시는 스프링이 리플렉션을 통해 오브젝트를 생성할 수 없다.
+- 하지만 다이나믹 프록시는 스프링 빈으로 등록할 수 없다. 다이내믹 프록시는 스프링이 리플렉션을 통해 오브젝트를 생성할 수 없다.
 - 다이내믹 프로시는 Proxy.newProxyInstance를 통해 만들기 때문에 해당 클래스 자체도 내부적으로 다이내믹하게 정의되기 되어 스프링이 알 수 있는 방법이 없다.
 
 #### 팩토리 빈
@@ -1150,7 +1150,7 @@ static class UppercaseAdvice implements MethodInterceptor {
 - 그렇다면 MethodInvocation 구현 클래스는 일종의 공유 가능한 템플릿처럼 동작하는 것이다.
 - **바로 이 점이 JDK의 다이내믹 프록시를 직접 사용하는 코드와 스프링이 제공해주는 프록시 추상화 기능인 ProxyFactoryBean을 사용하는 코드의 가장 큰 차이점이자 ProxyFactoryBean의 장점이다.**
 - ProxyFactoryBean은 작은 단위의 템플릿 / 콜백 구조를 응용해서 적용되어 템플릿 역할을 하는 MethodInvocation을 싱글톤으로 두고 공유할 수 있다.
-- 마지 SQL 파라미터 정보에 종속되지 않은 JdbcTemplate덕분에 JdbcTemplate를 싱글톤으로 여러 DAO가 공유할 수 있는 것과 동일하다.
+- 마치 SQL 파라미터 정보에 종속되지 않은 JdbcTemplate덕분에 JdbcTemplate를 싱글톤으로 여러 DAO가 공유할 수 있는 것과 동일하다.
 - ProxyFactoryBean은 advice를 추가할 때 addAdvice를 호출한다. 즉 여러개의 Advice를 추가할 수 있다는 것이다. 이 또한 이전의 다이내믹 프록시의 단점을 보완해준다.
 - 그런데 왜 addMethodInterceptor가 아닌 addAdvice일까?
 - MethodInterceptor -> Interceptor -> Advice 순으로 인터페이스들이 추상화되어 있기 때문이다.
