@@ -27,10 +27,11 @@ class HelloTargetTest {
 
     @Test
     void invocation() throws Exception {
-        var proxyHello = (Hello) Proxy.newProxyInstance(
-                getClass().getClassLoader(), // 클래스 로더를 제공한다.
-                new Class[]{Hello.class}, // 다이내믹 프록시가 구현할 인터페이스를 제공하며 다수를 제공할 수 있다.
-                new UpperCaseHandler(new HelloTarget())); // 부가기능과 위임 관련 코드를 담고 있는 InvocationHandler 구현 오브젝트를 제공한다.
+        var proxyHello = (Hello)
+                Proxy.newProxyInstance(
+                        getClass().getClassLoader(), // 클래스 로더를 제공한다.
+                        new Class[]{Hello.class}, // 다이내믹 프록시가 구현할 인터페이스를 제공하며 다수를 제공할 수 있다.
+                        new UpperCaseHandler(new HelloTarget())); // 부가기능과 위임 관련 코드를 담고 있는 InvocationHandler 구현 오브젝트를 제공한다.
 
         assertThat(proxyHello.sayHello("Dexter")).isEqualTo("HELLO DEXTER");
         assertThat(proxyHello.sayHi("Dexter")).isEqualTo("HI DEXTER");
@@ -66,9 +67,9 @@ class HelloTargetTest {
     }
 
     @Test
-    void classNamePointcutAdvisor() throws Exception{
+    void classNamePointcutAdvisor() throws Exception {
 
-        NameMatchMethodPointcut classMethodPointCut = new NameMatchMethodPointcut(){
+        NameMatchMethodPointcut classMethodPointCut = new NameMatchMethodPointcut() {
             @Override
             public ClassFilter getClassFilter() {
                 return clazz -> clazz.getSimpleName().startsWith("HelloT");
@@ -78,15 +79,19 @@ class HelloTargetTest {
 
         checkAdvice(new HelloTarget(), classMethodPointCut, true);
 
-        class HelloTest extends HelloTarget{};
+        class HelloTest extends HelloTarget {
+        }
+        ;
         checkAdvice(new HelloTest(), classMethodPointCut, true);
 
-        class HelloWorld extends HelloTarget{};
+        class HelloWorld extends HelloTarget {
+        }
+        ;
         checkAdvice(new HelloWorld(), classMethodPointCut, false);
-        
+
     }
-    
-    private void checkAdvice(Object target, Pointcut pointcut, boolean adviced){
+
+    private void checkAdvice(Object target, Pointcut pointcut, boolean adviced) {
         ProxyFactoryBean pfBean = new ProxyFactoryBean();
         pfBean.setTarget(target);
         pfBean.addAdvisor(new DefaultPointcutAdvisor(pointcut, new UppercaseAdvice()));
@@ -100,7 +105,7 @@ class HelloTargetTest {
             assertThat(proxyHello.sayHi("Dexter")).isEqualTo("Hi Dexter");
         }
     }
-    
+
     static class UppercaseAdvice implements MethodInterceptor {
         @Override
         public Object invoke(MethodInvocation invocation) throws Throwable {

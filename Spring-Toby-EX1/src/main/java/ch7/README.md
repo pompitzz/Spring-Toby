@@ -44,7 +44,7 @@ public class UserDaoJdbc implements UserDao {
 - 하지만 이 방법은 매번 새로운 SQL이 필요할 때마다 프로퍼티를 추가하고 DI를 위한 변수와 수정자 메서드도 만들어줘야 한다.
 
 #### SQL 맵 프로퍼티 방식
-- SQL이 많아 질 수록 DAO에 DI용 프로퍼티를 추가하는 것은 매웁 ㅓㄴ거롭다.
+- SQL이 많아 질 수록 DAO에 DI용 프로퍼티를 추가하는 것은 매우 번거롭다.
 - 이번에는 SQL을 하나의 컬렉션으로 담아두는 방법을 시도해보자.
 - MAP을 이용하여 이를 구현할 수 있을 것이다.
 ```Java
@@ -154,7 +154,7 @@ public class SimpleSqlService implements SqlService {
     </property>
 </bean>
 ```
-- 테스트는 정상적으로 동잔한다. 사실 이전에 UserDao가 SqlMap을 가지고 있는거에 비해 차이는 거의 존재하지 않는다.
+- 테스트는 정상적으로 동작한다. 사실 이전에 UserDao가 SqlMap을 가지고 있는거에 비해 차이는 거의 존재하지 않는다.
 - 하지만 이를 통해 DAO는 SQL을 어디에 저장해두고 가져오는지에 대해서 전혀 신경쓰지 않아도 된다.
 - 구체적인 구현 방법과 기술에 상관없이 SqlService 인터페이스 타입의  빈을 DI받아서 필요한 SQL을 가져댜 사용하면 되는 것이다.
 - 그러므로 앞으로는 언제든지 유연하고 효과적인 방법을 사용해 SQL 서비스를 발전해나갈 수 있다.
@@ -210,7 +210,7 @@ public class SimpleSqlService implements SqlService {
 <beans>
 ```
 - tx:annotation-driven과 비슷하게 자바 표준인 @ProstConstruct 애노테이션을 통해 빈 오브젝트의 초기화 메서드를 지정하는데 사용한다.
-- 초기화 작업을 수행할 메서드에 @ProstConstruct를 부여해주면 스프링은 해당 클래스로 등록된 빈의 오브젝트를 생성하고 DI 작ㅇ버을 마친뒤에 @ProstConstruct가 붙은 메서드를 자동 실행해준다.
+- 초기화 작업을 수행할 메서드에 @ProstConstruct를 부여해주면 스프링은 해당 클래스로 등록된 빈의 오브젝트를 생성하고 DI 작업을 마친뒤에 @ProstConstruct가 붙은 메서드를 자동 실행해준다.
 
 ![img](springinit.png)
 

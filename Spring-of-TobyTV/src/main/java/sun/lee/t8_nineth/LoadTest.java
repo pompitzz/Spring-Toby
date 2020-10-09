@@ -15,8 +15,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class LoadTest {
 
+    public static void main(String[] args) {
+        new LoadTest().test("");
+    }
+
     @SneakyThrows
-    public void test(String mapping) throws BrokenBarrierException, InterruptedException {
+    public void test(String mapping) {
         String url = "http://localhost:8080" + mapping + "?idx={idx}";
 
         ExecutorService es = Executors.newFixedThreadPool(100);

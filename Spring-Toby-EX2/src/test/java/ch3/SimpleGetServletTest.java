@@ -46,7 +46,7 @@ void controller() throws Exception{
     // /hello로 요청을 보내면 HelloController가 실행될 것이다.
     servlet.service(req, res);
 
-    // 컨트롤러가 실행될 떄의 ModelAndView이다
+    // 컨트롤러가 실행될 때의 ModelAndView이다
     ModelAndView modelAndView = servlet.getModelAndView();
     assertThat((String) modelAndView.getModel().get("message")).isEqualTo("Hello Spring");
 }

@@ -20,6 +20,7 @@ public class UpperCaseHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        method.invoke(proxy, args);
         String name = method.getName();
         Method[] methods = target.getClass().getMethods();
         for (Method method1 : methods) {

@@ -1,9 +1,6 @@
 package ch1.step1;
 
-import ch1.step1.Hello;
-import ch1.step1.StringPrinter;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.support.RootBeanDefinition;
@@ -21,10 +18,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class HelloTest {
     @Test
     void init() throws Exception {
-        StaticApplicationContext ac = new StaticApplicationContext();
-        ac.registerSingleton("hello1", Hello.class);
-
-        Hello hello1 = ac.getBean("hello1", Hello.class);
+        StaticApplicationContext context = new StaticApplicationContext();
+        context.registerSingleton("hello1", Hello.class);
+        Hello hello1 = context.getBean("hello1", Hello.class);
         assertThat(hello1).isNotNull();
     }
 

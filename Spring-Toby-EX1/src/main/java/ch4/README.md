@@ -163,7 +163,7 @@ public void add(final User user) throws DuplicateUserIdException {
 
 ```java
 public interface UserDao{
-  public void add(User user) // 이렇게 선언이 불가능하다. DAO에서 사용하는 데이터 액세스 기술의 예외를 던져야 하기 떄문이다.
+  public void add(User user) // 이렇게 선언이 불가능하다. DAO에서 사용하는 데이터 액세스 기술의 예외를 던져야 하기 때문이다.
 
   public void add(User user) throws SQLExcpetion;
   // SQLException을 던진다면 JDBC가 아닌 데이터 엑세스 기술로 DAO 구현을 전환하면 사용할 수 없다.

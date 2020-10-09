@@ -842,7 +842,7 @@ public void serviceReqFormSubmit(HttpServletRequest request){
 }
 ```
 - 가장 깔끔하고 간편하게 사용할 수 있다.
-- JSR-330을 사용할 수 있다면 Provider가 가장 좋은 방법일 것이다.ㅌ
+- JSR-330을 사용할 수 있다면 Provider가 가장 좋은 방법일 것이다.
 
 ### 1.3.2 스코프
 - 스프링은 싱글톤, 프로토타입외에 요청, 세션, 글로벌세션, 애플리케이션이라는 네 가지 스코프를 기본적으로 제공한다.

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="97c29150-6a6d-4ebb-b88c-338cbdd4ba0c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Summary.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="9d75a90c-0a63-4fe7-80ab-bbc6498b57a2" />
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hRepzlym6Wmf3DdOB8y5MiZ06b" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97c29150-6a6d-4ebb-b88c-338cbdd4ba0c" name="Default Changelist" comment="" />
+      <created>1599978518818</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599978518818</updated>
+      <workItem from="1599978519938" duration="3015000" />
+      <workItem from="1600088173312" duration="251000" />
+      <workItem from="1602209454465" duration="1812000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2036" y="102" key="DiffContextDialog" timestamp="1602211226054">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2036" y="102" key="DiffContextDialog/0.23.1792.1097/1792.23.1920.1057@1792.23.1920.1057" timestamp="1602211226054" />
+    <state x="2261" y="190" key="SettingsEditor" timestamp="1600088404970">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2261" y="190" key="SettingsEditor/0.23.1792.1097/1792.23.1920.1057@1792.23.1920.1057" timestamp="1600088404970" />
+    <state x="2352" y="287" key="Vcs.Push.Dialog.v2" timestamp="1602211227906">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2352" y="287" key="Vcs.Push.Dialog.v2/0.23.1792.1097/1792.23.1920.1057@1792.23.1920.1057" timestamp="1602211227906" />
+    <state x="2460" y="290" width="584" height="580" key="find.popup" timestamp="1602209540395">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2460" y="290" width="584" height="580" key="find.popup/0.23.1792.1097/1792.23.1920.1057@1792.23.1920.1057" timestamp="1602209540395" />
+    <state x="2393" y="259" width="718" height="652" key="search.everywhere.popup" timestamp="1600088420709">
+      <screen x="1792" y="23" width="1920" height="1057" />
+    </state>
+    <state x="561" y="268" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1599980097485" />
+    <state x="2393" y="259" width="718" height="652" key="search.everywhere.popup/0.23.1792.1097/1792.23.1920.1057@1792.23.1920.1057" timestamp="1600088420709" />
+  </component>
+</project>

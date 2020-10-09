@@ -1,9 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cc6fd69b-82f9-45de-bf4f-cab0c1c3caf2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch4/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch4/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/c:/LogExample/logexample2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileContent/fileContent.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/build/classes/java/test/ch5/step2/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/build/classes/java/test/ch5/step2/UserServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/build/reports/tests/test/packages/ch5.step2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/build/test-results/test/binary/results.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/src/main/java/ch6/step2/UpperCaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/src/main/java/ch6/step2/UpperCaseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/src/main/java/ch7/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/src/main/java/ch7/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/src/main/java/ch8/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/src/main/java/ch8/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/src/test/java/ch5/step2/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/src/test/java/ch5/step2/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-Toby-EX1/src/test/java/ch6/step2/HelloTargetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-Toby-EX1/src/test/java/ch6/step2/HelloTargetTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/META-INF/Spring-Toby-EX2.main.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/ch3/HelloControllerV1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/ch3/HelloControllerV1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/ch3/SimpleControllerV1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/ch3/SimpleControllerV1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1$ChangeNames.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1$Convertible.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1$DelegateTo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1$ForwardingPair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1$Name.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1$Pair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1$Printable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/generics/GenericsV1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V1TypeToken$Generic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V1TypeToken$TypesafeMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V1TypeToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$SubListString.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$SubString.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$Sup.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$TypeReference.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken$TypesafeMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/temp/typeToken/V2SuperTypeToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch1/step1/HelloTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch1/step1/HelloTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/labatory.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/labatory.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-of-TobyTV/src/main/java/sun/lee/t8_nineth/LoadTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-of-TobyTV/src/main/java/sun/lee/t8_nineth/LoadTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +84,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="JupyterTrust" id="9d75a90c-0a63-4fe7-80ab-bbc6498b57a2" />
   <component name="ProjectId" id="1ZfergoU679EID0haAj7px6AHeU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -34,11 +92,11 @@
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="LombokPluginEnabledInProject" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -57,10 +115,14 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
       <recent name="temp.typeToken" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="temp" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -70,13 +132,26 @@
       <recent name="C:\Users\dmdsj\MyProject\Spring-Toby\Spring-Toby-EX2\src\main\java\ch7" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GenericsV1">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="GenericsV1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="temp.generics.GenericsV1" />
       <module name="Spring-Toby-EX2.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="temp.generics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="temp.config.Main" />
+      <module name="Spring-Toby-EX2.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="temp.config.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,6 +168,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -126,12 +212,14 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.GenericsV1" />
         <item itemvalue="Application.V2SuperTypeToken" />
         <item itemvalue="Gradle.V1TypeTokenTest.typeSafe" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -145,54 +233,34 @@
       <workItem from="1585234782726" duration="1351000" />
       <workItem from="1585289789647" duration="17040000" />
       <workItem from="1585390719646" duration="5278000" />
+      <workItem from="1601384571806" duration="3154000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="382" y="247" key="#com.intellij.ide.util.MemberChooser" timestamp="1585323971387">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1750" height="298" key="GridCell.Tab.0.bottom" timestamp="1601391776225">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="382" y="247" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585323971387" />
-    <state width="1876" height="285" key="GridCell.Tab.0.bottom" timestamp="1585325942468">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1750" height="298" key="GridCell.Tab.0.bottom/0.23.1792.1097@0.23.1792.1097" timestamp="1601391776225" />
+    <state width="1750" height="298" key="GridCell.Tab.0.center" timestamp="1601391776225">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1876" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585325942468" />
-    <state width="1876" height="285" key="GridCell.Tab.0.center" timestamp="1585325942468">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1750" height="298" key="GridCell.Tab.0.center/0.23.1792.1097@0.23.1792.1097" timestamp="1601391776225" />
+    <state width="1750" height="298" key="GridCell.Tab.0.left" timestamp="1601391776225">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1876" height="285" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585325942468" />
-    <state width="1876" height="285" key="GridCell.Tab.0.left" timestamp="1585325942467">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1750" height="298" key="GridCell.Tab.0.left/0.23.1792.1097@0.23.1792.1097" timestamp="1601391776225" />
+    <state width="1750" height="298" key="GridCell.Tab.0.right" timestamp="1601391776225">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1876" height="285" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585325942467" />
-    <state width="1876" height="285" key="GridCell.Tab.0.right" timestamp="1585325942468">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1750" height="298" key="GridCell.Tab.0.right/0.23.1792.1097@0.23.1792.1097" timestamp="1601391776225" />
+    <state x="598" y="310" width="596" height="522" key="find.popup" timestamp="1601390111068">
+      <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state width="1876" height="285" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585325942468" />
-    <state x="461" y="182" key="SettingsEditor" timestamp="1585315330016">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="461" y="182" key="SettingsEditor/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585315330016" />
-    <state x="731" y="231" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1585315005710">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="731" y="231" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585315005710" />
-    <state x="643" y="255" width="633" height="570" key="find.popup" timestamp="1585390932964">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="643" y="255" width="633" height="570" key="find.popup/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585390932964" />
-    <state x="616" y="250" key="run.anything.popup" timestamp="1585393288902">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585393288902" />
-    <state x="233" y="239" width="672" height="705" key="search.everywhere.popup" timestamp="1585406123842">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="233" y="239" width="672" height="705" key="search.everywhere.popup/0.0.1920.1080/1920.0.1536.864@0.0.1920.1080" timestamp="1585406123842" />
-    <state x="233" y="230" width="672" height="678" key="search.everywhere.popup/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1585235864097" />
+    <state x="598" y="310" width="596" height="522" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1601390111068" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

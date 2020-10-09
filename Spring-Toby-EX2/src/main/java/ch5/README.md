@@ -211,7 +211,7 @@ public void logJointPoint(JoinPoint jp){
 }
 ```
 - getSignature를 통해 메서드의 정보를 받아 사용할 수 있다.
-- @Before은 @Arounㅇ에서 처럼 타깃 오브젝트 메서드로 전달되는 파라미터를 변경할 수 없다.
+- @Before은 @Around에서 처럼 타깃 오브젝트 메서드로 전달되는 파라미터를 변경할 수 없다.
 - 하지만 JoinPoint를 통해 파라미터를 참조할 수 있다. 즉 파라미터 자체를 변경할 수 없어도 파라미터가 참조하는 오브젝트의 내용을 변경할 수는 있다.
 
 **@AfterRetruning**

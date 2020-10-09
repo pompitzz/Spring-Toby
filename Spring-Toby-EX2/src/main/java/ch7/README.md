@@ -123,7 +123,7 @@ public interface BeanFactoryPostProcessor {
 - 가장 기본적으로 SpEL이 적용된 경우는 빈 설정 파일이나 애노테이션을 이용해 프로퍼티 값을 지정할 때이다.
 - AOP에서 @AspectJ를 이용해 특정 애노에티션이 붙은 메서드나 클래스에 선별하는 포인트컷을 적용하는 경우에 유용하게 사용할 수 있다.
 - @SecuredLogic이라는 애노테이션이 붙은 메서드에 보안 기능을 추가하는 AOP를 annotation() 지시자로 추가할 수 있을 것이다.
-- 여기서 메서드별로 추가 조건을 지정한다면 더욱 효율적인 보안 기능을 수해앟ㄹ 수 이씅ㄹ 것이다.
+- 여기서 메서드별로 추가 조건을 지정한다면 더욱 효율적인 보안 기능을 수행할 수 있을 것이다.
 
 ```Java
 @SecuredLogic("user.level == T(com..UserLevel).GOLD")
@@ -302,7 +302,7 @@ public Product bestProduct(String productNo){
 - bestProduct는 인기제품 정보를 조회하는 기능을 제공하는 메서드이다.
 - 제품번호는 넣으면 제품 정보를 DB에서 조회하여 Product 오브젝트에 담아 돌려준다.
 - 인기 제품이기 때문에 빈번하게 조회될 가능성이 높으므로 캐시를 적용하기에 적당하다.
-- 캐시의 이름은 @Cacheable에 있는 product이며 product라는 이름의 캐시에 Product 타입의 오브젝트를 저장하는ㄱ ㅓㅅ이다.
+- 캐시의 이름은 @Cacheable에 있는 product이며 product라는 이름의 캐시에 Product 타입의 오브젝트를 저장하는 것이다.
 - 하나의 캐시에는 key가 다른 여러 개의 오브젝트를 넣을 수 있다.
 - bestProduct()의 파라미터인 productNo가 product 캐시의 key가 된다.
 - 캐시에 오브젝트가 저장될 때는 키 정보도 함께 저장되며 해당 캐시가 존재하지 않는다면 결과 값을 캐시에 추가하게 된다.

@@ -1,839 +1,101 @@
-2020-03-07 00:11:17.924 INFO  1572360 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:11:17.939 INFO  1572375 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:11:17.947 INFO  1572383 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:11:17.966 INFO  1572402 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:11:17.981 INFO  1572417 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:11:33.313 INFO  925  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 14218 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:11:33.322 INFO  934  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:11:34.854 INFO  2466 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:11:34.931 INFO  2543 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52ms. Found 0 JPA repository interfaces.
-2020-03-07 00:11:35.711 INFO  3323 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:11:35.922 INFO  3534 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:11:36.003 INFO  3615 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:11:36.153 INFO  3765 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:11:36.612 INFO  4224 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:11:36.844 INFO  4456 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:11:37.233 INFO  4845 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:11:37.253 INFO  4865 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:11:37.598 INFO  5210 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:11:37.599 INFO  5211 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:11:43.225 INFO  10837 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:11:43.232 INFO  10844 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 10.442 seconds (JVM running for 16.863)
-2020-03-07 00:17:32.103 INFO  359715 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:17:32.104 INFO  359716 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:17:32.105 INFO  359717 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:17:32.111 INFO  359723 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:17:32.116 INFO  359728 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:17:49.003 INFO  1060 --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 14779 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:17:49.008 INFO  1065 --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:17:50.658 INFO  2715 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:17:50.745 INFO  2802 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64ms. Found 0 JPA repository interfaces.
-2020-03-07 00:17:51.511 INFO  3568 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:17:51.729 INFO  3786 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:17:51.842 INFO  3899 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:17:52.002 INFO  4059 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:17:52.507 INFO  4564 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:17:52.770 INFO  4827 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:17:53.198 INFO  5255 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:17:53.218 INFO  5275 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:17:53.547 INFO  5604 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:17:53.548 INFO  5605 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:17:59.210 INFO  11267 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:17:59.216 INFO  11273 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 10.74 seconds (JVM running for 17.365)
-2020-03-07 00:19:00.955 INFO  73012 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:19:00.957 INFO  73014 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:19:00.958 INFO  73015 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:19:00.967 INFO  73024 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:19:00.971 INFO  73028 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:19:15.207 INFO  937  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 14979 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:19:15.213 INFO  943  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:19:16.871 INFO  2601 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:19:16.970 INFO  2700 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55ms. Found 0 JPA repository interfaces.
-2020-03-07 00:19:17.704 INFO  3434 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:19:17.910 INFO  3640 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:19:17.999 INFO  3729 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:19:18.167 INFO  3897 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:19:18.608 INFO  4338 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:19:18.862 INFO  4592 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:19:19.281 INFO  5011 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:19:19.300 INFO  5030 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:19:19.719 INFO  5449 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:19:19.722 INFO  5452 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:19:25.394 INFO  11124 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:19:25.402 INFO  11132 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 10.706 seconds (JVM running for 17.129)
-2020-03-07 00:19:27.386 ERROR 13116 --- [ reactor-http-nio-2 ] o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [36757c9f]  500 Server Error for HTTP GET "/events2"
-org.springframework.web.server.ServerErrorException: 500 INTERNAL_SERVER_ERROR "id"
-	at org.springframework.web.reactive.result.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:96)
-	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-Error has been observed at the following site(s):
-	|_ checkpoint ⇢ HTTP GET "/events2" [ExceptionHandlingWebHandler]
-Stack trace:
-		at org.springframework.web.reactive.result.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:96)
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleMissingValue(AbstractNamedValueArgumentResolver.java:235)
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:215)
-		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:56)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:75)
-		at reactor.core.publisher.Operators.complete(Operators.java:132)
-		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:144)
-		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4090)
-		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:153)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
-		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:76)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:274)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:851)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:173)
-		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2199)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:132)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:162)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2007)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1881)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:90)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:145)
-		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:441)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:211)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:139)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:63)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:172)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.netty.http.server.HttpServerHandle.onStateChange(HttpServerHandle.java:64)
-		at reactor.netty.tcp.TcpServerBind$ChildObserver.onStateChange(TcpServerBind.java:228)
-		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:465)
-		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:90)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:167)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
-		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:321)
-		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:295)
-		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
-		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-		at java.base/java.lang.Thread.run(Thread.java:834)
-2020-03-07 00:19:31.580 ERROR 17310 --- [ reactor-http-nio-4 ] o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [3c506bf8]  500 Server Error for HTTP GET "/events2"
-org.springframework.web.server.ServerErrorException: 500 INTERNAL_SERVER_ERROR "id"
-	at org.springframework.web.reactive.result.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:96)
-	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-Error has been observed at the following site(s):
-	|_ checkpoint ⇢ HTTP GET "/events2" [ExceptionHandlingWebHandler]
-Stack trace:
-		at org.springframework.web.reactive.result.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:96)
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleMissingValue(AbstractNamedValueArgumentResolver.java:235)
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:215)
-		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:56)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:75)
-		at reactor.core.publisher.Operators.complete(Operators.java:132)
-		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:144)
-		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4090)
-		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:153)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
-		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:76)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:274)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:851)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:173)
-		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2199)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:132)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:162)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2007)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1881)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:90)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:145)
-		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:441)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:211)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:139)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:63)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:172)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.netty.http.server.HttpServerHandle.onStateChange(HttpServerHandle.java:64)
-		at reactor.netty.tcp.TcpServerBind$ChildObserver.onStateChange(TcpServerBind.java:228)
-		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:465)
-		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:90)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:167)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
-		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:321)
-		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:295)
-		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
-		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-		at java.base/java.lang.Thread.run(Thread.java:834)
-2020-03-07 00:20:08.861 ERROR 54591 --- [ reactor-http-nio-1 ] o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [49185363]  500 Server Error for HTTP GET "/events2"
-org.springframework.web.server.ServerErrorException: 500 INTERNAL_SERVER_ERROR "id"
-	at org.springframework.web.reactive.result.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:96)
-	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-Error has been observed at the following site(s):
-	|_ checkpoint ⇢ HTTP GET "/events2" [ExceptionHandlingWebHandler]
-Stack trace:
-		at org.springframework.web.reactive.result.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:96)
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleMissingValue(AbstractNamedValueArgumentResolver.java:235)
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:215)
-		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:56)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:75)
-		at reactor.core.publisher.Operators.complete(Operators.java:132)
-		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:144)
-		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4090)
-		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:153)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
-		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:76)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:274)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:851)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:173)
-		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2199)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:132)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:162)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2007)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1881)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:90)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:145)
-		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:441)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:211)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:139)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:63)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:172)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.netty.http.server.HttpServerHandle.onStateChange(HttpServerHandle.java:64)
-		at reactor.netty.tcp.TcpServerBind$ChildObserver.onStateChange(TcpServerBind.java:228)
-		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:465)
-		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:90)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:167)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
-		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:321)
-		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:295)
-		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
-		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-		at java.base/java.lang.Thread.run(Thread.java:834)
-2020-03-07 00:20:26.656 INFO  72386 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:20:26.657 INFO  72387 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:20:26.657 INFO  72387 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:20:26.666 INFO  72396 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:20:26.671 INFO  72401 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:20:40.380 INFO  886  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 15392 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:20:40.390 INFO  896  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:20:41.981 INFO  2487 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:20:42.060 INFO  2566 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51ms. Found 0 JPA repository interfaces.
-2020-03-07 00:20:42.806 INFO  3312 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:20:43.011 INFO  3517 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:20:43.099 INFO  3605 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:20:43.225 INFO  3731 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:20:43.729 INFO  4235 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:20:43.974 INFO  4480 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:20:44.376 INFO  4882 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:20:44.395 INFO  4901 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:20:44.769 INFO  5275 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:20:44.770 INFO  5276 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:20:50.424 INFO  10930 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:20:50.431 INFO  10937 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 10.528 seconds (JVM running for 16.94)
-2020-03-07 00:24:45.872 INFO  246378 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:24:45.875 INFO  246381 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:24:45.876 INFO  246382 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:24:45.884 INFO  246390 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:24:45.896 INFO  246402 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:25:00.472 INFO  945  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 15560 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:25:00.476 INFO  949  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:25:02.418 INFO  2891 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:25:02.501 INFO  2974 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 58ms. Found 0 JPA repository interfaces.
-2020-03-07 00:25:03.378 INFO  3851 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:25:03.698 INFO  4171 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:25:03.817 INFO  4290 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:25:03.984 INFO  4457 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:25:04.536 INFO  5009 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:25:04.823 INFO  5296 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:25:05.243 INFO  5716 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:25:05.264 INFO  5737 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:25:05.701 INFO  6174 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:25:05.703 INFO  6176 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:25:11.677 INFO  12150 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:25:11.683 INFO  12156 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 11.706 seconds (JVM running for 18.243)
-2020-03-07 00:25:49.122 ERROR 49595 --- [ reactor-http-nio-2 ] reactor.netty.tcp.TcpServer - [id: 0x28414716, L:/0:0:0:0:0:0:0:1:8080 - R:/0:0:0:0:0:0:0:1:62155] onUncaughtException(SimpleConnection{channel=[id: 0x28414716, L:/0:0:0:0:0:0:0:1:8080 - R:/0:0:0:0:0:0:0:1:62155]})
-java.lang.IllegalArgumentException: Illegal character in path at index 7: /eventã´3
-	at java.base/java.net.URI.create(URI.java:883)
-	at reactor.netty.http.HttpOperations.resolvePath(HttpOperations.java:300)
-	at reactor.netty.http.server.HttpServerOperations.<init>(HttpServerOperations.java:128)
-	at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:157)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
-	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:321)
-	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:295)
-	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: java.net.URISyntaxException: Illegal character in path at index 7: /eventã´3
-	at java.base/java.net.URI$Parser.fail(URI.java:2915)
-	at java.base/java.net.URI$Parser.checkChars(URI.java:3086)
-	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3168)
-	at java.base/java.net.URI$Parser.parse(URI.java:3127)
-	at java.base/java.net.URI.<init>(URI.java:600)
-	at java.base/java.net.URI.create(URI.java:881)
-	... 26 common frames omitted
-2020-03-07 00:31:53.680 INFO  414153 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:31:53.683 INFO  414156 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:31:53.684 INFO  414157 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:31:53.691 INFO  414164 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:31:53.697 INFO  414170 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:32:07.818 INFO  968  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 15751 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:32:07.827 INFO  977  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:32:09.450 INFO  2600 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:32:09.528 INFO  2678 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 57ms. Found 0 JPA repository interfaces.
-2020-03-07 00:32:10.335 INFO  3485 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:32:10.542 INFO  3692 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:32:10.628 INFO  3778 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:32:10.779 INFO  3929 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:32:11.268 INFO  4418 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:32:11.499 INFO  4649 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:32:11.926 INFO  5076 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:32:11.946 INFO  5096 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:32:12.277 INFO  5427 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:32:12.279 INFO  5429 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:32:17.958 INFO  11108 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:32:17.964 INFO  11114 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 10.677 seconds (JVM running for 17.13)
-2020-03-07 00:33:24.764 INFO  77914 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:33:24.767 INFO  77917 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:33:24.767 INFO  77917 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:33:24.774 INFO  77924 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:33:24.780 INFO  77930 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:33:39.705 INFO  1148 --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16157 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:33:39.710 INFO  1153 --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:33:41.446 INFO  2889 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:33:41.560 INFO  3003 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80ms. Found 0 JPA repository interfaces.
-2020-03-07 00:33:42.636 INFO  4079 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:33:42.856 INFO  4299 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:33:42.940 INFO  4383 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:33:43.093 INFO  4536 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:33:43.592 INFO  5035 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:33:43.840 INFO  5283 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:33:44.244 INFO  5687 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:33:44.267 INFO  5710 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:33:44.619 INFO  6062 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:33:44.621 INFO  6064 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:33:58.889 INFO  1018 --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16168 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:33:58.895 INFO  1024 --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:34:00.017 INFO  2146 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:34:00.086 INFO  2215 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55ms. Found 0 JPA repository interfaces.
-2020-03-07 00:34:00.614 INFO  2743 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:34:00.742 INFO  2871 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:34:00.809 INFO  2938 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:34:00.881 INFO  3010 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:34:01.005 INFO  3134 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:34:01.160 INFO  3289 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:34:01.370 INFO  3499 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:34:01.376 INFO  3505 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:34:01.750 INFO  3879 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:34:01.751 INFO  3880 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:34:14.157 INFO  1093 --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16179 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:34:14.160 INFO  1096 --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:34:15.114 INFO  2050 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:34:15.164 INFO  2100 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39ms. Found 0 JPA repository interfaces.
-2020-03-07 00:34:15.816 INFO  2752 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:34:15.998 INFO  2934 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:34:16.081 INFO  3017 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:34:16.145 INFO  3081 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:34:16.244 INFO  3180 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:34:16.341 INFO  3277 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:34:16.549 INFO  3485 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:34:16.559 INFO  3495 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:34:16.803 INFO  3739 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:34:16.820 INFO  3756 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:34:17.347 INFO  4283 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:34:17.352 INFO  4288 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 3.898 seconds (JVM running for 10.186)
-2020-03-07 00:34:27.078 ERROR 14014 --- [ reactor-http-nio-2 ] o.s.b.a.w.r.e.AbstractErrorWebExceptionHandler - [f9ecaec0]  500 Server Error for HTTP GET "/events5"
-java.lang.IllegalStateException: Optional int parameter 'size' is present but cannot be translated into a null value due to being declared as a primitive type. Consider declaring it as object wrapper for the corresponding primitive type.
-	at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:263)
-	Suppressed: reactor.core.publisher.FluxOnAssembly$OnAssemblyException: 
-Error has been observed at the following site(s):
-	|_ checkpoint ⇢ HTTP GET "/events5" [ExceptionHandlingWebHandler]
-Stack trace:
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.handleNullValue(AbstractNamedValueArgumentResolver.java:263)
-		at org.springframework.web.reactive.result.method.annotation.AbstractNamedValueArgumentResolver.lambda$getDefaultValue$1(AbstractNamedValueArgumentResolver.java:217)
-		at reactor.core.publisher.MonoSupplier.subscribe(MonoSupplier.java:56)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onComplete(FluxSwitchIfEmpty.java:75)
-		at reactor.core.publisher.Operators.complete(Operators.java:132)
-		at reactor.core.publisher.FluxFlatMap.trySubscribeScalarMap(FluxFlatMap.java:144)
-		at reactor.core.publisher.MonoFlatMap.subscribeOrReturn(MonoFlatMap.java:53)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4090)
-		at reactor.core.publisher.MonoZip.subscribe(MonoZip.java:128)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:153)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:150)
-		at reactor.core.publisher.FluxSwitchIfEmpty$SwitchIfEmptySubscriber.onNext(FluxSwitchIfEmpty.java:67)
-		at reactor.core.publisher.MonoNext$NextSubscriber.onNext(MonoNext.java:76)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.innerNext(FluxConcatMap.java:274)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapInner.onNext(FluxConcatMap.java:851)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onNext(MonoPeekTerminal.java:173)
-		at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2199)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.request(MonoPeekTerminal.java:132)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:162)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.set(Operators.java:2007)
-		at reactor.core.publisher.Operators$MultiSubscriptionSubscriber.onSubscribe(Operators.java:1881)
-		at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:90)
-		at reactor.core.publisher.MonoPeekTerminal$MonoTerminalPeekSubscriber.onSubscribe(MonoPeekTerminal.java:145)
-		at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:54)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.drain(FluxConcatMap.java:441)
-		at reactor.core.publisher.FluxConcatMap$ConcatMapImmediate.onSubscribe(FluxConcatMap.java:211)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:139)
-		at reactor.core.publisher.FluxIterable.subscribe(FluxIterable.java:63)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.core.publisher.MonoDefer.subscribe(MonoDefer.java:52)
-		at reactor.core.publisher.Mono.subscribe(Mono.java:4105)
-		at reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain(MonoIgnoreThen.java:172)
-		at reactor.core.publisher.MonoIgnoreThen.subscribe(MonoIgnoreThen.java:56)
-		at reactor.core.publisher.InternalMonoOperator.subscribe(InternalMonoOperator.java:55)
-		at reactor.netty.http.server.HttpServerHandle.onStateChange(HttpServerHandle.java:64)
-		at reactor.netty.tcp.TcpServerBind$ChildObserver.onStateChange(TcpServerBind.java:228)
-		at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:465)
-		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:90)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:167)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
-		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:321)
-		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:295)
-		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:355)
-		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:377)
-		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:363)
-		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
-		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
-		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
-		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
-		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-		at java.base/java.lang.Thread.run(Thread.java:834)
-2020-03-07 00:39:00.970 INFO  287906 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:39:00.974 INFO  287910 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:39:00.977 INFO  287913 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:39:00.987 INFO  287923 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:39:00.993 INFO  287929 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:39:15.167 INFO  1312 --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16201 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:39:15.180 INFO  1325 --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:39:17.388 INFO  3533 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:39:17.458 INFO  3603 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49ms. Found 0 JPA repository interfaces.
-2020-03-07 00:39:18.670 INFO  4815 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:39:19.018 INFO  5163 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:39:19.131 INFO  5276 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:39:19.376 INFO  5521 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:39:19.926 INFO  6071 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:39:20.282 INFO  6427 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:39:20.736 INFO  6881 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:39:20.753 INFO  6898 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:39:21.105 INFO  7250 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:39:21.107 INFO  7252 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:39:26.733 INFO  12878 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:39:26.739 INFO  12884 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 12.191 seconds (JVM running for 18.842)
-2020-03-07 00:44:32.001 INFO  318146 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:44:32.005 INFO  318150 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:44:32.006 INFO  318151 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:44:32.012 INFO  318157 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:44:32.017 INFO  318162 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:44:46.276 INFO  916  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16476 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:44:46.286 INFO  926  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:44:47.998 INFO  2638 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:44:48.076 INFO  2716 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 54ms. Found 0 JPA repository interfaces.
-2020-03-07 00:44:49.192 INFO  3832 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:44:49.428 INFO  4068 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:44:49.510 INFO  4150 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:44:49.664 INFO  4304 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:44:50.159 INFO  4799 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:44:50.407 INFO  5047 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:44:50.799 INFO  5439 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:44:50.815 INFO  5455 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:44:51.163 INFO  5803 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:44:51.165 INFO  5805 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:44:56.776 INFO  11416 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:44:56.782 INFO  11422 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 11.004 seconds (JVM running for 17.762)
-2020-03-07 00:49:15.753 INFO  270393 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:49:15.758 INFO  270398 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:49:15.758 INFO  270398 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:49:15.767 INFO  270407 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:49:15.773 INFO  270413 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:49:30.448 INFO  900  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16576 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:49:30.458 INFO  910  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:49:32.133 INFO  2585 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:49:32.209 INFO  2661 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51ms. Found 0 JPA repository interfaces.
-2020-03-07 00:49:32.986 INFO  3438 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:49:33.189 INFO  3641 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:49:33.276 INFO  3728 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:49:33.436 INFO  3888 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:49:33.944 INFO  4396 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:49:34.195 INFO  4647 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:49:34.594 INFO  5046 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:49:34.611 INFO  5063 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:49:34.964 INFO  5416 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:49:34.965 INFO  5417 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:49:35.211 WARN  5663 --- [ main ] o.s.b.w.r.c.AnnotationConfigReactiveWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webHandler' defined in class path resource [org/springframework/boot/autoconfigure/web/reactive/WebFluxAutoConfiguration$EnableWebFluxConfiguration.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/reactive/WebFluxAutoConfiguration$EnableWebFluxConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'fluxContoller' method 
-sun.lee.t13_fourteenth.FluxContoller#events8(int)
-to {GET /events7, produces [text/event-stream]}: There is already 'fluxContoller' bean method
-sun.lee.t13_fourteenth.FluxContoller#events7(int) mapped.
-2020-03-07 00:49:35.212 INFO  5664 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:49:35.212 INFO  5664 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:49:35.212 INFO  5664 --- [ main ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:49:35.216 INFO  5668 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:49:35.221 INFO  5673 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:49:35.241 INFO  5693 --- [ main ] o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-03-07 00:49:35.278 ERROR 5730 --- [ main ] o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'webHandler' defined in class path resource [org/springframework/boot/autoconfigure/web/reactive/WebFluxAutoConfiguration$EnableWebFluxConfiguration.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/reactive/WebFluxAutoConfiguration$EnableWebFluxConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'fluxContoller' method 
-sun.lee.t13_fourteenth.FluxContoller#events8(int)
-to {GET /events7, produces [text/event-stream]}: There is already 'fluxContoller' bean method
-sun.lee.t13_fourteenth.FluxContoller#events7(int) mapped.
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:879)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:878)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550)
-	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:140)
-	at sun.lee.SpringOfTobyApplication.main(SpringOfTobyApplication.java:19)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/reactive/WebFluxAutoConfiguration$EnableWebFluxConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'fluxContoller' method 
-sun.lee.t13_fourteenth.FluxContoller#events8(int)
-to {GET /events7, produces [text/event-stream]}: There is already 'fluxContoller' bean method
-sun.lee.t13_fourteenth.FluxContoller#events7(int) mapped.
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:517)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:321)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:617)
-	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1250)
-	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
-	at org.springframework.web.reactive.DispatcherHandler.initStrategies(DispatcherHandler.java:116)
-	at org.springframework.web.reactive.DispatcherHandler.setApplicationContext(DispatcherHandler.java:111)
-	at org.springframework.context.support.ApplicationContextAwareProcessor.invokeAwareInterfaces(ApplicationContextAwareProcessor.java:123)
-	at org.springframework.context.support.ApplicationContextAwareProcessor.postProcessBeforeInitialization(ApplicationContextAwareProcessor.java:100)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:416)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:595)
-	... 14 common frames omitted
-Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'fluxContoller' method 
-sun.lee.t13_fourteenth.FluxContoller#events8(int)
-to {GET /events7, produces [text/event-stream]}: There is already 'fluxContoller' bean method
-sun.lee.t13_fourteenth.FluxContoller#events7(int) mapped.
-	at org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:507)
-	at org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:485)
-	at org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:243)
-	at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:275)
-	at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:63)
-	at org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$1(AbstractHandlerMethodMapping.java:213)
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:684)
-	at org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:211)
-	at org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:189)
-	at org.springframework.web.reactive.result.method.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:157)
-	at org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:130)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1855)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1792)
-	... 30 common frames omitted
-2020-03-07 00:49:49.669 INFO  863  --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16587 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:49:49.672 INFO  866  --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:49:50.404 INFO  1598 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:49:50.450 INFO  1644 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37ms. Found 0 JPA repository interfaces.
-2020-03-07 00:49:50.909 INFO  2103 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:49:51.036 INFO  2230 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:49:51.094 INFO  2288 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:49:51.153 INFO  2347 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:49:51.248 INFO  2442 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:49:51.336 INFO  2530 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:49:51.510 INFO  2704 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:49:51.516 INFO  2710 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:49:51.753 INFO  2947 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:49:51.754 INFO  2948 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:49:52.252 INFO  3446 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:49:52.257 INFO  3451 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 3.03 seconds (JVM running for 9.338)
-2020-03-07 00:51:39.094 INFO  110288 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 00:51:39.095 INFO  110289 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:51:39.096 INFO  110290 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 00:51:39.103 INFO  110297 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 00:51:39.109 INFO  110303 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 00:52:02.914 INFO  1174 --- [ main ] sun.lee.SpringOfTobyApplication - Starting SpringOfTobyApplication on ihyeeun-ui-MacBook-Air.local with PID 16686 (/Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV/out/production/classes started by LeeHyeEun in /Users/LeeHyeEun/Downloads/DongProject/Toby-Spring/Spring-of-TobyTV)
-2020-03-07 00:52:02.920 INFO  1180 --- [ main ] sun.lee.SpringOfTobyApplication - No active profile set, falling back to default profiles: default
-2020-03-07 00:52:04.264 INFO  2524 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-03-07 00:52:04.371 INFO  2631 --- [ main ] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79ms. Found 0 JPA repository interfaces.
-2020-03-07 00:52:05.472 INFO  3732 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2020-03-07 00:52:05.820 INFO  4080 --- [ main ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2020-03-07 00:52:05.911 INFO  4171 --- [ main ] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-03-07 00:52:06.077 INFO  4337 --- [ main ] org.hibernate.Version - HHH000412: Hibernate Core {5.4.10.Final}
-2020-03-07 00:52:06.615 INFO  4875 --- [ main ] o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-03-07 00:52:06.871 INFO  5131 --- [ main ] org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2020-03-07 00:52:07.253 INFO  5513 --- [ main ] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-03-07 00:52:07.275 INFO  5535 --- [ main ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 00:52:07.725 INFO  5985 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
-2020-03-07 00:52:07.726 INFO  5986 --- [ main ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'myThreadPool'
-2020-03-07 00:52:13.311 INFO  11571 --- [ main ] o.s.b.w.e.netty.NettyWebServer - Netty started on port(s): 8080
-2020-03-07 00:52:13.317 INFO  11577 --- [ main ] sun.lee.SpringOfTobyApplication - Started SpringOfTobyApplication in 11.027 seconds (JVM running for 17.816)
-2020-03-07 03:13:40.756 INFO  8499016 --- [ SpringContextShutdownHook ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'myThreadPool'
-2020-03-07 03:13:40.762 INFO  8499022 --- [ SpringContextShutdownHook ] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-03-07 03:13:40.765 INFO  8499025 --- [ SpringContextShutdownHook ] o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
-2020-03-07 03:13:40.778 INFO  8499038 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2020-03-07 03:13:40.785 INFO  8499045 --- [ SpringContextShutdownHook ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2020-03-07 12:00:36.611 INFO  1019 --- [ main ] reactor.Flux.Create.1 - onSubscribe(FluxCreate.BufferAsyncSink)
-2020-03-07 12:00:36.641 INFO  1049 --- [ main ] reactor.Flux.Create.1 - request(unbounded)
-2020-03-07 12:00:36.659 INFO  1067 --- [ main ] reactor.Flux.Create.1 - onNext(1)
-2020-03-07 12:00:36.662 INFO  1070 --- [ main ] reactor.Flux.Create.1 - onNext(2)
-2020-03-07 12:00:36.664 INFO  1072 --- [ main ] reactor.Flux.Create.1 - onNext(3)
-2020-03-07 12:00:36.667 INFO  1075 --- [ main ] reactor.Flux.Create.1 - onComplete()
-2020-03-07 12:00:36.685 INFO  1093 --- [ main ] reactor.Flux.Create.2 - onSubscribe(FluxCreate.BufferAsyncSink)
-2020-03-07 12:00:36.690 INFO  1098 --- [ main ] reactor.Flux.Map.3 - onSubscribe(FluxMap.MapSubscriber)
-2020-03-07 12:00:36.690 INFO  1098 --- [ main ] reactor.Flux.Map.3 - request(unbounded)
-2020-03-07 12:00:36.690 INFO  1098 --- [ main ] reactor.Flux.Create.2 - request(unbounded)
-2020-03-07 12:00:36.698 INFO  1106 --- [ main ] reactor.Flux.Create.2 - onNext(1)
-2020-03-07 12:00:36.699 INFO  1107 --- [ main ] reactor.Flux.Map.3 - onNext(10)
-2020-03-07 12:00:36.701 INFO  1109 --- [ main ] reactor.Flux.Create.2 - onNext(2)
-2020-03-07 12:00:36.703 INFO  1111 --- [ main ] reactor.Flux.Map.3 - onNext(20)
-2020-03-07 12:00:36.715 INFO  1123 --- [ main ] reactor.Flux.Create.2 - onNext(3)
-2020-03-07 12:00:36.716 INFO  1124 --- [ main ] reactor.Flux.Map.3 - onNext(30)
-2020-03-07 12:00:36.717 INFO  1125 --- [ main ] reactor.Flux.Create.2 - onComplete()
-2020-03-07 12:00:36.719 INFO  1127 --- [ main ] reactor.Flux.Map.3 - onComplete()
-2020-03-07 12:00:36.948 INFO  1356 --- [ main ] reactor.Flux.Create.4 - onSubscribe(FluxCreate.BufferAsyncSink)
-2020-03-07 12:00:36.950 INFO  1358 --- [ main ] reactor.Mono.Reduce.5 - | onSubscribe([Fuseable] MonoReduce.ReduceSubscriber)
-2020-03-07 12:00:36.951 INFO  1359 --- [ main ] reactor.Mono.Reduce.5 - | request(unbounded)
-2020-03-07 12:00:36.952 INFO  1360 --- [ main ] reactor.Flux.Create.4 - request(unbounded)
-2020-03-07 12:00:36.957 INFO  1365 --- [ main ] reactor.Flux.Create.4 - onNext(1)
-2020-03-07 12:00:36.959 INFO  1367 --- [ main ] reactor.Flux.Create.4 - onNext(2)
-2020-03-07 12:00:36.959 INFO  1367 --- [ main ] reactor.Flux.Create.4 - onNext(3)
-2020-03-07 12:00:36.959 INFO  1367 --- [ main ] reactor.Flux.Create.4 - onComplete()
-2020-03-07 12:00:36.960 INFO  1368 --- [ main ] reactor.Mono.Reduce.5 - | onNext(6)
-2020-03-07 12:00:36.964 INFO  1372 --- [ main ] reactor.Mono.Reduce.5 - | onComplete()
-2020-03-07 13:25:09.565 INFO  1017 --- [ sub-1 ] reactor.Flux.PublishOn.1 - | onSubscribe([Fuseable] FluxPublishOn.PublishOnSubscriber)
-2020-03-07 13:25:09.580 INFO  1032 --- [ sub-1 ] reactor.Flux.PublishOn.1 - | request(unbounded)
-2020-03-07 13:25:09.585 INFO  1037 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(1)
-2020-03-07 13:25:09.587 INFO  1039 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(2)
-2020-03-07 13:25:09.587 INFO  1039 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(3)
-2020-03-07 13:25:09.588 INFO  1040 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(4)
-2020-03-07 13:25:09.588 INFO  1040 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(5)
-2020-03-07 13:25:09.588 INFO  1040 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(6)
-2020-03-07 13:25:09.589 INFO  1041 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(7)
-2020-03-07 13:25:09.589 INFO  1041 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(8)
-2020-03-07 13:25:09.589 INFO  1041 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(9)
-2020-03-07 13:25:09.590 INFO  1042 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(10)
-2020-03-07 13:25:09.591 INFO  1043 --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onComplete()
-2020-03-07 13:25:31.376 INFO  793  --- [ sub-1 ] reactor.Flux.PublishOn.1 - | onSubscribe([Fuseable] FluxPublishOn.PublishOnSubscriber)
-2020-03-07 13:25:31.394 INFO  811  --- [ sub-1 ] reactor.Flux.PublishOn.1 - | request(unbounded)
-2020-03-07 13:25:31.396 INFO  813  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(1)
-2020-03-07 13:25:31.397 INFO  814  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(2)
-2020-03-07 13:25:31.398 INFO  815  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(3)
-2020-03-07 13:25:31.398 INFO  815  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(4)
-2020-03-07 13:25:31.399 INFO  816  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(5)
-2020-03-07 13:25:31.399 INFO  816  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(6)
-2020-03-07 13:25:31.399 INFO  816  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(7)
-2020-03-07 13:25:31.399 INFO  816  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(8)
-2020-03-07 13:25:31.399 INFO  816  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(9)
-2020-03-07 13:25:31.400 INFO  817  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(10)
-2020-03-07 13:25:31.401 INFO  818  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onComplete()
-2020-03-07 13:25:45.858 INFO  788  --- [ sub-1 ] reactor.Flux.MapFuseable.1 - | onSubscribe([Fuseable] FluxMapFuseable.MapFuseableSubscriber)
-2020-03-07 13:25:45.869 INFO  799  --- [ sub-1 ] reactor.Flux.MapFuseable.1 - | request(unbounded)
-2020-03-07 13:25:45.871 INFO  801  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(11)
-2020-03-07 13:25:45.873 INFO  803  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(12)
-2020-03-07 13:25:45.874 INFO  804  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(13)
-2020-03-07 13:25:45.874 INFO  804  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(14)
-2020-03-07 13:25:45.874 INFO  804  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(15)
-2020-03-07 13:25:45.875 INFO  805  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(16)
-2020-03-07 13:25:45.875 INFO  805  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(17)
-2020-03-07 13:25:45.875 INFO  805  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(18)
-2020-03-07 13:25:45.875 INFO  805  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(19)
-2020-03-07 13:25:45.876 INFO  806  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onNext(20)
-2020-03-07 13:25:45.877 INFO  807  --- [ pub-2 ] reactor.Flux.MapFuseable.1 - | onComplete()
-2020-03-07 13:26:00.113 INFO  660  --- [ sub-1 ] reactor.Flux.PublishOn.1 - | onSubscribe([Fuseable] FluxPublishOn.PublishOnSubscriber)
-2020-03-07 13:26:00.123 INFO  670  --- [ sub-1 ] reactor.Flux.MapFuseable.2 - | onSubscribe([Fuseable] FluxMapFuseable.MapFuseableSubscriber)
-2020-03-07 13:26:00.126 INFO  673  --- [ sub-1 ] reactor.Flux.MapFuseable.2 - | request(unbounded)
-2020-03-07 13:26:00.126 INFO  673  --- [ sub-1 ] reactor.Flux.PublishOn.1 - | request(unbounded)
-2020-03-07 13:26:00.137 INFO  684  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(1)
-2020-03-07 13:26:00.138 INFO  685  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(11)
-2020-03-07 13:26:00.139 INFO  686  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(2)
-2020-03-07 13:26:00.139 INFO  686  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(12)
-2020-03-07 13:26:00.139 INFO  686  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(3)
-2020-03-07 13:26:00.139 INFO  686  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(13)
-2020-03-07 13:26:00.140 INFO  687  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(4)
-2020-03-07 13:26:00.140 INFO  687  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(14)
-2020-03-07 13:26:00.140 INFO  687  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(5)
-2020-03-07 13:26:00.140 INFO  687  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(15)
-2020-03-07 13:26:00.141 INFO  688  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(6)
-2020-03-07 13:26:00.141 INFO  688  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(16)
-2020-03-07 13:26:00.141 INFO  688  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(7)
-2020-03-07 13:26:00.141 INFO  688  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(17)
-2020-03-07 13:26:00.142 INFO  689  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(8)
-2020-03-07 13:26:00.142 INFO  689  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(18)
-2020-03-07 13:26:00.142 INFO  689  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(9)
-2020-03-07 13:26:00.142 INFO  689  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(19)
-2020-03-07 13:26:00.142 INFO  689  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onNext(10)
-2020-03-07 13:26:00.143 INFO  690  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onNext(20)
-2020-03-07 13:26:00.144 INFO  691  --- [ pub-2 ] reactor.Flux.PublishOn.1 - | onComplete()
-2020-03-07 13:26:00.145 INFO  692  --- [ pub-2 ] reactor.Flux.MapFuseable.2 - | onComplete()
-2020-03-07 13:26:41.910 INFO  716  --- [ main ] reactor.Flux.PublishOn.1 - | onSubscribe([Fuseable] FluxPublishOn.PublishOnSubscriber)
-2020-03-07 13:26:41.924 INFO  730  --- [ main ] reactor.Flux.PublishOn.1 - | request(unbounded)
-2020-03-07 13:26:41.929 INFO  735  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(1)
-2020-03-07 13:26:41.930 INFO  736  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(2)
-2020-03-07 13:26:41.931 INFO  737  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(3)
-2020-03-07 13:26:41.931 INFO  737  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(4)
-2020-03-07 13:26:41.932 INFO  738  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(5)
-2020-03-07 13:26:41.932 INFO  738  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(6)
-2020-03-07 13:26:41.933 INFO  739  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(7)
-2020-03-07 13:26:41.933 INFO  739  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(8)
-2020-03-07 13:26:41.933 INFO  739  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(9)
-2020-03-07 13:26:41.933 INFO  739  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onNext(10)
-2020-03-07 13:26:41.935 INFO  741  --- [ pub-1 ] reactor.Flux.PublishOn.1 - | onComplete()
-2020-03-07 13:27:10.938 INFO  626  --- [ sub-1 ] reactor.Flux.Range.1 - | onSubscribe([Synchronous Fuseable] FluxRange.RangeSubscription)
-2020-03-07 13:27:10.948 INFO  636  --- [ sub-1 ] reactor.Flux.Range.1 - | request(unbounded)
-2020-03-07 13:27:10.949 INFO  637  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(1)
-2020-03-07 13:27:10.950 INFO  638  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(2)
-2020-03-07 13:27:10.951 INFO  639  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(3)
-2020-03-07 13:27:10.951 INFO  639  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(4)
-2020-03-07 13:27:10.951 INFO  639  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(5)
-2020-03-07 13:27:10.952 INFO  640  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(6)
-2020-03-07 13:27:10.952 INFO  640  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(7)
-2020-03-07 13:27:10.952 INFO  640  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(8)
-2020-03-07 13:27:10.953 INFO  641  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(9)
-2020-03-07 13:27:10.953 INFO  641  --- [ sub-1 ] reactor.Flux.Range.1 - | onNext(10)
-2020-03-07 13:27:10.954 INFO  642  --- [ sub-1 ] reactor.Flux.Range.1 - | onComplete()
-2020-03-07 13:28:58.901 INFO  910  --- [ main ] sun.lee.t6_seventh.Ex1Scheduler - onSubscribe
-2020-03-07 13:28:58.917 INFO  926  --- [ subscribeOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onSubscribe
-2020-03-07 13:28:58.919 INFO  928  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:1
-2020-03-07 13:28:58.914 INFO  923  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:1
-2020-03-07 13:28:58.924 INFO  933  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:2
-2020-03-07 13:28:58.924 INFO  933  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:3
-2020-03-07 13:28:58.924 INFO  933  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:2
-2020-03-07 13:28:58.924 INFO  933  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:4
-2020-03-07 13:28:58.924 INFO  933  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:3
-2020-03-07 13:28:58.924 INFO  933  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:5
-2020-03-07 13:28:58.924 INFO  933  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:4
-2020-03-07 13:28:58.925 INFO  934  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onNext:5
-2020-03-07 13:28:58.925 INFO  934  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onComplete
-2020-03-07 13:28:58.925 INFO  934  --- [ publishOn - 1 ] sun.lee.t6_seventh.Ex1Scheduler - onComplete
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-53 ] sun.lee.t8_nineth.LoadTest - Thread: 53 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-1 ] sun.lee.t8_nineth.LoadTest - Thread: 1 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-99 ] sun.lee.t8_nineth.LoadTest - Thread: 99 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-19 ] sun.lee.t8_nineth.LoadTest - Thread: 19 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-61 ] sun.lee.t8_nineth.LoadTest - Thread: 61 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-90 ] sun.lee.t8_nineth.LoadTest - Thread: 90 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-31 ] sun.lee.t8_nineth.LoadTest - Thread: 31 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-75 ] sun.lee.t8_nineth.LoadTest - Thread: 75 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-70 ] sun.lee.t8_nineth.LoadTest - Thread: 70 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-82 ] sun.lee.t8_nineth.LoadTest - Thread: 82 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-24 ] sun.lee.t8_nineth.LoadTest - Thread: 24 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-30 ] sun.lee.t8_nineth.LoadTest - Thread: 30 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-12 ] sun.lee.t8_nineth.LoadTest - Thread: 12 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-83 ] sun.lee.t8_nineth.LoadTest - Thread: 83 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-79 ] sun.lee.t8_nineth.LoadTest - Thread: 79 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-92 ] sun.lee.t8_nineth.LoadTest - Thread: 92 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-35 ] sun.lee.t8_nineth.LoadTest - Thread: 35 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-33 ] sun.lee.t8_nineth.LoadTest - Thread: 33 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-71 ] sun.lee.t8_nineth.LoadTest - Thread: 71 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-13 ] sun.lee.t8_nineth.LoadTest - Thread: 13 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-72 ] sun.lee.t8_nineth.LoadTest - Thread: 72 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-37 ] sun.lee.t8_nineth.LoadTest - Thread: 37 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-54 ] sun.lee.t8_nineth.LoadTest - Thread: 54 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-39 ] sun.lee.t8_nineth.LoadTest - Thread: 39 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-78 ] sun.lee.t8_nineth.LoadTest - Thread: 78 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-74 ] sun.lee.t8_nineth.LoadTest - Thread: 74 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-65 ] sun.lee.t8_nineth.LoadTest - Thread: 65 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-63 ] sun.lee.t8_nineth.LoadTest - Thread: 63 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-4 ] sun.lee.t8_nineth.LoadTest - Thread: 4 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-46 ] sun.lee.t8_nineth.LoadTest - Thread: 46 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-64 ] sun.lee.t8_nineth.LoadTest - Thread: 64 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-60 ] sun.lee.t8_nineth.LoadTest - Thread: 60 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-36 ] sun.lee.t8_nineth.LoadTest - Thread: 36 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-21 ] sun.lee.t8_nineth.LoadTest - Thread: 21 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-27 ] sun.lee.t8_nineth.LoadTest - Thread: 27 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-91 ] sun.lee.t8_nineth.LoadTest - Thread: 91 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-100 ] sun.lee.t8_nineth.LoadTest - Thread: 100 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-8 ] sun.lee.t8_nineth.LoadTest - Thread: 8 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-14 ] sun.lee.t8_nineth.LoadTest - Thread: 14 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-38 ] sun.lee.t8_nineth.LoadTest - Thread: 38 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-29 ] sun.lee.t8_nineth.LoadTest - Thread: 29 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-80 ] sun.lee.t8_nineth.LoadTest - Thread: 80 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-17 ] sun.lee.t8_nineth.LoadTest - Thread: 17 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-84 ] sun.lee.t8_nineth.LoadTest - Thread: 84 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-32 ] sun.lee.t8_nineth.LoadTest - Thread: 32 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-58 ] sun.lee.t8_nineth.LoadTest - Thread: 58 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-26 ] sun.lee.t8_nineth.LoadTest - Thread: 26 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-44 ] sun.lee.t8_nineth.LoadTest - Thread: 44 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-59 ] sun.lee.t8_nineth.LoadTest - Thread: 59 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-20 ] sun.lee.t8_nineth.LoadTest - Thread: 20 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-48 ] sun.lee.t8_nineth.LoadTest - Thread: 48 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-68 ] sun.lee.t8_nineth.LoadTest - Thread: 68 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-45 ] sun.lee.t8_nineth.LoadTest - Thread: 45 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-62 ] sun.lee.t8_nineth.LoadTest - Thread: 62 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-41 ] sun.lee.t8_nineth.LoadTest - Thread: 41 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-10 ] sun.lee.t8_nineth.LoadTest - Thread: 10 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-18 ] sun.lee.t8_nineth.LoadTest - Thread: 18 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-69 ] sun.lee.t8_nineth.LoadTest - Thread: 69 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-15 ] sun.lee.t8_nineth.LoadTest - Thread: 15 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-76 ] sun.lee.t8_nineth.LoadTest - Thread: 76 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-87 ] sun.lee.t8_nineth.LoadTest - Thread: 87 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-55 ] sun.lee.t8_nineth.LoadTest - Thread: 55 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-40 ] sun.lee.t8_nineth.LoadTest - Thread: 40 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-67 ] sun.lee.t8_nineth.LoadTest - Thread: 67 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-93 ] sun.lee.t8_nineth.LoadTest - Thread: 93 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-81 ] sun.lee.t8_nineth.LoadTest - Thread: 81 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-56 ] sun.lee.t8_nineth.LoadTest - Thread: 56 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-85 ] sun.lee.t8_nineth.LoadTest - Thread: 85 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-86 ] sun.lee.t8_nineth.LoadTest - Thread: 86 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-3 ] sun.lee.t8_nineth.LoadTest - Thread: 3 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-6 ] sun.lee.t8_nineth.LoadTest - Thread: 6 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-97 ] sun.lee.t8_nineth.LoadTest - Thread: 97 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-23 ] sun.lee.t8_nineth.LoadTest - Thread: 23 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-94 ] sun.lee.t8_nineth.LoadTest - Thread: 94 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-57 ] sun.lee.t8_nineth.LoadTest - Thread: 57 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-77 ] sun.lee.t8_nineth.LoadTest - Thread: 77 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-98 ] sun.lee.t8_nineth.LoadTest - Thread: 98 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-95 ] sun.lee.t8_nineth.LoadTest - Thread: 95 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-73 ] sun.lee.t8_nineth.LoadTest - Thread: 73 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-11 ] sun.lee.t8_nineth.LoadTest - Thread: 11 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-49 ] sun.lee.t8_nineth.LoadTest - Thread: 49 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-43 ] sun.lee.t8_nineth.LoadTest - Thread: 43 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-5 ] sun.lee.t8_nineth.LoadTest - Thread: 5 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-22 ] sun.lee.t8_nineth.LoadTest - Thread: 22 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-50 ] sun.lee.t8_nineth.LoadTest - Thread: 50 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-2 ] sun.lee.t8_nineth.LoadTest - Thread: 2 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-47 ] sun.lee.t8_nineth.LoadTest - Thread: 47 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-88 ] sun.lee.t8_nineth.LoadTest - Thread: 88 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-9 ] sun.lee.t8_nineth.LoadTest - Thread: 9 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-66 ] sun.lee.t8_nineth.LoadTest - Thread: 66 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-42 ] sun.lee.t8_nineth.LoadTest - Thread: 42 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-89 ] sun.lee.t8_nineth.LoadTest - Thread: 89 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-25 ] sun.lee.t8_nineth.LoadTest - Thread: 25 
+2020-08-20 21:57:01.180 INFO  440  --- [ pool-2-thread-16 ] sun.lee.t8_nineth.LoadTest - Thread: 16 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-52 ] sun.lee.t8_nineth.LoadTest - Thread: 52 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-51 ] sun.lee.t8_nineth.LoadTest - Thread: 51 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-28 ] sun.lee.t8_nineth.LoadTest - Thread: 28 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-34 ] sun.lee.t8_nineth.LoadTest - Thread: 34 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-96 ] sun.lee.t8_nineth.LoadTest - Thread: 96 
+2020-08-20 21:57:01.179 INFO  439  --- [ pool-2-thread-7 ] sun.lee.t8_nineth.LoadTest - Thread: 7 
+2020-08-20 21:57:01.313 INFO  573  --- [ main ] sun.lee.t8_nineth.LoadTest - Total: 0.15200713
